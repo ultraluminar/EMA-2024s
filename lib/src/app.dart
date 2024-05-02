@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'appPages/homePage.dart';
-import 'appPages/productsPage.dart';
-import 'appPages/recipesPage.dart';
+import 'appPages/home_page.dart';
+import 'appPages/products_page.dart';
+import 'appPages/recipes_page.dart';
 
 class FridgeManager extends StatelessWidget {
   const FridgeManager({
