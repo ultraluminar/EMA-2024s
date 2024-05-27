@@ -1,1 +1,17 @@
 include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules: 
+    # Error rules
+    - avoid_relative_lib_imports
+    - avoid_types_as_parameter_names
+    - cancel_subscriptions
+    
+    # Style rules
+    - always_declare_return_types
+    - always_put_required_named_parameters_first
+    - camel_case_types
+    - directives_ordering
+    - eol_at_end_of_file
+    
+    # TODO: add more rules
