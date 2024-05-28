@@ -1,0 +1,9 @@
+{
+  "@@locale": "en",
+  "appTitle": "Fridge Manager",
+  "productsPageNavigationBarLabel": "Products",
+  "overviewPageNavigationBarLabel": "Overview",
+  "recipesPageNavigationBarLabel": "Recepies",
+  "nothingToSeeHereYet": "Nothing to see here yet!",
+  "productsPageLink": "Products Page"
+}
