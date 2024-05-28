@@ -6,7 +6,7 @@ publish_to: none
 environment:
   sdk: ">=3.4.1 <4.0.0"
 
-# TODO: adjust dependencie constraints
+# TODO: adjust dependency constraints
 dependencies:
   equatable: ^2.0.3
   json_annotation: ^4.6.0
