@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 
 part 'product.g.dart';
 
-// TODO: add docstring
+// TODO: add docstrings
 @immutable
 @JsonSerializable()
 class Product extends Equatable {
