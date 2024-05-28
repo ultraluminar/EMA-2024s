@@ -1,0 +1,12 @@
+name: products_repository
+description: A repository that handles Product related requests.
+versoin: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+# TODO: adjust dependecy constraints
+dependencies:
+  products_api:
+    path: ../products_api

@@ -1,0 +1,20 @@
+name: local_storage_products_api
+description: An API implementing the ProductsAPI and providing access to products stored in local storage.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+# TODO: adjust dependency constraints
+dependencies:
+  flutter:
+    sdk: flutter
+  rxdart: ^0.27.5
+  shared_preferences: ^2.0.15
+  products_api:
+    path: ../products_api
+
+# dev_dependencies:
+#   flutter_test:
+#     sdk: flutter
