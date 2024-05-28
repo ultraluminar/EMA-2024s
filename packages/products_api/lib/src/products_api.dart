@@ -4,7 +4,7 @@ import 'package:products_api/products_api.dart';
 abstract class ProductsApi {
   const ProductsApi();
 
-  Stream<List<Product>> getAllProduct();
+  Stream<List<Product>> getAllProducts();
 
   Future<void> saveProduct(Product product);
 
