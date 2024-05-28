@@ -4,6 +4,7 @@ import 'package:products_api/products_api.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// TODO: add docstrings
 class LocalStorageProductsApi extends ProductsApi {
   LocalStorageProductsApi({
     required SharedPreferences sharedPreferences,
