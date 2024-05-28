@@ -1,20 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:fridge_manager/bootstrap.dart';
+import 'package:local_storage_products_api/local_storage_products_api.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  final productsApi = LocalStorageProductsApi(
+    sharedPreferences: await SharedPreferences.getInstance(),
+  );
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  bootstrap(productsApi: productsApi);
 }
