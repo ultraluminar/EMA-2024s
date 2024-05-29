@@ -14,7 +14,7 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
         super(
           EditProductState(
             initialProduct: initialProduct,
-            name: initialProduct?.name ?? "",
+            name: initialProduct?.name ?? "Product Name", // TODO: implement default value
             expiresAt: initialProduct?.expires_at,
             storedAt: initialProduct?.stored_at,
             owner: initialProduct?.owner ?? "",

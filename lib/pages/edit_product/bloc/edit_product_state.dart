@@ -56,5 +56,5 @@ final class EditProductState extends Equatable {
 
   @override
   List<Object> get props =>
-      [status, initialProduct!, name, expiresAt, storedAt, owner, tags];
+      [status, name, expiresAt, storedAt, owner, tags]; // initialProduct!,
 }
