@@ -37,12 +37,6 @@ class HomeView extends StatelessWidget {
           ProductsPage(),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        key: const Key("homeView_addProduct_floatingActionButton"),
-        onPressed: () => Navigator.of(context).push(EditProductPage.route()),
-        child: const Icon(Icons.add),
-      ),
       appBar: AppBar(
         title: Text(S.of(context).appTitle),
       ),

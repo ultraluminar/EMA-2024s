@@ -34,6 +34,12 @@ class OverviewView extends StatelessWidget {
           OverviewOptionsButton(),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        key: const Key("homeView_addProduct_floatingActionButton"),
+        onPressed: () => Navigator.of(context).push(EditProductPage.route()),
+        child: const Icon(Icons.add),
+      ),
       body: MultiBlocListener(
         listeners: [
           BlocListener<OverviewPageBloc, OverviewPageState>(
