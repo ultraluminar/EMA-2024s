@@ -1,0 +1,25 @@
+Models:
+  Product:
+    TODO: Add Store store_name for remembering where the product was bought
+  TODO: Store
+  TODO: Storages (Place where Products are physically stored)
+  TODO: Person (Person who bought/owns the product)
+UI:
+  Products Page:
+    TODO: Add "Add Product" Page
+    
+API:
+  TODO: Scanner API (Barcode Scanner)
+  Scanner API:
+    - Simple Barcode Scanner (simple_barcode_scanner)
+  TODO: Food Data API (Nutrition Information)
+  Food Data API:
+    - Open Food Facts Dart Package (openfoodfacts)
+  TODO: Store API (Store Information)
+  TODO: User Authentication API (Firebase)
+
+Storage:
+  TODO: Add Cloud Storage (Firebase)
+
+Whole Feature:
+  TODO: Family/Co-op Feature (Family members can share the same Household)
