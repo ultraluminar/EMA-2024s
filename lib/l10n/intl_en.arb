@@ -5,5 +5,8 @@
   "overviewPageNavigationBarLabel": "Overview",
   "recipesPageNavigationBarLabel": "Recepies",
   "nothingToSeeHereYet": "Nothing to see here yet!",
-  "productsPageLink": "Products Page"
+  "productsPageLink": "Products Page",
+  "overviewAppBarTitle": "Overview",
+  "overviewErrorSnackbarText": "An error occurred while loading todos.",
+  "overviewEmptyView": "No todos found with the selected filters."
 }

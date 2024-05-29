@@ -25,6 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("Fridge Manager"),
         "nothingToSeeHereYet":
             MessageLookupByLibrary.simpleMessage("Nothing to see here yet!"),
+        "overviewAppBarTitle": MessageLookupByLibrary.simpleMessage("Overview"),
+        "overviewEmptyView": MessageLookupByLibrary.simpleMessage(
+            "No todos found with the selected filters."),
+        "overviewErrorSnackbarText": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while loading todos."),
         "overviewPageNavigationBarLabel":
             MessageLookupByLibrary.simpleMessage("Overview"),
         "productsPageLink":

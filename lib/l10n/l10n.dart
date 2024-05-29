@@ -109,6 +109,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Overview`
+  String get overviewAppBarTitle {
+    return Intl.message(
+      'Overview',
+      name: 'overviewAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while loading todos.`
+  String get overviewErrorSnackbarText {
+    return Intl.message(
+      'An error occurred while loading todos.',
+      name: 'overviewErrorSnackbarText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No todos found with the selected filters.`
+  String get overviewEmptyView {
+    return Intl.message(
+      'No todos found with the selected filters.',
+      name: 'overviewEmptyView',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
