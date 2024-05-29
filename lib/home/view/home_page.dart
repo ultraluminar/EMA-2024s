@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/home/home.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/pages/overview_page/overview_page.dart';
+import 'package:fridge_manager/pages/products_page/products_page.dart';
 import 'package:fridge_manager/pages/recipes_page/recipes_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -32,7 +33,7 @@ class HomeView extends StatelessWidget {
         children: const [
           OverviewPage(),
           RecipesPage(),
-          Placeholder(), // ProductsPage(),
+          ProductsPage(),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
