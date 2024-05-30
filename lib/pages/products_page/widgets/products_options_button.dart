@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 
-class OverviewOptionsButton extends StatelessWidget {
-  const OverviewOptionsButton({super.key});
+class ProductsOptionsButton extends StatelessWidget {
+  const ProductsOptionsButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class OverviewOptionsButton extends StatelessWidget {
             content: Text('Options button pressed'),
           ),
         ),
-    );  
+    );
   }
 }
 

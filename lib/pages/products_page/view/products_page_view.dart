@@ -1,37 +1,35 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/pages/edit_product/edit_product.dart';
-import 'package:fridge_manager/pages/overview_page/overview_page.dart';
+import 'package:fridge_manager/pages/products_page/products_page.dart';
 import 'package:products_repository/products_repository.dart';
 
-class OverviewPageView extends StatelessWidget {
-  const OverviewPageView({super.key});
-
+class ProductsPage extends StatelessWidget {
+  const ProductsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OverviewPageBloc(
+      create: (context) => ProductsPageBloc(
         productsRepository: context.read<ProductsRepository>(),
-      )..add(const OverviewPageSubscriptionRequested()),
-      child: const OverviewView(),
+      )..add(const ProductsPageSubscriptionRequested()),
+      child: const ProductsView(),
     );
   }
 }
 
-class OverviewView extends StatelessWidget {
-  const OverviewView({super.key});
+class ProductsView extends StatelessWidget {
+  const ProductsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).overviewAppBarTitle),
+        title: Text(S.of(context).productsAppBarTitle),
         actions: const [
-          OverviewFilterButton(),
-          OverviewOptionsButton(),
+          ProductsFilterButton(),
+          ProductsOptionsButton(),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -42,23 +40,23 @@ class OverviewView extends StatelessWidget {
       ),
       body: MultiBlocListener(
         listeners: [
-          BlocListener<OverviewPageBloc, OverviewPageState>(
+          BlocListener<ProductsPageBloc, ProductsPageState>(
             listenWhen: (previous, current) =>
                 previous.status != current.status,
             listener: (context, state) {
-              if (state.status == OverviewPageStatus.failure) {
+              if (state.status == ProductsPageStatus.failure) {
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(
-                      content: Text(S.of(context).overviewErrorSnackbarText),
+                      content: Text(S.of(context).productsErrorSnackbarText),
                     ),
                   );
               }
             },
           ),
           /*
-          BlocListener<OverviewPageBloc, OverviewPageState>(
+          BlocListener<ProductsPageBloc, ProductsPageState>(
             listenWhen: (previous, current) =>
                 previous.lastDeletedProduct != current.lastDeletedProduct &&
                 current.lastDeletedProduct != null,
@@ -69,15 +67,15 @@ class OverviewView extends StatelessWidget {
                 ..showSnackBar(
                   SnackBar(
                     content: Text(
-                      S.of(context).overviewDeletedProductSnackbarText(
+                      S.of(context).productsDeletedProductSnackbarText(
                         deletedProduct.name,
                       ),
                     ),
                     action: SnackBarAction(
-                      label: S.of(context).overviewDeletedProductSnackbarUndo,
+                      label: S.of(context).productsDeletedProductSnackbarUndo,
                       onPressed: () => context
-                          .read<OverviewPageBloc>()
-                          .add(OverviewPageProductAdded(deletedProduct)),
+                          .read<ProductsPageBloc>()
+                          .add(ProductsPageProductAdded(deletedProduct)),
                     ),
                   ),
                 );
@@ -85,18 +83,18 @@ class OverviewView extends StatelessWidget {
           ),
           */
         ],
-        child: BlocBuilder<OverviewPageBloc, OverviewPageState>(
+        child: BlocBuilder<ProductsPageBloc, ProductsPageState>(
           builder: (context, state) {
             if (state.products.isEmpty) {
               switch (state.status) {
-                case OverviewPageStatus.loading:
+                case ProductsPageStatus.loading:
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                case OverviewPageStatus.success:
+                case ProductsPageStatus.success:
                   return Center(
                     child: Text(
-                      S.of(context).overviewEmptyView,
+                      S.of(context).productsEmptyView,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   );
@@ -104,7 +102,7 @@ class OverviewView extends StatelessWidget {
                   return const SizedBox();
               }
             }
-            return CupertinoScrollbar(
+            return Scrollbar(
               child: ListView(
                 children: [
                   for (final product in state.products)
