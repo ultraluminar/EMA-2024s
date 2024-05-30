@@ -14,8 +14,8 @@ class RecipesPage extends StatelessWidget {
         children: [
           Text(S.of(context).nothingToSeeHereYet),
           TextButton(
-            onPressed: () => context.read<HomeCubit>().setTab(HomeTab.home),
-            child: const Text("Go to Overview"),
+            onPressed: () => context.read<HomeCubit>().setTab(HomeTab.products),
+            child: Text(S.of(context).productsPageLink),
           ),
         ],
       ),

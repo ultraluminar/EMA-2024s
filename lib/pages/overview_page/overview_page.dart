@@ -1,9 +1,3 @@
-export 'bloc/overview_page_bloc.dart';
-export 'models/models.dart';
-export 'view/view.dart';
-export 'widgets/widgets.dart';
-
-/*
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/home/cubit/home_cubit.dart';
@@ -28,4 +22,3 @@ class OverviewPage extends StatelessWidget {
     );
   }
 }
-*/
