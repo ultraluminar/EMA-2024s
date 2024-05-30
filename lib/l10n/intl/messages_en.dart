@@ -23,20 +23,29 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Fridge Manager"),
+        "editProductAddAppBarTitle":
+            MessageLookupByLibrary.simpleMessage("Add Product"),
+        "editProductEditAppBarTitle":
+            MessageLookupByLibrary.simpleMessage("Edit Product"),
+        "editProductSaveButtonTooltip":
+            MessageLookupByLibrary.simpleMessage("Save Product"),
         "nothingToSeeHereYet":
             MessageLookupByLibrary.simpleMessage("Nothing to see here yet!"),
-        "overviewAppBarTitle": MessageLookupByLibrary.simpleMessage("Overview"),
-        "overviewEmptyView": MessageLookupByLibrary.simpleMessage(
-            "No todos found with the selected filters."),
-        "overviewErrorSnackbarText": MessageLookupByLibrary.simpleMessage(
-            "An error occurred while loading todos."),
+        "overviewAppBarTitle":
+            MessageLookupByLibrary.simpleMessage("Fridge Manager"),
         "overviewPageNavigationBarLabel":
             MessageLookupByLibrary.simpleMessage("Overview"),
+        "productsAppBarTitle": MessageLookupByLibrary.simpleMessage("Products"),
+        "productsEmptyView": MessageLookupByLibrary.simpleMessage(
+            "No todos found with the selected filters."),
+        "productsErrorSnackbarText": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while loading todos."),
         "productsPageLink":
             MessageLookupByLibrary.simpleMessage("Products Page"),
         "productsPageNavigationBarLabel":
             MessageLookupByLibrary.simpleMessage("Products"),
+        "recipesAppBarTitle": MessageLookupByLibrary.simpleMessage("Recipes"),
         "recipesPageNavigationBarLabel":
-            MessageLookupByLibrary.simpleMessage("Recepies")
+            MessageLookupByLibrary.simpleMessage("Recipes")
       };
 }

@@ -80,21 +80,61 @@ class S {
     );
   }
 
-  /// `Recepies`
+  /// `Recipes`
   String get recipesPageNavigationBarLabel {
     return Intl.message(
-      'Recepies',
+      'Recipes',
       name: 'recipesPageNavigationBarLabel',
       desc: '',
       args: [],
     );
   }
 
-  /// `Nothing to see here yet!`
-  String get nothingToSeeHereYet {
+  /// `Products`
+  String get productsAppBarTitle {
     return Intl.message(
-      'Nothing to see here yet!',
-      name: 'nothingToSeeHereYet',
+      'Products',
+      name: 'productsAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fridge Manager`
+  String get overviewAppBarTitle {
+    return Intl.message(
+      'Fridge Manager',
+      name: 'overviewAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recipes`
+  String get recipesAppBarTitle {
+    return Intl.message(
+      'Recipes',
+      name: 'recipesAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while loading todos.`
+  String get productsErrorSnackbarText {
+    return Intl.message(
+      'An error occurred while loading todos.',
+      name: 'productsErrorSnackbarText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No todos found with the selected filters.`
+  String get productsEmptyView {
+    return Intl.message(
+      'No todos found with the selected filters.',
+      name: 'productsEmptyView',
       desc: '',
       args: [],
     );
@@ -110,31 +150,41 @@ class S {
     );
   }
 
-  /// `Overview`
-  String get overviewAppBarTitle {
+  /// `Nothing to see here yet!`
+  String get nothingToSeeHereYet {
     return Intl.message(
-      'Overview',
-      name: 'overviewAppBarTitle',
+      'Nothing to see here yet!',
+      name: 'nothingToSeeHereYet',
       desc: '',
       args: [],
     );
   }
 
-  /// `An error occurred while loading todos.`
-  String get overviewErrorSnackbarText {
+  /// `Add Product`
+  String get editProductAddAppBarTitle {
     return Intl.message(
-      'An error occurred while loading todos.',
-      name: 'overviewErrorSnackbarText',
+      'Add Product',
+      name: 'editProductAddAppBarTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `No todos found with the selected filters.`
-  String get overviewEmptyView {
+  /// `Edit Product`
+  String get editProductEditAppBarTitle {
     return Intl.message(
-      'No todos found with the selected filters.',
-      name: 'overviewEmptyView',
+      'Edit Product',
+      name: 'editProductEditAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Product`
+  String get editProductSaveButtonTooltip {
+    return Intl.message(
+      'Save Product',
+      name: 'editProductSaveButtonTooltip',
       desc: '',
       args: [],
     );
