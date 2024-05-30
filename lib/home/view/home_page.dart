@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/home/home.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
-import 'package:fridge_manager/pages/edit_product/edit_product.dart';
 import 'package:fridge_manager/pages/overview_page/overview_page.dart';
 import 'package:fridge_manager/pages/products_page/products_page.dart';
 import 'package:fridge_manager/pages/recipes_page/recipes_page.dart';
@@ -32,13 +29,10 @@ class HomeView extends StatelessWidget {
       body: IndexedStack(
         index: selectedTab.index,
         children: const [
-          OverviewPageView(),
+          OverviewPage(),
           RecipesPage(),
           ProductsPage(),
         ],
-      ),
-      appBar: AppBar(
-        title: Text(S.of(context).appTitle),
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedTab.index,
