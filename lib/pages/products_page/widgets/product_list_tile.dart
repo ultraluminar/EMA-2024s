@@ -17,6 +17,7 @@ class ProductListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final captionColor = theme.textTheme.bodySmall?.color;
+    final expiresInDays = product.expires_at.difference(DateTime.now()).inDays;
 
     return Dismissible(
       key: Key('productListTile_dismissible_${product.uuid}'),
@@ -44,7 +45,8 @@ class ProductListTile extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-            "uuid: ${product.uuid}", // TODO: choose appropriate product field
+          // TODO: choose appropriate product field
+          expiresInDays == 0 ? "expires today" : "expires in $expiresInDays days",
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
