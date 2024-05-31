@@ -6,7 +6,17 @@ Models:
   TODO: Person (Person who bought/owns the product)
 UI:
   Products Page:
-    TODO: Add "Add Product" Page
+    TODO: finish "edit Product" Page
+    TODO: implement delete product
+      - Snackbar to undo deletion
+    TODO: implement consume product
+      - Snackbar to undo consumption
+    
+    TODO: Add filter capability
+    TODO: Add search capability
+
+  Shopping List:
+    TODO: Shopping List Page
     
 API:
   TODO: Scanner API (Barcode Scanner)
