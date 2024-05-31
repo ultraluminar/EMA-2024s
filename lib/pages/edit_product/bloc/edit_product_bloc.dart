@@ -8,9 +8,9 @@ part 'edit_product_state.dart';
 
 class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
   EditProductBloc({
-    required ProductsRepository productRepository,
+    required ProductsRepository productsRepository,
     required Product? initialProduct,
-  })  : _productRepository = productRepository,
+  })  : _productsRepository = productsRepository,
         super(
           EditProductState(
             initialProduct: initialProduct,
@@ -29,7 +29,7 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
     on<EditProductSubmitted>(_onSubmitted);
   }
 
-  final ProductsRepository _productRepository;
+  final ProductsRepository _productsRepository;
 
   void _onNameChanged(
       EditProductNameChanged event, Emitter<EditProductState> emit) {
@@ -76,7 +76,7 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
             tags: state.tags,
           );
     try {
-      await _productRepository.saveProduct(product);
+      await _productsRepository.saveProduct(product);
       emit(state.copyWith(status: EditProductStatus.success));
     } catch (e) {
       emit(state.copyWith(status: EditProductStatus.failure));

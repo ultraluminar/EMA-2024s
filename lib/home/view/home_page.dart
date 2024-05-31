@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/home/home.dart';
@@ -35,16 +33,6 @@ class HomeView extends StatelessWidget {
           RecipesPage(),
           ProductsPage(),
         ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        key: const Key("homeView_addProduct_floatingActionButton"),
-        onPressed: () =>
-            log("ballz"), //Navigator.of(context).push(AddProductPage.route()),
-        child: const Icon(Icons.add),
-      ),
-      appBar: AppBar(
-        title: Text(S.of(context).appTitle),
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedTab.index,

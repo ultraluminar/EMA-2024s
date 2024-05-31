@@ -80,11 +80,71 @@ class S {
     );
   }
 
-  /// `Recepies`
+  /// `Recipes`
   String get recipesPageNavigationBarLabel {
     return Intl.message(
-      'Recepies',
+      'Recipes',
       name: 'recipesPageNavigationBarLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Products`
+  String get productsAppBarTitle {
+    return Intl.message(
+      'Products',
+      name: 'productsAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fridge Manager`
+  String get overviewAppBarTitle {
+    return Intl.message(
+      'Fridge Manager',
+      name: 'overviewAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recipes`
+  String get recipesAppBarTitle {
+    return Intl.message(
+      'Recipes',
+      name: 'recipesAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while loading todos.`
+  String get productsErrorSnackbarText {
+    return Intl.message(
+      'An error occurred while loading todos.',
+      name: 'productsErrorSnackbarText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No todos found with the selected filters.`
+  String get productsEmptyView {
+    return Intl.message(
+      'No todos found with the selected filters.',
+      name: 'productsEmptyView',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Products Page`
+  String get productsPageLink {
+    return Intl.message(
+      'Products Page',
+      name: 'productsPageLink',
       desc: '',
       args: [],
     );
@@ -100,11 +160,31 @@ class S {
     );
   }
 
-  /// `Products Page`
-  String get productsPageLink {
+  /// `Add Product`
+  String get editProductAddAppBarTitle {
     return Intl.message(
-      'Products Page',
-      name: 'productsPageLink',
+      'Add Product',
+      name: 'editProductAddAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Product`
+  String get editProductEditAppBarTitle {
+    return Intl.message(
+      'Edit Product',
+      name: 'editProductEditAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Product`
+  String get editProductSaveButtonTooltip {
+    return Intl.message(
+      'Save Product',
+      name: 'editProductSaveButtonTooltip',
       desc: '',
       args: [],
     );
