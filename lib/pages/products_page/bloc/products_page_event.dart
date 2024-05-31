@@ -24,7 +24,7 @@ final class ProductsPageProductCompletionToggled extends ProductsPageEvent {
   @override
   List<Object> get props => [product, isCompleted];
 }
-
+*/
 final class ProductsPageProductDeleted extends ProductsPageEvent {
   const ProductsPageProductDeleted(this.product);
 
@@ -37,7 +37,6 @@ final class ProductsPageProductDeleted extends ProductsPageEvent {
 final class ProductsPageUndoDeletionRequested extends ProductsPageEvent {
   const ProductsPageUndoDeletionRequested();
 }
-*/
 
 class ProductsPageFilterChanged extends ProductsPageEvent {
   const ProductsPageFilterChanged(this.filter);

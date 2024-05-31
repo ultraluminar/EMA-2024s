@@ -5,10 +5,12 @@ class ProductListTile extends StatelessWidget {
   const ProductListTile({
     required this.product,
     super.key,
+    this.onDismissed,
     this.onTap,
   });
 
   final Product product;
+  final DismissDirectionCallback? onDismissed;
   final VoidCallback? onTap;
 
   @override
@@ -18,7 +20,7 @@ class ProductListTile extends StatelessWidget {
 
     return Dismissible(
       key: Key('productListTile_dismissible_${product.uuid}'),
-      // TODO: implement onDismissed
+      onDismissed: onDismissed,
       direction: DismissDirection.endToStart,
       background: Container(
         alignment: Alignment.centerRight,

@@ -108,6 +108,11 @@ class ProductsView extends StatelessWidget {
                   for (final product in state.products)
                     ProductListTile(
                       product: product,
+                      onDismissed: (_) {
+                        context
+                            .read<ProductsPageBloc>()
+                            .add(ProductsPageProductDeleted(product));
+                      },
                       onTap: () {
                         Navigator.of(context).push<void>(
                           EditProductPage.route(initialProduct: product),

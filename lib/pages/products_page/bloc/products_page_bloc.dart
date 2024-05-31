@@ -13,6 +13,8 @@ class ProductsPageBloc extends Bloc<ProductsPageEvent, ProductsPageState> {
   })  : _productsRepository = productsRepository,
         super(const ProductsPageState()) {
     on<ProductsPageSubscriptionRequested>(_onSubscriptionRequested);
+    on<ProductsPageProductDeleted>(_onProductDeleted);
+    on<ProductsPageUndoDeletionRequested>(_onUndoDeletionRequested);
     on<ProductsPageFilterChanged>(_onFilterChanged);
   }
 
@@ -41,6 +43,25 @@ class ProductsPageBloc extends Bloc<ProductsPageEvent, ProductsPageState> {
     Emitter<ProductsPageState> emit,
   ) async {
     emit(state.copyWith(filter: () => event.filter));
+  }
+
+  Future<void> _onProductDeleted(
+    ProductsPageProductDeleted event,
+    Emitter<ProductsPageState> emit,
+  ) async {
+    emit(state.copyWith(lastDeletedProduct: () => event.product));
+    await _productsRepository.deleteProduct(event.product.uuid);
+  }
+
+  Future<void> _onUndoDeletionRequested(
+    ProductsPageUndoDeletionRequested event,
+    Emitter<ProductsPageState> emit,
+  ) async {
+    assert(state.lastDeletedProduct != null,
+        'Last deleted product can not be null.');
+
+    emit(state.copyWith(lastDeletedProduct: () => null));
+    await _productsRepository.saveProduct(state.lastDeletedProduct!);
   }
 }
 
