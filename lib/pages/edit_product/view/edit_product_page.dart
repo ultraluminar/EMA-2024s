@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/pages/edit_product/edit_product.dart';
+import 'package:intl/intl.dart';
 import 'package:products_api/products_api.dart';
 import 'package:products_repository/products_repository.dart';
 
@@ -69,7 +70,7 @@ class EditProductView extends StatelessWidget {
             child: Column(
               children: [
                 _NameField(),
-                // _ExpirationDateField(),
+                _ExpirationDateField(),
                 // _StorageDateField(),
                 // _OwnerField(),
                 // _KategoryField(),
@@ -87,20 +88,18 @@ class _NameField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<EditProductBloc>().state;
-    final hintText = state.initialProduct?.name ?? '';
 
     return TextField(
       key: const Key('editProductForm_nameInput_textField'),
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         enabled: !state.status.isLoadingOrSuccess,
-        labelText: "Test", //S.of(context).editProductFormNameFieldLabel,
-        hintText: hintText,
+        labelText: "Name", //S.of(context).editProductFormNameFieldLabel,
       ),
       maxLength: 50,
       inputFormatters: [
         LengthLimitingTextInputFormatter(50),
-        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+        // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
       ],
       onChanged: (name) =>
           context.read<EditProductBloc>().add(EditProductNameChanged(name)),
@@ -108,21 +107,46 @@ class _NameField extends StatelessWidget {
   }
 }
 
-// class _ExpirationDateField extends StatelessWidget {
-//   const _ExpirationDateField();
+class _ExpirationDateField extends StatelessWidget {
+  const _ExpirationDateField();
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final state = context.watch<EditProductBloc>().state;
-    
-//     return TextFormField(
-//       key: const Key('editProductForm_expirationDateInput_textField'),
-//       initialValue: state.expiresAt.toString(),
-//       decoration: InputDecoration(
-//         enabled: !state.status.isLoadingOrSuccess,
-//         labelText: "Test", //S.of(context).editProductFormExpirationDateFieldLabel,
-//       ),
-//       onChanged: (expiresAt) => context
-//           .read<EditProductBloc>()
-//           .add(EditProductExpirationDateChanged(expiresAt)),
-//     );
+  Future<void> _selectDate(BuildContext context) async {
+    final state = context.read<EditProductBloc>().state;
+    showDatePicker(
+      context: context,
+      initialDate: state.expiresAt,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    ).then(
+      (DateTime? picked) {
+        if (picked != null && picked != state.expiresAt) {
+          context
+              .read<EditProductBloc>()
+              .add(EditProductExpiresAtChanged(picked));
+        }
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = context.watch<EditProductBloc>().state;
+
+    return TextField(
+      key: const Key('editProductForm_expirationDateInput_dateField'),
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(),
+        enabled: !state.status.isLoadingOrSuccess,
+        labelText:
+            "ExpiresAt", //S.of(context).editProductFormExpirationDateFieldLabel,
+      ),
+      onTap: () => _selectDate(context),
+      controller: TextEditingController(
+        text: DateFormat("dd.MM.yyyy").format(
+          state.initialProduct?.expires_at ?? state.expiresAt,
+        ),
+      ),
+      readOnly: true,
+    );
+  }
+}
