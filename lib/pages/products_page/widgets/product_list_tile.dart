@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:products_api/products_api.dart';
 
 class ProductListTile extends StatelessWidget {
@@ -17,7 +20,11 @@ class ProductListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final captionColor = theme.textTheme.bodySmall?.color;
-    final expiresInDays = product.expires_at.difference(DateTime.now()).inDays;
+    final DateTime now = DateTime.now();
+    final expiresInDays = product.expires_at.difference(DateTime(now.year, now.month, now.day)).inDays;
+    final bool isExpired = expiresInDays >= 0;
+    log("$isExpired, $expiresInDays, ${expiresInDays.abs()}");
+    
 
     return Dismissible(
       key: Key('productListTile_dismissible_${product.uuid}'),
@@ -45,8 +52,9 @@ class ProductListTile extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          // TODO: choose appropriate product field
-          expiresInDays == 0 ? "expires today" : "expires in $expiresInDays days",
+          isExpired
+          ? S.of(context).productListTileDescriptionNotExpired(expiresInDays)
+          : S.of(context).productListTileDescriptionExpired(expiresInDays.abs()),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),

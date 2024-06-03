@@ -20,6 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(count) =>
+      "${Intl.plural(count, one: 'expired 1 day ago', other: 'expired ${count} days ago')}";
+
+  static String m1(count) =>
+      "${Intl.plural(count, zero: 'expires today', one: 'expires in 1 day', other: 'expires in ${count} days')}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Fridge Manager"),
@@ -35,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fridge Manager"),
         "overviewPageNavigationBarLabel":
             MessageLookupByLibrary.simpleMessage("Overview"),
+        "productListTileDescriptionExpired": m0,
+        "productListTileDescriptionNotExpired": m1,
         "productsAppBarTitle": MessageLookupByLibrary.simpleMessage("Products"),
         "productsEmptyView": MessageLookupByLibrary.simpleMessage(
             "No todos found with the selected filters."),

@@ -189,6 +189,31 @@ class S {
       args: [],
     );
   }
+
+  /// `{count, plural, one{expired 1 day ago} other{expired {count} days ago}}`
+  String productListTileDescriptionExpired(int count) {
+    return Intl.plural(
+      count,
+      one: 'expired 1 day ago',
+      other: 'expired $count days ago',
+      name: 'productListTileDescriptionExpired',
+      desc: 'productListTileDescriptionExpired',
+      args: [count],
+    );
+  }
+
+  /// `{count, plural, zero{expires today} one{expires in 1 day} other{expires in {count} days}}`
+  String productListTileDescriptionNotExpired(int count) {
+    return Intl.plural(
+      count,
+      zero: 'expires today',
+      one: 'expires in 1 day',
+      other: 'expires in $count days',
+      name: 'productListTileDescriptionNotExpired',
+      desc: 'productListTileDescriptionNotExpired',
+      args: [count],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

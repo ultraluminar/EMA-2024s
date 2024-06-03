@@ -13,5 +13,23 @@
   "nothingToSeeHereYet": "Nothing to see here yet!",
   "editProductAddAppBarTitle": "Add Product",
   "editProductEditAppBarTitle": "Edit Product",
-  "editProductSaveButtonTooltip": "Save Product"
+  "editProductSaveButtonTooltip": "Save Product",
+  "productListTileDescriptionExpired": "{count, plural, one{expired 1 day ago} other{expired {count} days ago}}",
+  "@productListTileDescriptionExpired": {
+    "description": "productListTileDescriptionExpired",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productListTileDescriptionNotExpired": "{count, plural, zero{expires today} one{expires in 1 day} other{expires in {count} days}}",
+  "@productListTileDescriptionNotExpired": {
+    "description": "productListTileDescriptionNotExpired",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

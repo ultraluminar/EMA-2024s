@@ -91,25 +91,38 @@ class _NameField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<EditProductBloc, EditProductState, bool>(
-        selector: (state) => state.status.isLoadingOrSuccess,
-        builder: (context, isLoadingOrSuccess) {
-          return TextField(
-            key: const Key('editProductForm_nameInput_textField'),
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              enabled: !isLoadingOrSuccess,
-              labelText: "Name", //S.of(context).editProductFormNameFieldLabel,
-            ),
-            maxLength: 50,
-            inputFormatters: [
-              LengthLimitingTextInputFormatter(50),
-              // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
-            ],
-            onChanged: (name) => context
-                .read<EditProductBloc>()
-                .add(EditProductNameChanged(name)),
-          );
-        });
+      selector: (state) => state.status.isLoadingOrSuccess,
+      builder: (context, isLoadingOrSuccess) {
+        return BlocSelector<EditProductBloc, EditProductState, String>(
+          selector: (state) => state.product.name,
+          builder: (context, name) {
+            TextEditingController controller = TextEditingController(text: name);
+
+            return TextField(
+              key: const Key('editProductForm_nameInput_textField'),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                enabled: !isLoadingOrSuccess,
+                labelText:
+                    "Name", //S.of(context).editProductFormNameFieldLabel,
+              ),
+              maxLength: 50,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(50),
+                // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+              ],
+              // onChanged: (name) => context
+              //     .read<EditProductBloc>()
+              //     .add(EditProductNameChanged(name)),
+              onEditingComplete: () => context
+                  .read<EditProductBloc>()
+                  .add(EditProductNameChanged(controller.text)),
+              controller: controller,
+            );
+          },
+        );
+      },
+    );
   }
 }
 
@@ -118,11 +131,11 @@ class _ExpirationDateField extends StatelessWidget {
 
   Future<void> _selectDate(BuildContext context) async {
     final expiresAt = context.read<EditProductBloc>().state.product.expires_at;
-    
+
     showDatePicker(
       context: context,
       initialDate: expiresAt,
-      firstDate: DateTime.now(),
+      firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     ).then(
       (DateTime? picked) {
