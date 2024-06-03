@@ -114,12 +114,12 @@ class _ExpirationDateField extends StatelessWidget {
     final state = context.read<EditProductBloc>().state;
     showDatePicker(
       context: context,
-      initialDate: state.expiresAt,
+      initialDate: state.product.expires_at,
       firstDate: DateTime.now(),
       lastDate: DateTime(2100),
     ).then(
       (DateTime? picked) {
-        if (picked != null && picked != state.expiresAt) {
+        if (picked != null && picked != state.product.expires_at) {
           context
               .read<EditProductBloc>()
               .add(EditProductExpiresAtChanged(picked));
@@ -142,9 +142,7 @@ class _ExpirationDateField extends StatelessWidget {
       ),
       onTap: () => _selectDate(context),
       controller: TextEditingController(
-        text: DateFormat("dd.MM.yyyy").format(
-          state.initialProduct?.expires_at ?? state.expiresAt,
-        ),
+        text: DateFormat("dd.MM.yyyy").format(state.product.expires_at),
       ),
       readOnly: true,
     );

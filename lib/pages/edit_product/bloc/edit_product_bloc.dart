@@ -11,16 +11,7 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
     required ProductsRepository productsRepository,
     required Product? initialProduct,
   })  : _productsRepository = productsRepository,
-        super(
-          EditProductState(
-            initialProduct: initialProduct,
-            name: initialProduct?.name ?? "",
-            expiresAt: initialProduct?.expires_at,
-            storedAt: initialProduct?.stored_at,
-            owner: initialProduct?.owner ?? "",
-            tags: initialProduct?.tags ?? [],
-          ),
-        ) {
+        super(EditProductState(initialProduct: initialProduct)) {
     on<EditProductNameChanged>(_onNameChanged);
     on<EditProductExpiresAtChanged>(_onExpiresAtChanged);
     on<EditProductStoredAtChanged>(_onStoredAtChanged);
@@ -33,50 +24,36 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
 
   void _onNameChanged(
       EditProductNameChanged event, Emitter<EditProductState> emit) {
-    emit(state.copyWith(name: event.name));
+    emit(state.copyWith(product: state.product.copyWith(name: event.name)));
   }
 
   void _onExpiresAtChanged(
       EditProductExpiresAtChanged event, Emitter<EditProductState> emit) {
-    emit(state.copyWith(expiresAt: event.expiresAt));
+    emit(state.copyWith(
+        product: state.product.copyWith(expires_at: event.expiresAt)));
   }
 
   void _onStoredAtChanged(
       EditProductStoredAtChanged event, Emitter<EditProductState> emit) {
-    emit(state.copyWith(storedAt: event.storedAt));
+    emit(state.copyWith(
+        product: state.product.copyWith(stored_at: event.storedAt)));
   }
 
   void _onOwnerChanged(
       EditProductOwnerChanged event, Emitter<EditProductState> emit) {
-    emit(state.copyWith(owner: event.owner));
+    emit(state.copyWith(product: state.product.copyWith(owner: event.owner)));
   }
 
   void _onTagsChanged(
       EditProductTagsChanged event, Emitter<EditProductState> emit) {
-    emit(state.copyWith(tags: event.tags));
+    emit(state.copyWith(product: state.product.copyWith(tags: event.tags)));
   }
 
   Future<void> _onSubmitted(
       EditProductSubmitted event, Emitter<EditProductState> emit) async {
     emit(state.copyWith(status: EditProductStatus.loading));
-    final Product product = state.isNewProduct
-        ? Product(
-            name: state.name,
-            product_id: state.productId,
-            expires_at: state.expiresAt,
-            stored_at: state.storedAt,
-            owner: state.owner,
-            tags: state.tags,
-          )
-        : state.initialProduct!.copyWith(
-            name: state.name,
-            expires_at: state.expiresAt,
-            stored_at: state.storedAt,
-            owner: state.owner,
-            tags: state.tags,
-          );
     try {
-      await _productsRepository.saveProduct(product);
+      await _productsRepository.saveProduct(state.product);
       emit(state.copyWith(status: EditProductStatus.success));
     } catch (e) {
       emit(state.copyWith(status: EditProductStatus.failure));

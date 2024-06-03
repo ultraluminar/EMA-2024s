@@ -9,52 +9,35 @@ extension EditProductStatusX on EditProductStatus {
       ].contains(this);
 }
 
+Product defaultProduct = Product(
+  product_id: "",
+  name: "",
+  expires_at: DateTime.now(),
+  owner: "",
+  tags: const [],
+);
+
 final class EditProductState extends Equatable {
   EditProductState({
+    required Product? initialProduct,
     this.status = EditProductStatus.initial,
-    this.initialProduct,
-    this.name = "",
-    this.productId = "",
-    DateTime? expiresAt,
-    DateTime? storedAt,
-    this.owner = "",
-    this.tags = const [],
-  })  : expiresAt = expiresAt ?? DateTime.now(),
-        storedAt = storedAt ?? DateTime.now();
+  })  : isNewProduct = initialProduct == null,
+        product = initialProduct ?? defaultProduct;
 
+  final Product product;
   final EditProductStatus status;
-  final Product? initialProduct;
-
-  final String name;
-  final String productId;
-  final DateTime expiresAt;
-  final DateTime storedAt;
-  final String owner;
-  final List<String> tags;
-
-  bool get isNewProduct => initialProduct == null;
+  final bool isNewProduct;
 
   EditProductState copyWith({
+    Product? product,
     EditProductStatus? status,
-    Product? initialProduct,
-    String? name,
-    DateTime? expiresAt,
-    DateTime? storedAt,
-    String? owner,
-    List<String>? tags,
   }) {
     return EditProductState(
+      initialProduct: product ?? this.product,
       status: status ?? this.status,
-      initialProduct: initialProduct ?? this.initialProduct,
-      name: name ?? this.name,
-      expiresAt: expiresAt ?? this.expiresAt,
-      storedAt: storedAt ?? this.storedAt,
-      owner: owner ?? this.owner,
-      tags: tags ?? this.tags,
     );
   }
 
   @override
-  List<Object> get props =>
-      [status, name, expiresAt, storedAt, owner, tags]; // initialProduct!,
+  List<Object> get props => [status, product]; // initialProduct!,
 }
