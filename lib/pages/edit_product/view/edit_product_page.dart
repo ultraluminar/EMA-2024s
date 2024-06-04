@@ -80,19 +80,17 @@ class _EditProductViewState extends State<EditProductView> {
             );
           },
         ),
-        body: const SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              children: [
-                NameField(),
-                ExpirationDateField(),
-                StorageDateField(),
-                // _OwnerField(),
-                // _KategoryField(),
-              ],
-            ),
-          ),
+        body: ListView(
+          padding: EdgeInsets.all(16),
+          children: const [
+            NameField(),
+            SizedBox(height: 14),
+            ExpirationDateField(),
+            SizedBox(height: 14),
+            StorageDateField(),
+            // _OwnerField(),
+            // _KategoryField(),
+          ],
         ),
       ),
     );
