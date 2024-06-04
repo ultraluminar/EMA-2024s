@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:local_storage_products_api/local_storage_products_api.dart';
 import 'package:products_api/products_api.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // TODO: add docstrings
 class LocalStorageProductsApi extends ProductsApi {
