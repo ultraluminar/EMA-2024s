@@ -1,6 +1,6 @@
 name: products_repository
 description: A repository that handles Product related requests.
-versoin: 1.0.0+1
+version: 1.0.0+1
 publish_to: none
 
 environment:
