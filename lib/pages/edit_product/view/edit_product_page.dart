@@ -83,7 +83,7 @@ class _EditProductViewState extends State<EditProductView> {
           },
         ),
         body: ListView(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           children: const [
             NameField(),
             SizedBox(height: 14),
