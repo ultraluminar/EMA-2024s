@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -88,7 +90,8 @@ class _EditProductViewState extends State<EditProductView> {
             ExpirationDateField(),
             SizedBox(height: 14),
             StorageDateField(),
-            // _OwnerField(),
+            SizedBox(height: 28),
+            OwnerField(),
             // _KategoryField(),
           ],
         ),
@@ -155,7 +158,7 @@ class ExpirationDateField extends StatelessWidget {
       onDatePicked: (picked) {
         log("Picked date: $picked");
         context
-          .read<EditProductBloc>()
+            .read<EditProductBloc>()
             .add(EditProductExpiresAtChanged(picked));
       },
       validator: (String? value) {
@@ -189,7 +192,45 @@ class StorageDateField extends StatelessWidget {
       onDatePicked: (picked) => context
           .read<EditProductBloc>()
           .add(EditProductStoredAtChanged(picked)),
-      key: key,
+    );
+  }
+}
+
+class OwnerField extends StatelessWidget {
+  const OwnerField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<EditProductBloc, EditProductState, String>(
+      selector: (state) => state.product.owner,
+      builder: (context, owner) {
+        return TextFormField(
+          key: const Key('editProductForm_ownerInput_textField'),
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            enabled: !context.select<EditProductBloc, bool>(
+                (bloc) => bloc.state.status.isLoadingOrSuccess),
+            labelText: "Owner", //S.of(context).editProductFormOwnerFieldLabel,
+          ),
+          initialValue: context.read<EditProductBloc>().state.product.owner,
+          maxLength: 50,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(50),
+          ],
+          onSaved: (owner) {
+            assert(owner != null, "Ownerfield cannot return null!");
+            context
+                .read<EditProductBloc>()
+                .add(EditProductOwnerChanged(owner!));
+          },
+          validator: (String? value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter an owner";
+            }
+            return null;
+          },
+        );
+      },
     );
   }
 }
