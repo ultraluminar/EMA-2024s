@@ -36,47 +36,62 @@ class EditProductPage extends StatelessWidget {
   }
 }
 
-class EditProductView extends StatelessWidget {
+class EditProductView extends StatefulWidget {
   const EditProductView({super.key});
 
   @override
+  State<EditProductView> createState() => _EditProductViewState();
+}
+
+class _EditProductViewState extends State<EditProductView> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.read<EditProductBloc>().state.isNewProduct
-              ? S.of(context).editProductAddAppBarTitle
-              : S.of(context).editProductEditAppBarTitle,
+    return Form(
+      key: _formKey,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            context.read<EditProductBloc>().state.isNewProduct
+                ? S.of(context).editProductAddAppBarTitle
+                : S.of(context).editProductEditAppBarTitle,
+          ),
         ),
-      ),
-      floatingActionButton:
-          BlocSelector<EditProductBloc, EditProductState, bool>(
-        selector: (state) => state.status.isLoadingOrSuccess,
-        builder: (context, isLoadingOrSuccess) {
-          return FloatingActionButton(
-            tooltip: S.of(context).editProductSaveButtonTooltip,
-            onPressed: isLoadingOrSuccess
-                ? null
-                : () => context
-                    .read<EditProductBloc>()
-                    .add(const EditProductSubmitted()),
-            child: isLoadingOrSuccess
-                ? const CircularProgressIndicator()
-                : const Icon(Icons.check_rounded),
-          );
-        },
-      ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            children: [
-              _NameField(),
-              ExpirationDateField(),
-              StorageDateField(),
-              // _OwnerField(),
-              // _KategoryField(),
-            ],
+        floatingActionButton:
+            BlocSelector<EditProductBloc, EditProductState, bool>(
+          selector: (state) => state.status.isLoadingOrSuccess,
+          builder: (context, isLoadingOrSuccess) {
+            return FloatingActionButton(
+              tooltip: S.of(context).editProductSaveButtonTooltip,
+              onPressed: isLoadingOrSuccess
+                  ? null
+                  : () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        context
+                            .read<EditProductBloc>()
+                            .add(const EditProductSubmitted());
+                      }
+                    },
+              child: isLoadingOrSuccess
+                  ? const CircularProgressIndicator()
+                  : const Icon(Icons.check_rounded),
+            );
+          },
+        ),
+        body: const SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              children: [
+                _NameField(),
+                ExpirationDateField(),
+                StorageDateField(),
+                // _OwnerField(),
+                // _KategoryField(),
+              ],
+            ),
           ),
         ),
       ),
@@ -107,11 +122,10 @@ class _NameField extends StatelessWidget {
             LengthLimitingTextInputFormatter(50),
             // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
           ],
-          // onChanged: (name) => context
-          //     .read<EditProductBloc>()
-          //     .add(EditProductNameChanged(name)),
-          onFieldSubmitted: (name) =>
-              context.read<EditProductBloc>().add(EditProductNameChanged(name)),
+          onSaved: (name) {
+            assert(name != null, "Namefield cannot return null!");
+            context.read<EditProductBloc>().add(EditProductNameChanged(name!));
+          },
           validator: (String? value) {
             if (value == null || value.isEmpty) {
               return "Please enter a name";
