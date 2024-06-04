@@ -85,7 +85,7 @@ class _EditProductViewState extends State<EditProductView> {
             padding: EdgeInsets.all(16),
             child: Column(
               children: [
-                _NameField(),
+                NameField(),
                 ExpirationDateField(),
                 StorageDateField(),
                 // _OwnerField(),
@@ -100,8 +100,8 @@ class _EditProductViewState extends State<EditProductView> {
 }
 
 // TODO: Implement some sort of validation for fields so necessary fields are filled out
-class _NameField extends StatelessWidget {
-  const _NameField();
+class NameField extends StatelessWidget {
+  const NameField({super.key});
 
   @override
   Widget build(BuildContext context) {
