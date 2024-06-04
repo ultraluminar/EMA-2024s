@@ -118,7 +118,6 @@ class NameField extends StatelessWidget {
           maxLength: 50,
           inputFormatters: [
             LengthLimitingTextInputFormatter(50),
-            // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
           ],
           onSaved: (name) {
             assert(name != null, "Namefield cannot return null!");
@@ -141,17 +140,30 @@ class ExpirationDateField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateFormat dateFormat = DateFormat("dd.MM.yyyy");
+
     return AppDateField(
-      initialDate: context.select<EditProductBloc, DateTime>(
-          (bloc) => bloc.state.product.expires_at),
-      dateFormat: DateFormat("dd.MM.yyyy"),
+      key: const Key('editProductForm_expiresAtInput_dateField'),
       labelText: "ExpiresAt",
+      dateFormat: dateFormat,
       enabled: !context.select<EditProductBloc, bool>(
           (bloc) => bloc.state.status.isLoadingOrSuccess),
-      onDatePicked: (picked) => context
+      controller: TextEditingController(
+        text: context.select<EditProductBloc, String>(
+            (bloc) => bloc.state.dateOrEmpty(dateFormat)),
+      ),
+      onDatePicked: (picked) {
+        log("Picked date: $picked");
+        context
           .read<EditProductBloc>()
-          .add(EditProductExpiresAtChanged(picked)),
-      key: key,
+            .add(EditProductExpiresAtChanged(picked));
+      },
+      validator: (String? value) {
+        if (value == null || value.isEmpty) {
+          return "Please enter an expiration date";
+        }
+        return null;
+      },
     );
   }
 }
@@ -161,13 +173,19 @@ class StorageDateField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateFormat dateFormat = DateFormat("dd.MM.yyyy");
+
     return AppDateField(
-      initialDate: context.select<EditProductBloc, DateTime>(
-          (bloc) => bloc.state.product.stored_at),
-      dateFormat: DateFormat("dd.MM.yyyy"),
+      key: const Key('editProductForm_storedAtInput_dateField'),
       labelText: "storedAt",
+      dateFormat: dateFormat,
       enabled: !context.select<EditProductBloc, bool>(
           (bloc) => bloc.state.status.isLoadingOrSuccess),
+      controller: TextEditingController(
+        text: dateFormat.format(
+          context.read<EditProductBloc>().state.product.stored_at,
+        ),
+      ),
       onDatePicked: (picked) => context
           .read<EditProductBloc>()
           .add(EditProductStoredAtChanged(picked)),

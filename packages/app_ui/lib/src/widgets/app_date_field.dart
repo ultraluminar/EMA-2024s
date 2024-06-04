@@ -1,37 +1,48 @@
+import 'dart:developer';
+
+import 'package:app_utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AppDateField extends StatelessWidget {
   AppDateField({
-    required this.onDatePicked,
-    required this.dateFormat,
     required this.labelText,
-    required this.initialDate,
+    required this.dateFormat,
+    required this.onDatePicked,
+    required this.controller,
     this.enabled = true,
+    this.validator,
     super.key,
   });
 
-  final ValueChanged<DateTime> onDatePicked;
-  final DateFormat dateFormat;
   final String labelText;
-  final DateTime initialDate;
+  final DateFormat dateFormat;
+  final ValueChanged<DateTime> onDatePicked;
+  final TextEditingController controller;
   final bool enabled;
+  final String? Function(String?)? validator;
 
   Future<void> selectDate(BuildContext context) async {
     showDatePicker(
       context: context,
-      initialDate: initialDate,
+      initialDate: controller.text == ""
+          ? DateTime.now().date
+          : dateFormat.parse(controller.text),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     ).then(
       (DateTime? picked) {
-        if (picked != null && picked != initialDate) onDatePicked(picked);
+        if (picked != null &&
+            (controller.text == "" ||
+                picked != dateFormat.parse(controller.text)))
+          onDatePicked(picked);
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    log("AppDateField.build");
     return TextFormField(
       key: key,
       decoration: InputDecoration(
@@ -44,10 +55,9 @@ class AppDateField extends StatelessWidget {
         labelText: labelText,
       ),
       onTap: () => selectDate(context),
-      controller: TextEditingController(
-        text: dateFormat.format(initialDate),
-      ),
+      controller: controller,
       readOnly: true,
+      validator: validator,
     );
   }
 }

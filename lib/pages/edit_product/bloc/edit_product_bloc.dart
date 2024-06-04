@@ -1,6 +1,7 @@
 import 'package:app_utils/app_utils.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 import 'package:products_api/products_api.dart';
 import 'package:products_repository/products_repository.dart';
 
@@ -31,7 +32,9 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
   void _onExpiresAtChanged(
       EditProductExpiresAtChanged event, Emitter<EditProductState> emit) {
     emit(state.copyWith(
-        product: state.product.copyWith(expires_at: event.expiresAt)));
+      product: state.product.copyWith(expires_at: event.expiresAt),
+      expriredAtPicked: true,
+    ));
   }
 
   void _onStoredAtChanged(
