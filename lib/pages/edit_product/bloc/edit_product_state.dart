@@ -12,7 +12,7 @@ extension EditProductStatusX on EditProductStatus {
 Product defaultProduct = Product(
   product_id: "",
   name: "",
-  expires_at: DateTime.now(),
+  expires_at: DateTime.now().date,
   owner: "",
   tags: const [],
 );

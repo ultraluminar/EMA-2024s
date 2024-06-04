@@ -24,6 +24,13 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
+  app_utils:
+    dependency: "direct main"
+    description:
+      path: "packages/app_utils"
+      relative: true
+    source: path
+    version: "0.0.0"
   archive:
     dependency: transitive
     description:

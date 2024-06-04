@@ -6,10 +6,10 @@ class AppDateField extends StatelessWidget {
     required this.onDatePicked,
     required this.dateFormat,
     required this.labelText,
-    DateTime? initialDate,
+    required this.initialDate,
     this.enabled = true,
     super.key,
-  }) : initialDate = initialDate ?? DateTime.now();
+  });
 
   final ValueChanged<DateTime> onDatePicked;
   final DateFormat dateFormat;

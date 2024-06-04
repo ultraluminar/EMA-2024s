@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:app_utils/app_utils.dart' show DateTimeX;
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:products_api/products_api.dart';
@@ -16,15 +15,14 @@ class ProductListTile extends StatelessWidget {
   final DismissDirectionCallback? onDismissed;
   final VoidCallback? onTap;
 
+  int daysDifferenceFromToday(DateTime date) =>
+      date.date.difference(DateTime.now().date).inDays;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final captionColor = theme.textTheme.bodySmall?.color;
-    final DateTime now = DateTime.now();
-    final expiresInDays = product.expires_at.difference(DateTime(now.year, now.month, now.day)).inDays;
-    final bool isExpired = expiresInDays >= 0;
-    log("$isExpired, $expiresInDays, ${expiresInDays.abs()}");
-    
+    final expiresInDays = daysDifferenceFromToday(product.expires_at);
 
     return Dismissible(
       key: Key('productListTile_dismissible_${product.uuid}'),
@@ -52,7 +50,7 @@ class ProductListTile extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          isExpired
+          expiresInDays >= 0
           ? S.of(context).productListTileDescriptionNotExpired(expiresInDays)
           : S.of(context).productListTileDescriptionExpired(expiresInDays.abs()),
           maxLines: 1,

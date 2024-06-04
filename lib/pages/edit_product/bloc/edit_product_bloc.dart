@@ -1,3 +1,4 @@
+import 'package:app_utils/app_utils.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:products_api/products_api.dart';

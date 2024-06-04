@@ -23,6 +23,8 @@ dependencies:
     path: packages/products_repository
   app_ui:
     path: packages/app_ui
+  app_utils:
+    path: packages/app_utils
 
 dev_dependencies:
   build_runner: ^2.2.0
