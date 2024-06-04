@@ -96,9 +96,7 @@ class _NameField extends StatelessWidget {
         return BlocSelector<EditProductBloc, EditProductState, String>(
           selector: (state) => state.product.name,
           builder: (context, name) {
-            TextEditingController controller = TextEditingController(text: name);
-
-            return TextField(
+            return TextFormField(
               key: const Key('editProductForm_nameInput_textField'),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -106,6 +104,7 @@ class _NameField extends StatelessWidget {
                 labelText:
                     "Name", //S.of(context).editProductFormNameFieldLabel,
               ),
+              initialValue: name,
               maxLength: 50,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(50),
@@ -114,10 +113,15 @@ class _NameField extends StatelessWidget {
               // onChanged: (name) => context
               //     .read<EditProductBloc>()
               //     .add(EditProductNameChanged(name)),
-              onEditingComplete: () => context
+              onFieldSubmitted: (name) => context
                   .read<EditProductBloc>()
-                  .add(EditProductNameChanged(controller.text)),
-              controller: controller,
+                  .add(EditProductNameChanged(name)),
+              validator: (String? value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter a name";
+                }
+                return null;
+              },
             );
           },
         );
@@ -156,10 +160,14 @@ class _ExpirationDateField extends StatelessWidget {
         return BlocSelector<EditProductBloc, EditProductState, DateTime>(
           selector: (state) => state.product.expires_at,
           builder: (context, expiresAt) {
-            return TextField(
+            return TextFormField(
               key: const Key('editProductForm_expirationDateInput_dateField'),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.edit_calendar_rounded),
+                  onPressed: () => _selectDate(context),
+                ),
                 enabled: !isLoadingOrSuccess,
                 labelText:
                     "ExpiresAt", //S.of(context).editProductFormExpirationDateFieldLabel,
