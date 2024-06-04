@@ -130,7 +130,8 @@ class ExpirationDateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDateField(
-      initialDate: context.read<EditProductBloc>().state.product.expires_at,
+      initialDate: context.select<EditProductBloc, DateTime>(
+          (bloc) => bloc.state.product.expires_at),
       dateFormat: DateFormat("dd.MM.yyyy"),
       labelText: "ExpiresAt",
       enabled: !context.select<EditProductBloc, bool>(
@@ -149,7 +150,8 @@ class StorageDateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDateField(
-      initialDate: context.read<EditProductBloc>().state.product.stored_at,
+      initialDate: context.select<EditProductBloc, DateTime>(
+          (bloc) => bloc.state.product.stored_at),
       dateFormat: DateFormat("dd.MM.yyyy"),
       labelText: "storedAt",
       enabled: context.select<EditProductBloc, bool>(
