@@ -1,0 +1,20 @@
+name: local_storage_storage_location_api
+description: An API implementing the StorageLocationAPI and providing access to storage locations stored in local storage.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+# TODO: adjust dependency constraints
+dependencies:
+  flutter:
+    sdk: flutter
+  rxdart: ^0.27.5
+  shared_preferences: ^2.0.15
+  storage_location_api:
+    path: ../storage_location_api
+  
+# dev_dependencies:
+#   flutter_test:
+#     sdk: flutter
