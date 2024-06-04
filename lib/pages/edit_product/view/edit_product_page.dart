@@ -73,7 +73,7 @@ class EditProductView extends StatelessWidget {
             children: [
               _NameField(),
               _ExpirationDateField(),
-              // _StorageDateField(),
+              _StorageDateField(),
               // _OwnerField(),
               // _KategoryField(),
             ],
@@ -175,6 +175,61 @@ class _ExpirationDateField extends StatelessWidget {
               onTap: () => _selectDate(context),
               controller: TextEditingController(
                 text: DateFormat("dd.MM.yyyy").format(expiresAt),
+              ),
+              readOnly: true,
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _StorageDateField extends StatelessWidget {
+  const _StorageDateField();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final storedAt = context.read<EditProductBloc>().state.product.stored_at;
+
+    showDatePicker(
+      context: context,
+      initialDate: storedAt,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    ).then(
+      (DateTime? picked) {
+        if (picked != null && picked != storedAt) {
+          context
+              .read<EditProductBloc>()
+              .add(EditProductStoredAtChanged(picked));
+        }
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<EditProductBloc, EditProductState, bool>(
+      selector: (state) => state.status.isLoadingOrSuccess,
+      builder: (context, isLoadingOrSuccess) {
+        return BlocSelector<EditProductBloc, EditProductState, DateTime>(
+          selector: (state) => state.product.expires_at,
+          builder: (context, storedAt) {
+            return TextFormField(
+              key: const Key('editProductForm_expirationDateInput_dateField'),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.edit_calendar_rounded),
+                  onPressed: () => _selectDate(context),
+                ),
+                enabled: !isLoadingOrSuccess,
+                labelText:
+                    "storedAt", //S.of(context).editProductFormStorageDateFieldLabel,
+              ),
+              onTap: () => _selectDate(context),
+              controller: TextEditingController(
+                text: DateFormat("dd.MM.yyyy").format(storedAt),
               ),
               readOnly: true,
             );
