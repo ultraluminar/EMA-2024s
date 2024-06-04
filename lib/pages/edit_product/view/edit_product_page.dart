@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,24 +44,23 @@ class EditProductView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          // TODO: extract bool check to arb?
-          context.watch<EditProductBloc>().state.isNewProduct
+          context.read<EditProductBloc>().state.isNewProduct
               ? S.of(context).editProductAddAppBarTitle
               : S.of(context).editProductEditAppBarTitle,
         ),
       ),
       floatingActionButton:
-          BlocSelector<EditProductBloc, EditProductState, EditProductStatus>(
-        selector: (state) => state.status,
-        builder: (context, state) {
+          BlocSelector<EditProductBloc, EditProductState, bool>(
+        selector: (state) => state.status.isLoadingOrSuccess,
+        builder: (context, isLoadingOrSuccess) {
           return FloatingActionButton(
             tooltip: S.of(context).editProductSaveButtonTooltip,
-            onPressed: state.isLoadingOrSuccess
+            onPressed: isLoadingOrSuccess
                 ? null
                 : () => context
                     .read<EditProductBloc>()
                     .add(const EditProductSubmitted()),
-            child: state.isLoadingOrSuccess
+            child: isLoadingOrSuccess
                 ? const CircularProgressIndicator()
                 : const Icon(Icons.check_rounded),
           );
@@ -72,8 +72,8 @@ class EditProductView extends StatelessWidget {
           child: Column(
             children: [
               _NameField(),
-              _ExpirationDateField(),
-              _StorageDateField(),
+              ExpirationDateField(),
+              StorageDateField(),
               // _OwnerField(),
               // _KategoryField(),
             ],
@@ -90,39 +90,33 @@ class _NameField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<EditProductBloc, EditProductState, bool>(
-      selector: (state) => state.status.isLoadingOrSuccess,
-      builder: (context, isLoadingOrSuccess) {
-        return BlocSelector<EditProductBloc, EditProductState, String>(
-          selector: (state) => state.product.name,
-          builder: (context, name) {
-            return TextFormField(
-              key: const Key('editProductForm_nameInput_textField'),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                enabled: !isLoadingOrSuccess,
-                labelText:
-                    "Name", //S.of(context).editProductFormNameFieldLabel,
-              ),
-              initialValue: name,
-              maxLength: 50,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(50),
-                // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
-              ],
-              // onChanged: (name) => context
-              //     .read<EditProductBloc>()
-              //     .add(EditProductNameChanged(name)),
-              onFieldSubmitted: (name) => context
-                  .read<EditProductBloc>()
-                  .add(EditProductNameChanged(name)),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter a name";
-                }
-                return null;
-              },
-            );
+    return BlocSelector<EditProductBloc, EditProductState, String>(
+      selector: (state) => state.product.name,
+      builder: (context, name) {
+        return TextFormField(
+          key: const Key('editProductForm_nameInput_textField'),
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            enabled: !context.select<EditProductBloc, bool>(
+                (bloc) => bloc.state.status.isLoadingOrSuccess),
+            labelText: "Name", //S.of(context).editProductFormNameFieldLabel,
+          ),
+          initialValue: context.read<EditProductBloc>().state.product.name,
+          maxLength: 50,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(50),
+            // FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+          ],
+          // onChanged: (name) => context
+          //     .read<EditProductBloc>()
+          //     .add(EditProductNameChanged(name)),
+          onFieldSubmitted: (name) =>
+              context.read<EditProductBloc>().add(EditProductNameChanged(name)),
+          validator: (String? value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter a name";
+            }
+            return null;
           },
         );
       },
@@ -130,112 +124,40 @@ class _NameField extends StatelessWidget {
   }
 }
 
-class _ExpirationDateField extends StatelessWidget {
-  const _ExpirationDateField();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final expiresAt = context.read<EditProductBloc>().state.product.expires_at;
-
-    showDatePicker(
-      context: context,
-      initialDate: expiresAt,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    ).then(
-      (DateTime? picked) {
-        if (picked != null && picked != expiresAt) {
-          context
-              .read<EditProductBloc>()
-              .add(EditProductExpiresAtChanged(picked));
-        }
-      },
-    );
-  }
+class ExpirationDateField extends StatelessWidget {
+  const ExpirationDateField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<EditProductBloc, EditProductState, bool>(
-      selector: (state) => state.status.isLoadingOrSuccess,
-      builder: (context, isLoadingOrSuccess) {
-        return BlocSelector<EditProductBloc, EditProductState, DateTime>(
-          selector: (state) => state.product.expires_at,
-          builder: (context, expiresAt) {
-            return TextFormField(
-              key: const Key('editProductForm_expirationDateInput_dateField'),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.edit_calendar_rounded),
-                  onPressed: () => _selectDate(context),
-                ),
-                enabled: !isLoadingOrSuccess,
-                labelText:
-                    "ExpiresAt", //S.of(context).editProductFormExpirationDateFieldLabel,
-              ),
-              onTap: () => _selectDate(context),
-              controller: TextEditingController(
-                text: DateFormat("dd.MM.yyyy").format(expiresAt),
-              ),
-              readOnly: true,
-            );
-          },
-        );
-      },
+    return AppDateField(
+      initialDate: context.read<EditProductBloc>().state.product.expires_at,
+      dateFormat: DateFormat("dd.MM.yyyy"),
+      labelText: "ExpiresAt",
+      enabled: !context.select<EditProductBloc, bool>(
+          (bloc) => bloc.state.status.isLoadingOrSuccess),
+      onDatePicked: (picked) => context
+          .read<EditProductBloc>()
+          .add(EditProductExpiresAtChanged(picked)),
+      key: key,
     );
   }
 }
 
-class _StorageDateField extends StatelessWidget {
-  const _StorageDateField();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final storedAt = context.read<EditProductBloc>().state.product.stored_at;
-
-    showDatePicker(
-      context: context,
-      initialDate: storedAt,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    ).then(
-      (DateTime? picked) {
-        if (picked != null && picked != storedAt) {
-          context
-              .read<EditProductBloc>()
-              .add(EditProductStoredAtChanged(picked));
-        }
-      },
-    );
-  }
+class StorageDateField extends StatelessWidget {
+  const StorageDateField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<EditProductBloc, EditProductState, bool>(
-      selector: (state) => state.status.isLoadingOrSuccess,
-      builder: (context, isLoadingOrSuccess) {
-        return BlocSelector<EditProductBloc, EditProductState, DateTime>(
-          selector: (state) => state.product.expires_at,
-          builder: (context, storedAt) {
-            return TextFormField(
-              key: const Key('editProductForm_expirationDateInput_dateField'),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.edit_calendar_rounded),
-                  onPressed: () => _selectDate(context),
-                ),
-                enabled: !isLoadingOrSuccess,
-                labelText:
-                    "storedAt", //S.of(context).editProductFormStorageDateFieldLabel,
-              ),
-              onTap: () => _selectDate(context),
-              controller: TextEditingController(
-                text: DateFormat("dd.MM.yyyy").format(storedAt),
-              ),
-              readOnly: true,
-            );
-          },
-        );
-      },
+    return AppDateField(
+      initialDate: context.read<EditProductBloc>().state.product.stored_at,
+      dateFormat: DateFormat("dd.MM.yyyy"),
+      labelText: "storedAt",
+      enabled: context.select<EditProductBloc, bool>(
+          (bloc) => bloc.state.status.isLoadingOrSuccess),
+      onDatePicked: (picked) => context
+          .read<EditProductBloc>()
+          .add(EditProductStoredAtChanged(picked)),
+      key: key,
     );
   }
 }
