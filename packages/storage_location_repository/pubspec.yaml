@@ -1,0 +1,12 @@
+name: storage_location_repository
+description: A repository that handles StorageLocation related requests.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+# TODO: adjust dependecy constraints
+dependencies:
+  storage_location_api:
+    path: ../storage_location_api
