@@ -154,7 +154,7 @@ class StorageDateField extends StatelessWidget {
           (bloc) => bloc.state.product.stored_at),
       dateFormat: DateFormat("dd.MM.yyyy"),
       labelText: "storedAt",
-      enabled: context.select<EditProductBloc, bool>(
+      enabled: !context.select<EditProductBloc, bool>(
           (bloc) => bloc.state.status.isLoadingOrSuccess),
       onDatePicked: (picked) => context
           .read<EditProductBloc>()
