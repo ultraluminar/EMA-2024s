@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:app_utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -42,7 +40,6 @@ class AppDateField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("AppDateField.build");
     return TextFormField(
       key: key,
       decoration: InputDecoration(
