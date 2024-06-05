@@ -40,4 +40,7 @@ final class ProductsPageState extends Equatable {
         filter,
         //lastDeletedProduct as Object,
       ];
+
+  @override
+  String toString() => 'ProductsPageState( $status )';
 }

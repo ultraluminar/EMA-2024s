@@ -14,6 +14,9 @@ final class EditProductNameChanged extends EditProductEvent {
 
   @override
   List<Object> get props => [name];
+
+  @override
+  String toString() => "EditProductNameChanged( name: $name )";
 }
 
 final class EditProductExpiresAtChanged extends EditProductEvent {
@@ -23,6 +26,9 @@ final class EditProductExpiresAtChanged extends EditProductEvent {
 
   @override
   List<Object> get props => [expiresAt];
+
+  @override
+  String toString() => "EditProductExpiresAtChanged( expiresAt: $expiresAt )";
 }
 
 final class EditProductStoredAtChanged extends EditProductEvent {
@@ -32,6 +38,9 @@ final class EditProductStoredAtChanged extends EditProductEvent {
 
   @override
   List<Object> get props => [storedAt];
+
+  @override
+  String toString() => "EditProductStoredAtChanged( storedAt: $storedAt )";
 }
 
 final class EditProductOwnerChanged extends EditProductEvent {
@@ -41,6 +50,9 @@ final class EditProductOwnerChanged extends EditProductEvent {
 
   @override
   List<Object> get props => [owner];
+
+  @override
+  String toString() => "EditProductOwnerChanged( owner: $owner )";
 }
 
 final class EditProductTagsChanged extends EditProductEvent {
@@ -50,6 +62,9 @@ final class EditProductTagsChanged extends EditProductEvent {
 
   @override
   List<Object> get props => [tags];
+
+  @override
+  String toString() => "EditProductTagsChanged( tags: $tags )";
 }
 
 final class EditProductSubmitted extends EditProductEvent {
