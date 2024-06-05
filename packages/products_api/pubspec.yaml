@@ -9,7 +9,7 @@ environment:
 # TODO: adjust dependency constraints
 dependencies:
   equatable: ^2.0.3
-  json_annotation: ^4.6.0
+  json_annotation: ^4.9.0
   meta: ^1.7.0
   uuid: ^3.0.6
 
