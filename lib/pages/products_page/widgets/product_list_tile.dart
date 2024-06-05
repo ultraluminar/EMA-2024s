@@ -15,14 +15,10 @@ class ProductListTile extends StatelessWidget {
   final DismissDirectionCallback? onDismissed;
   final VoidCallback? onTap;
 
-  int daysDifferenceFromToday(DateTime date) =>
-      date.date.difference(DateTime.now().date).inDays;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final captionColor = theme.textTheme.bodySmall?.color;
-    final expiresInDays = daysDifferenceFromToday(product.expires_at);
 
     return Dismissible(
       key: Key('productListTile_dismissible_${product.uuid}'),
@@ -50,9 +46,13 @@ class ProductListTile extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          expiresInDays >= 0
-          ? S.of(context).productListTileDescriptionNotExpired(expiresInDays)
-          : S.of(context).productListTileDescriptionExpired(expiresInDays.abs()),
+          product.isExpired
+              ? S
+                  .of(context)
+                  .productListTileDescriptionExpired(product.expiredDaysAgo)
+              : S
+                  .of(context)
+                  .productListTileDescriptionNotExpired(product.expiresInDays),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),

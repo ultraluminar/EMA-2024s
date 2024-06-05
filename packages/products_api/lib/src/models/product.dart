@@ -1,3 +1,4 @@
+import 'package:app_utils/app_utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
@@ -33,6 +34,13 @@ class Product extends Equatable {
   final String owner;
 
   final List<String> tags;
+
+  int get expiresInDays =>
+      DateTime.now().date.difference(expires_at.date).inDays;
+
+  int get expiredDaysAgo => expiresInDays * -1;
+
+  bool get isExpired => expiresInDays < 0;
 
   Product copyWith({
     String? product_id,
