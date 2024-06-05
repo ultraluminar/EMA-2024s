@@ -20,7 +20,7 @@ class OverviewPage extends StatelessWidget {
               onPressed: () {
                 LocalNotification.showSimpleNotification(
                     title: "Warning!",
-                    body: "Ure mom is about to exire!",
+                    body: "Ure mom is about to expire!",
                     payload: "Take my load!");
               },
               label: const Text("Balls Notification"),
