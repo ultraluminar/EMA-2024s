@@ -36,3 +36,6 @@ Whole Feature:
 
 Potential Features:
   TODO: Add "Shopping List" Page
+
+TODO: add toString for State and Models for logging
+TODO: fix: sometimes when creating New Product old ones get overwrited instead
