@@ -1,4 +1,3 @@
-import 'package:app_utils/app_utils.dart' show DateTimeX;
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:products_api/products_api.dart';
