@@ -2,15 +2,27 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 
-class AppBlocObserver extends BlocObserver {
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    super.onTransition(bloc, transition);
-    log('''onTransition ${bloc.runtimeType}: Transition
+String onTransitionMessage(Bloc bloc, Transition transition) =>
+    '''onTransition ${bloc.runtimeType}: Transition
 currentState: ${transition.currentState},
 event: ${transition.event},
 nextState: ${transition.nextState}
-''');
+''';
+
+class AppBlocObserver extends BlocObserver {
+  AppBlocObserver(
+      /*{
+    required AnalyticsRepository analyticsRepository,
+  }*/
+      ) /*: _analyticsRepository = analyticsRepository*/;
+
+  // final AnalyticsRepository _analyticsRepository;
+  // TODO: setup analyticsRepository
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    log(onTransitionMessage(bloc, transition));
   }
 
   @override
