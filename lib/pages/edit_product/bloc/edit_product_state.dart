@@ -49,4 +49,8 @@ final class EditProductState extends Equatable {
 
   @override
   List<Object> get props => [status, product]; // initialProduct!,
+
+  @override
+  String toString() =>
+      'EditProductState($status, Product(name: ${product.name}))';
 }

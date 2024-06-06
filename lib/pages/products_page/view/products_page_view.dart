@@ -105,7 +105,7 @@ class ProductsView extends StatelessWidget {
             return Scrollbar(
               child: ListView(
                 children: [
-                  for (final product in state.products)
+                  for (final product in state.filtredProducts)
                     ProductListTile(
                       product: product,
                       onDismissed: (_) {
