@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/main/bootstrap/app_bloc_observer.dart';
@@ -12,6 +13,9 @@ typedef AppBuilder = Future<Widget> Function(
   SharedPreferences sharedPreferences,
 );
 
+const String emulatorIP = "10.0.2.2";
+const int emulatorPort = 8080;
+
 Future<void> bootstrap(AppBuilder builder) async {
   await runZonedGuarded<Future<void>>(
     () async {
@@ -20,6 +24,10 @@ Future<void> bootstrap(AppBuilder builder) async {
       await LocalNotification.init();
 
       await Firebase.initializeApp();
+
+      final FirebaseFirestore firestoreDB = FirebaseFirestore.instance;
+      firestoreDB.useFirestoreEmulator(emulatorIP, emulatorPort);
+
       // final analyticsRepository =
       //     AnalyticsRepository(FirebaseAnalytics.instance);
       final blocObserver = AppBlocObserver(
