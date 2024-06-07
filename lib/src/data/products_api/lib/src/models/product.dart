@@ -1,5 +1,5 @@
-import 'package:app_utils/app_utils.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fridge_manager/src/shared/app_utils/app_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:products_api/products_api.dart';

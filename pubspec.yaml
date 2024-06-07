@@ -21,10 +21,8 @@ dependencies:
     path: lib/src/data/products_api
   products_repository:
     path: lib/src/domain/products_repository
-  app_ui:
-    path: lib/src/presentation/app_ui
-  app_utils:
-    path: lib/src/shared/app_utils
+  # app_utils:
+  #   path: lib/src/shared/app_utils
   flutter_local_notifications: ^17.1.2
   rxdart: ^0.27.7
   flutter_timezone: ^1.0.8

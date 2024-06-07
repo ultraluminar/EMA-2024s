@@ -1,5 +1,5 @@
-import 'package:app_utils/app_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/src/shared/app_utils/app_utils.dart';
 import 'package:intl/intl.dart';
 
 class AppDateField extends StatelessWidget {

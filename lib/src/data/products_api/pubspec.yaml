@@ -13,8 +13,8 @@ dependencies:
   meta: ^1.7.0
   uuid: ^3.0.6
 
-  app_utils:
-    path: ../../shared/app_utils
+  fridge_manager:
+    path: ../../../..
 
 dev_dependencies:
   build_runner: ^2.2.0
