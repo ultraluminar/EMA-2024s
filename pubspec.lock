@@ -494,7 +494,7 @@ packages:
   local_storage_products_api:
     dependency: "direct main"
     description:
-      path: "packages/local_storage_products_api"
+      path: "lib/src/data/local_storage_products_api"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -621,14 +621,14 @@ packages:
   products_api:
     dependency: "direct main"
     description:
-      path: "packages/products_api"
+      path: "lib/src/data/products_api"
       relative: true
     source: path
     version: "1.0.0+1"
   products_repository:
     dependency: "direct main"
     description:
-      path: "packages/products_repository"
+      path: "lib/src/domain/products_repository"
       relative: true
     source: path
     version: "1.0.0+1"
