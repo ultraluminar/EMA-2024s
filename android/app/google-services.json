@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "688703949293",
+    "project_id": "fridge-manager-ddbd6",
+    "storage_bucket": "fridge-manager-ddbd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688703949293:android:85c206441e452a624cbfe4",
+        "android_client_info": {
+          "package_name": "com.fridge_manager.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-21C8erMqudlzBKRmgAYcVbjPX0Enyw8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
