@@ -1,5 +1,5 @@
 extension DateTimeX on DateTime {
-  DateTime get date => this.copyWith(
+  DateTime get date => copyWith(
         hour: 0,
         minute: 0,
         second: 0,

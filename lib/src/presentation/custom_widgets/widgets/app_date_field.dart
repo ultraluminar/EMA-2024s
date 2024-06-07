@@ -3,7 +3,7 @@ import 'package:fridge_manager/src/shared/app_utils/app_utils.dart';
 import 'package:intl/intl.dart';
 
 class AppDateField extends StatelessWidget {
-  AppDateField({
+  const AppDateField({
     required this.labelText,
     required this.dateFormat,
     required this.onDatePicked,
@@ -32,8 +32,9 @@ class AppDateField extends StatelessWidget {
       (DateTime? picked) {
         if (picked != null &&
             (controller.text == "" ||
-                picked != dateFormat.parse(controller.text)))
+                picked != dateFormat.parse(controller.text))) {
           onDatePicked(picked);
+        }
       },
     );
   }
