@@ -1,7 +1,7 @@
 import 'package:fridge_manager/src/app/app.dart';
-import 'package:fridge_manager/src/data/local_storage_products_api/lib/local_storage_products_api.dart';
-import 'package:fridge_manager/src/domain/products_repository/lib/products_repository.dart';
 import 'package:fridge_manager/src/main/bootstrap/bootstrap.dart';
+import 'package:local_storage_products_api/local_storage_products_api.dart';
+import 'package:products_repository/products_repository.dart';
 
 void main() {
   bootstrap(
