@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:fridge_manager/home/cubit/home_cubit.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
-import 'package:fridge_manager/src/pages/overview_page/local_notification.dart';
+import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
 
 class OverviewPage extends StatelessWidget {
   const OverviewPage({super.key});

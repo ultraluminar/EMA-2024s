@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fridge_manager/src/home/cubit/home_cubit.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
+import 'package:fridge_manager/src/presentation/home/cubit/home_cubit.dart';
 
 class RecipesPage extends StatelessWidget {
   const RecipesPage({super.key});

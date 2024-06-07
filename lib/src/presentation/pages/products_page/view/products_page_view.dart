@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
-import 'package:fridge_manager/src/pages/edit_product/edit_product.dart';
-import 'package:fridge_manager/src/pages/products_page/products_page.dart';
+import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
+import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
 import 'package:products_repository/products_repository.dart';
 
 class ProductsPage extends StatelessWidget {

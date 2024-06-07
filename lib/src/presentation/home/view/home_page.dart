@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fridge_manager/src/home/home.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
-import 'package:fridge_manager/src/pages/overview_page/overview_page.dart';
-import 'package:fridge_manager/src/pages/products_page/products_page.dart';
-import 'package:fridge_manager/src/pages/recipes_page/recipes_page.dart';
+import 'package:fridge_manager/src/presentation/home/home.dart';
+import 'package:fridge_manager/src/presentation/pages/overview_page/overview_page.dart';
+import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
+import 'package:fridge_manager/src/presentation/pages/recipes_page/recipes_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
