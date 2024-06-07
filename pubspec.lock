@@ -28,14 +28,14 @@ packages:
   app_ui:
     dependency: "direct main"
     description:
-      path: "packages/app_ui"
+      path: "lib/src/presentation/app_ui"
       relative: true
     source: path
     version: "0.0.0"
   app_utils:
     dependency: "direct main"
     description:
-      path: "packages/app_utils"
+      path: "lib/src/shared/app_utils"
       relative: true
     source: path
     version: "0.0.0"

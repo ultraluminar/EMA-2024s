@@ -4,7 +4,7 @@ packages:
   app_utils:
     dependency: "direct main"
     description:
-      path: "../app_utils"
+      path: "../../shared/app_utils"
       relative: true
     source: path
     version: "0.0.0"
