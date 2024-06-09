@@ -16,15 +16,13 @@ dependencies:
     sdk: flutter
   intl: ^0.19.0
   local_storage_products_api:
-    path: packages/local_storage_products_api
+    path: lib/src/data/local_storage_products_api
   products_api:
-    path: packages/products_api
+    path: lib/src/data/products_api
   products_repository:
-    path: packages/products_repository
-  app_ui:
-    path: packages/app_ui
-  app_utils:
-    path: packages/app_utils
+    path: lib/src/domain/products_repository
+  # app_utils:
+  #   path: lib/src/shared/app_utils
   flutter_local_notifications: ^17.1.2
   rxdart: ^0.27.7
   flutter_timezone: ^1.0.8
