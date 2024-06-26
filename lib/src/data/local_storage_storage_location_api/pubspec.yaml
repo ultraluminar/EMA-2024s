@@ -10,11 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rxdart: ^0.27.5
-  shared_preferences: ^2.0.15
+  rxdart: ^0.28.0
+  shared_preferences: ^2.2.3
   storage_location_api:
     path: ../storage_location_api
-  
+
 # dev_dependencies:
 #   flutter_test:
 #     sdk: flutter
