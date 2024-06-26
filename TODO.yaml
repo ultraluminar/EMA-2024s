@@ -1,3 +1,5 @@
+FIXME: not reload not working with package?
+
 Models:
   Product:
     TODO: Add Store store_name for remembering where the product was bought
@@ -11,13 +13,13 @@ UI:
       - Snackbar to undo deletion
     TODO: implement consume product
       - Snackbar to undo consumption
-    
+
     TODO: Add filter capability
     TODO: Add search capability
 
   Shopping List:
     TODO: Shopping List Page
-    
+
 API:
   TODO: Scanner API (Barcode Scanner)
   Scanner API:
