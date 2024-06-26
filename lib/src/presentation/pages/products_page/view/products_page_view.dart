@@ -109,6 +109,7 @@ class ProductsView extends StatelessWidget {
                     ProductListTile(
                       product: product,
                       onDismissed: (_) {
+                        // FIXME: delete not working
                         context
                             .read<ProductsPageBloc>()
                             .add(ProductsPageProductDeleted(product));
