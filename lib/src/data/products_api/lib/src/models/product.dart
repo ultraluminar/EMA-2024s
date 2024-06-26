@@ -36,7 +36,7 @@ class Product extends Equatable {
   final List<String> tags;
 
   int get expiresInDays =>
-      DateTime.now().date.difference(expires_at.date).inDays;
+      expires_at.date.difference(DateTime.now().date).inDays;
 
   int get expiredDaysAgo => expiresInDays * -1;
 
