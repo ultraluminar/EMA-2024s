@@ -223,9 +223,10 @@ class OwnerField extends StatelessWidget {
                 .add(EditProductOwnerChanged(owner!));
           },
           validator: (String? value) {
-            if (value == null || value.isEmpty) {
-              return "Please enter an owner";
-            }
+            // TODO: reanable validation
+            // if (value == null || value.isEmpty) {
+            //   return "Please enter an owner";
+            // }
             return null;
           },
         );
