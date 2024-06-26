@@ -33,7 +33,7 @@ class ProductsFilterButton extends StatelessWidget {
           child: Text("expired"),
         ),
       ],
-      icon: const Icon(Icons.filter_1_rounded),
+      icon: const Icon(Icons.filter_list_rounded),
     );
 
     // return IconButton(
