@@ -70,6 +70,7 @@ class _EditProductViewState extends State<EditProductView> {
                   : () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
+                        // FIXME: tile gets overwritten instead of new tile
                         context
                             .read<EditProductBloc>()
                             .add(const EditProductSubmitted());
