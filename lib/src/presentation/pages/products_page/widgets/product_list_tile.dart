@@ -22,13 +22,13 @@ class ProductListTile extends StatelessWidget {
     return Dismissible(
       key: Key('productListTile_dismissible_${product.uuid}'),
       onDismissed: onDismissed,
-      direction: DismissDirection.endToStart,
+      direction: DismissDirection.startToEnd,
       background: Container(
-        alignment: Alignment.centerRight,
-        color: theme.colorScheme.error,
+        alignment: Alignment.centerLeft,
+        color: Colors.green,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: const Icon(
-          Icons.delete,
+          Icons.restaurant,
           color: Color(0xAAFFFFFF),
         ),
       ),
