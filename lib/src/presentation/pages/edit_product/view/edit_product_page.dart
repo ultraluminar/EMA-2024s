@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
+import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 import 'package:fridge_manager/src/presentation/custom_widgets/custom_widgets.dart'
     show AppDateField;
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 import 'package:intl/intl.dart';
-import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 
 class EditProductPage extends StatelessWidget {
   const EditProductPage({super.key});

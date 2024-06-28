@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:fridge_manager/src/data/storage_location_api/storage_location_api.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import 'package:fridge_manager/src/data/storage_location_api/storage_location_api.dart';
 import 'package:uuid/uuid.dart';
 
 part 'storage_location.g.dart';
