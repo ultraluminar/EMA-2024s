@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/shared/app_utils/app_utils.dart';
 import 'package:intl/intl.dart';
-import 'package:products_repository/products_repository.dart';
+import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 
 part 'edit_product_event.dart';
 part 'edit_product_state.dart';

@@ -7,7 +7,7 @@ import 'package:fridge_manager/src/presentation/custom_widgets/custom_widgets.da
     show AppDateField;
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 import 'package:intl/intl.dart';
-import 'package:products_repository/products_repository.dart';
+import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 
 class EditProductPage extends StatelessWidget {
   const EditProductPage({super.key});

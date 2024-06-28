@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/presentation/home/home.dart';
 import 'package:fridge_manager/src/presentation/theme.dart';
-import 'package:products_repository/products_repository.dart';
+import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 
 class App extends StatelessWidget {
   const App({required this.productsRepository, super.key});
