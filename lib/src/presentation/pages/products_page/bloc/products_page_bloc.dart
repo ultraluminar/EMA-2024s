@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
-import 'package:products_api/products_api.dart';
 import 'package:products_repository/products_repository.dart';
 
 part 'products_page_event.dart';

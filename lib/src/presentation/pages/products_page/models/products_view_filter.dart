@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:products_api/products_api.dart';
+import 'package:fridge_manager/src/data/products_api/products_api.dart';
 
 enum ProductsViewFilter { all, stillGood, expired }
 

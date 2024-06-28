@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
-import 'package:products_api/products_api.dart';
+import 'package:fridge_manager/src/data/products_api/products_api.dart';
 
 class ProductListTile extends StatelessWidget {
   const ProductListTile({
