@@ -15,12 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.19.0
-  local_storage_products_api:
-    path: lib/src/data/local_storage_products_api
-  products_api:
-    path: lib/src/data/products_api
-  products_repository:
-    path: lib/src/domain/products_repository
+
   # app_utils:
   #   path: lib/src/shared/app_utils
   flutter_local_notifications: ^17.1.2
@@ -31,6 +26,7 @@ dependencies:
   json_annotation: ^4.9.0
   uuid: ^4.4.0
   meta: ^1.12.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   build_runner: ^2.4.11
