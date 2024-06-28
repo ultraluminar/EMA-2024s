@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
-import 'package:local_storage_products_api/local_storage_products_api.dart';
+import 'package:fridge_manager/src/data/local_storage_products_api/local_storage_products_api.dart';
 import 'package:rxdart/subjects.dart';
 
 // TODO: add docstrings

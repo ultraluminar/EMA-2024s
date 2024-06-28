@@ -4,10 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/src/data/local_storage_products_api/local_storage_products_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
 import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:local_storage_products_api/local_storage_products_api.dart';
 
 typedef AppBuilder = Future<Widget> Function(
   SharedPreferences sharedPreferences,
