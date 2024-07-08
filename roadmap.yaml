@@ -1,0 +1,18 @@
+1. model product based on external api (open food facts)
+2. implement product quering from api
+3. barcode scanner
+4. add product by barcode
+5. auth via firebase (mail/google/apple)
+6. save data with firestore
+7. save data locally (hive/shared preferences)
+8. expiration notification (locally)
+9. deleting/consuming of products (undo?)
+10. sorting/grouping in listview
+11. add storage location
+12. homepage ui
+13. multi-language-support
+
+14. shopping list
+15. household/coop features
+16. recepies
+17. refinement
