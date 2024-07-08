@@ -48,7 +48,7 @@ class ProductListTile extends StatelessWidget {
           product.isExpired
               ? S
                   .of(context)
-                  .productListTileDescriptionExpired(product.expiredDaysAgo)
+                  .productListTileDescriptionExpired(product.expiresInDays * -1)
               : S
                   .of(context)
                   .productListTileDescriptionNotExpired(product.expiresInDays),

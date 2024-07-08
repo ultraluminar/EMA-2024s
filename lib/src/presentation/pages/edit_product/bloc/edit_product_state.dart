@@ -9,48 +9,36 @@ extension EditProductStatusX on EditProductStatus {
       ].contains(this);
 }
 
-Product defaultProduct = Product(
-  product_id: "",
-  name: "",
-  expires_at: DateTime.now().date,
-  owner: "",
-  tags: const [],
-);
-
-final class EditProductState extends Equatable {
-  EditProductState({
-    required Product? initialProduct,
+class EditProductState extends Equatable {
+  const EditProductState({
+    this.name = "",
+    this.expiresAt,
     this.status = EditProductStatus.initial,
-    this.expriredAtPicked = false,
-  })  : isNewProduct = initialProduct == null,
-        product = initialProduct ?? defaultProduct;
+  });
 
-  final Product product;
+  EditProductState.fromProduct({
+    required Product product,
+  })  : name = product.name,
+        expiresAt = product.expiresAt,
+        status = EditProductStatus.initial;
+
+  final String name;
+  final ExpirationDate? expiresAt;
+
   final EditProductStatus status;
-  final bool isNewProduct;
-  final bool expriredAtPicked;
-
-  String dateOrEmpty(DateFormat dateFormat) =>
-      (!expriredAtPicked && isNewProduct)
-          ? ""
-          : dateFormat.format(product.expires_at);
 
   EditProductState copyWith({
-    Product? product,
+    String? name,
+    ExpirationDate? expiresAt,
+    int? expiresDaysAfterOpen,
     EditProductStatus? status,
-    bool? expriredAtPicked,
-  }) {
-    return EditProductState(
-      initialProduct: product ?? this.product,
-      status: status ?? this.status,
-      expriredAtPicked: expriredAtPicked ?? this.expriredAtPicked,
-    );
-  }
+  }) =>
+      EditProductState(
+        name: name ?? this.name,
+        expiresAt: expiresAt ?? this.expiresAt,
+        status: status ?? this.status,
+      );
 
   @override
-  List<Object> get props => [status, product]; // initialProduct!,
-
-  @override
-  String toString() =>
-      'EditProductState($status, Product(name: ${product.name}))';
+  List<Object?> get props => [name, expiresAt, status];
 }

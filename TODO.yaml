@@ -6,6 +6,7 @@ Models:
   TODO: Store
   TODO: Storages (Place where Products are physically stored)
   TODO: Person (Person who bought/owns the product)
+  TODO: Opened At field?
 UI:
   Products Page:
     TODO: finish "edit Product" Page

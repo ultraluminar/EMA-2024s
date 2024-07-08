@@ -116,7 +116,7 @@ class ProductsView extends StatelessWidget {
                       },
                       onTap: () {
                         Navigator.of(context).push<void>(
-                          EditProductPage.route(initialProduct: product),
+                          EditProductPage.route(product: product),
                         );
                       },
                     ),

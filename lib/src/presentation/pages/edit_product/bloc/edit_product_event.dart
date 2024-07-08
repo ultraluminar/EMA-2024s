@@ -2,9 +2,6 @@ part of 'edit_product_bloc.dart';
 
 sealed class EditProductEvent extends Equatable {
   const EditProductEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 final class EditProductNameChanged extends EditProductEvent {
@@ -14,59 +11,29 @@ final class EditProductNameChanged extends EditProductEvent {
 
   @override
   List<Object> get props => [name];
-
-  @override
-  String toString() => "EditProductNameChanged( name: $name )";
 }
 
 final class EditProductExpiresAtChanged extends EditProductEvent {
   const EditProductExpiresAtChanged(this.expiresAt);
 
-  final DateTime expiresAt;
+  final ExpirationDate expiresAt;
 
   @override
   List<Object> get props => [expiresAt];
-
-  @override
-  String toString() => "EditProductExpiresAtChanged( expiresAt: $expiresAt )";
 }
 
-final class EditProductStoredAtChanged extends EditProductEvent {
-  const EditProductStoredAtChanged(this.storedAt);
+final class EditProductExpiresDaysAfterOpen extends EditProductEvent {
+  const EditProductExpiresDaysAfterOpen(this.expiresDaysAfterOpen);
 
-  final DateTime storedAt;
-
-  @override
-  List<Object> get props => [storedAt];
+  final int expiresDaysAfterOpen;
 
   @override
-  String toString() => "EditProductStoredAtChanged( storedAt: $storedAt )";
-}
-
-final class EditProductOwnerChanged extends EditProductEvent {
-  const EditProductOwnerChanged(this.owner);
-
-  final String owner;
-
-  @override
-  List<Object> get props => [owner];
-
-  @override
-  String toString() => "EditProductOwnerChanged( owner: $owner )";
-}
-
-final class EditProductTagsChanged extends EditProductEvent {
-  const EditProductTagsChanged(this.tags);
-
-  final List<String> tags;
-
-  @override
-  List<Object> get props => [tags];
-
-  @override
-  String toString() => "EditProductTagsChanged( tags: $tags )";
+  List<Object> get props => [expiresDaysAfterOpen];
 }
 
 final class EditProductSubmitted extends EditProductEvent {
   const EditProductSubmitted();
+
+  @override
+  List<Object?> get props => [];
 }
