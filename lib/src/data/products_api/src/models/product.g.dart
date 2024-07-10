@@ -7,15 +7,15 @@ part of 'product.dart';
 // **************************************************************************
 
 Product _$ProductFromJson(Map<String, dynamic> json) => Product(
-      uuid: json['uuid'] as String,
-      productId: json['productId'] as String,
       name: json['name'] as String,
       expiresAt: ExpirationDate.fromJson(json['expiresAt'] as String),
+      uuid: json['uuid'] as String?,
+      barcode: json['barcode'] as String? ?? "",
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
-      'uuid': instance.uuid,
-      'productId': instance.productId,
       'name': instance.name,
       'expiresAt': instance.expiresAt.toJson(),
+      'uuid': instance.uuid,
+      'barcode': instance.barcode,
     };

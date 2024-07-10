@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/data/products_api/src/models/models.dart';
 import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
-import 'package:uuid/uuid.dart';
 
 part 'edit_product_event.dart';
 part 'edit_product_state.dart';
@@ -14,7 +13,7 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
     this.product,
   })  : _productsRepository = productsRepository,
         super(product == null
-            ? EditProductState()
+            ? const EditProductState()
             : EditProductState.fromProduct(product: product)) {
     on<EditProductNameChanged>(_onNameChanged);
     on<EditProductExpiresAtChanged>(_onExpiresAtChanged);
@@ -50,14 +49,8 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
     emit(state.copyWith(status: EditProductStatus.loading));
 
     final product = (this.product == null)
-        ? Product(
-            uuid: const Uuid().v4(),
-            name: state.name,
-            productId: "-1",
-            expiresAt: state.expiresAt!)
-        : this.product!.copyWith(
-            name: state.name,
-            expiresAt: state.expiresAt!);
+        ? Product(name: state.name, expiresAt: state.expiresAt!)
+        : this.product!.copyWith(name: state.name, expiresAt: state.expiresAt!);
     try {
       await _productsRepository.saveProduct(product);
       emit(state.copyWith(status: EditProductStatus.success));

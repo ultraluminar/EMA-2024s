@@ -9,6 +9,7 @@ import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
 import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:openfoodfacts/openfoodfacts.dart' hide Product;
 
 typedef AppBuilder = Future<Widget> Function(
   SharedPreferences sharedPreferences,
@@ -24,18 +25,18 @@ Future<void> bootstrap(AppBuilder builder) async {
       initializeDateFormatting();
       await LocalNotification.init();
 
+      OpenFoodAPIConfiguration.userAgent = UserAgent(name: "Fridge Manager");
+      OpenFoodAPIConfiguration.globalLanguages = [OpenFoodFactsLanguage.GERMAN];
+      OpenFoodAPIConfiguration.globalCountry = OpenFoodFactsCountry.GERMANY;
+
       final firebaseApp = await Firebase.initializeApp();
 
       final FirebaseFirestore firestore =
           FirebaseFirestore.instanceFor(app: firebaseApp);
       firestore.useFirestoreEmulator(emulatorIP, emulatorPort);
 
-      final product = Product(
-        uuid: "0",
-        productId: "0",
-        expiresAt: ExpirationDate.today().addDays(5),
-        name: "Redbull Juneberry",
-      );
+      final product = await productFromBarcode(
+          barcode: "40468259", expiresAt: ExpirationDate.today());
 
       firestore.collection("products").add(product.toJson());
 
