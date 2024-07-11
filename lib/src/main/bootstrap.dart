@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/local_storage_products_api/local_storage_products_api.dart';
-import 'package:fridge_manager/src/data/products_api/products_api.dart';
+// import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
 import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -29,16 +29,16 @@ Future<void> bootstrap(AppBuilder builder) async {
       OpenFoodAPIConfiguration.globalLanguages = [OpenFoodFactsLanguage.GERMAN];
       OpenFoodAPIConfiguration.globalCountry = OpenFoodFactsCountry.GERMANY;
 
-      final firebaseApp = await Firebase.initializeApp();
+      // final firebaseApp = await Firebase.initializeApp();
 
-      final FirebaseFirestore firestore =
-          FirebaseFirestore.instanceFor(app: firebaseApp);
-      firestore.useFirestoreEmulator(emulatorIP, emulatorPort);
+      // final FirebaseFirestore firestore =
+      //     FirebaseFirestore.instanceFor(app: firebaseApp);
+      // firestore.useFirestoreEmulator(emulatorIP, emulatorPort);
 
-      final product = await productFromBarcode(
-          barcode: "40468259", expiresAt: ExpirationDate.today());
+      // final product = await Product.fromBarcode(
+      //     barcode: "40468259", expiresAt: ExpirationDate.today());
 
-      firestore.collection("products").add(product.toJson());
+      // firestore.collection("products").add(product.toJson());
 
       // final analyticsRepository =
       //     AnalyticsRepository(FirebaseAnalytics.instance);

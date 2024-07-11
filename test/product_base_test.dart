@@ -7,7 +7,6 @@ void main() {
   final product = Product(
     uuid: "0",
     name: "RedBull",
-    productId: "-1",
     expiresAt: today,
   );
 

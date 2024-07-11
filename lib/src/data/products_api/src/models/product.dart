@@ -7,20 +7,13 @@ import 'package:uuid/uuid.dart';
 
 part 'product.g.dart';
 
-Future<Product> productFromBarcode({
-  required String barcode,
-  required ExpirationDate expiresAt,
-}) async {
-  if (!BarcodeValidator.isValid(barcode)) throw Exception("barcode invalid!");
-
-  final ProductResultV3 result = await OpenFoodAPIClient.getProductV3(
-      ProductQueryConfiguration(barcode, version: ProductQueryVersion.v3));
-
-  return Product(
-    expiresAt: expiresAt,
-    name: result.product!.productName!,
-    barcode: barcode,
+Future<String> getProductNameV3(String barcode) async {
+  final configuration = ProductQueryConfiguration(
+    barcode,
+    version: ProductQueryVersion.v3,
   );
+  final result = await OpenFoodAPIClient.getProductV3(configuration);
+  return result.product!.productName!;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -31,6 +24,15 @@ class Product extends Equatable {
     String? uuid,
     this.barcode = "",
   }) : uuid = uuid ?? const Uuid().v4();
+
+  static Future<Product> fromBarcode({
+    required String barcode,
+    required ExpirationDate expiresAt,
+  }) async =>
+      Product(
+          name: await getProductNameV3(barcode),
+          expiresAt: expiresAt,
+          barcode: barcode);
 
   final String name;
   final ExpirationDate expiresAt;
