@@ -1,20 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/data/products_api/src/models/models.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:openfoodfacts/openfoodfacts.dart' hide Product;
 import 'package:uuid/uuid.dart';
 
 part 'product.g.dart';
-
-Future<String> getProductNameV3(String barcode) async {
-  final configuration = ProductQueryConfiguration(
-    barcode,
-    version: ProductQueryVersion.v3,
-  );
-  final result = await OpenFoodAPIClient.getProductV3(configuration);
-  return result.product!.productName!;
-}
 
 @JsonSerializable(explicitToJson: true)
 class Product extends Equatable {
@@ -30,7 +21,7 @@ class Product extends Equatable {
     required ExpirationDate expiresAt,
   }) async =>
       Product(
-          name: await getProductNameV3(barcode),
+          name: (await ProductNameApi.fetch(barcode))!,
           expiresAt: expiresAt,
           barcode: barcode);
 

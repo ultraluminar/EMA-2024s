@@ -4,6 +4,7 @@ import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
+import 'package:fridge_manager/src/presentation/pages/scanner_page/scanner_page.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -35,7 +36,7 @@ class ProductsView extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         key: const Key("homeView_addProduct_floatingActionButton"),
-        onPressed: () => Navigator.of(context).push(EditProductPage.route()),
+        onPressed: () => Navigator.of(context).push(ScannerPage.route()),
         child: const Icon(Icons.add),
       ),
       body: MultiBlocListener(
