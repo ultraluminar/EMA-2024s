@@ -16,8 +16,18 @@ final box = Hive.box<String>("product_names");
 
 class ProductNameApi {
   static Future<String?> fetchFromApi(String barcode) async {
-    final product = await fetchProduct(barcode, fields: [ProductField.NAME]);
-    return product?.productName;
+    final product = await fetchProduct(barcode, fields: [
+      ProductField.NAME,
+      ProductField.BRANDS,
+      ProductField.QUANTITY,
+    ]);
+
+    if (product == null) throw Exception("Product returned null!");
+    return [
+      product.productName,
+      if (product.brands != null) '- ${product.brands}',
+      if (product.quantity != null) '- ${product.quantity}',
+    ].toString();
   }
 
   static Future<String?> fetch(String barcode) async {

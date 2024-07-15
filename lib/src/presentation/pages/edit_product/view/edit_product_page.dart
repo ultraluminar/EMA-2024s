@@ -12,14 +12,28 @@ import 'package:fridge_manager/src/presentation/pages/edit_product/view/name_fie
 class EditProductPage extends StatelessWidget {
   const EditProductPage({super.key});
 
-  static Route<void> route({Product? product}) {
+  static Route<void> route({
+    Product? product,
+    String? name,
+    String? barcode,
+  }) {
     return MaterialPageRoute(
       fullscreenDialog: true,
       builder: (context) => BlocProvider(
-        create: (context) => EditProductBloc(
-          productsRepository: context.read<ProductsRepository>(),
-          product: product,
-        ),
+        create: (context) => (product != null)
+            ? EditProductBloc.fromProduct(
+                productsRepository: context.read<ProductsRepository>(),
+                product: product)
+            : (name != null)
+                ? EditProductBloc.fromScan(
+                    productsRepository: context.read<ProductsRepository>(),
+                    name: name,
+                    barcode: barcode!,
+                  )
+                : EditProductBloc(
+                    productsRepository: context.read<ProductsRepository>(),
+                    state: const EditProductState(),
+                  ),
         child: const EditProductPage(),
       ),
     );

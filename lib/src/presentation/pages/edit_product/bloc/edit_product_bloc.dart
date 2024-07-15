@@ -3,23 +3,37 @@ import 'package:equatable/equatable.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/data/products_api/src/models/models.dart';
 import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
-
 part 'edit_product_event.dart';
 part 'edit_product_state.dart';
 
 class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
   EditProductBloc({
     required ProductsRepository productsRepository,
+    required EditProductState state,
     this.product,
+    String? name,
   })  : _productsRepository = productsRepository,
-        super(product == null
-            ? const EditProductState()
-            : EditProductState.fromProduct(product: product)) {
+        super(state) {
     on<EditProductNameChanged>(_onNameChanged);
     on<EditProductExpiresAtChanged>(_onExpiresAtChanged);
     on<EditProductExpiresDaysAfterOpen>(_onExpiresDaysAfterOpen);
     on<EditProductSubmitted>(_onSubmitted);
   }
+
+  EditProductBloc.fromProduct({
+    required ProductsRepository productsRepository,
+    required Product product,
+  }) : this(
+            productsRepository: productsRepository,
+            state: EditProductState.fromProduct(product: product));
+
+  EditProductBloc.fromScan({
+    required ProductsRepository productsRepository,
+    required String name,
+    required String barcode,
+  }) : this(
+            productsRepository: productsRepository,
+            state: EditProductState.fromScan(name: name, barcode: barcode));
 
   final ProductsRepository _productsRepository;
   final Product? product;

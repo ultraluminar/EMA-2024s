@@ -14,16 +14,26 @@ class EditProductState extends Equatable {
     this.name = "",
     this.expiresAt,
     this.status = EditProductStatus.initial,
+    this.barcode,
   });
 
   EditProductState.fromProduct({
     required Product product,
+    this.barcode,
   })  : name = product.name,
         expiresAt = product.expiresAt,
         status = EditProductStatus.initial;
 
+  const EditProductState.fromScan({
+    required this.name,
+    required this.barcode,
+    this.expiresAt,
+    this.status = EditProductStatus.initial,
+  });
+
   final String name;
   final ExpirationDate? expiresAt;
+  final String? barcode;
 
   final EditProductStatus status;
 
