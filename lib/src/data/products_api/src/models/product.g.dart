@@ -9,8 +9,8 @@ part of 'product.dart';
 Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       name: json['name'] as String,
       expiresAt: ExpirationDate.fromJson(json['expiresAt'] as String),
-      uuid: json['uuid'] as String?,
-      barcode: json['barcode'] as String? ?? "",
+      uuid: json['uuid'] as String,
+      barcode: json['barcode'] as String?,
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{

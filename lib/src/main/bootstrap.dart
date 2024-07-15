@@ -37,8 +37,8 @@ Future<void> bootstrap(AppBuilder builder) async {
       OpenFoodAPIConfiguration.globalLanguages = [OpenFoodFactsLanguage.GERMAN];
       OpenFoodAPIConfiguration.globalCountry = OpenFoodFactsCountry.GERMANY;
 
-      final productName = await ProductNameApi.fetchFromApi("4001686322963");
-      log(productName!);
+      // final productName = await ProductNameApi.fetchFromApi("4001686322963");
+      // log(productName!);
 
       await Hive.initFlutter();
       await Hive.openBox<String>("product_names");

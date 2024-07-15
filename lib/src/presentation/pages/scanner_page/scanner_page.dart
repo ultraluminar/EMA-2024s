@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
+import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 import 'package:fridge_manager/src/presentation/pages/scanner_page/cubit/scanner_page_cubit.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -54,7 +55,8 @@ class ScannerPageView extends StatelessWidget {
 
               if (!context.mounted) return;
               Navigator.of(context).pushReplacement(
-                EditProductPage.route(name: name, barcode: barcode),
+                EditProductPage.route(
+                    productPrototype: ProductPrototype.fromScan(name, barcode)),
               );
             },
           ),
