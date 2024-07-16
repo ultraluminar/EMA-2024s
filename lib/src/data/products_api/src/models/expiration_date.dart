@@ -1,8 +1,8 @@
 import 'package:intl/intl.dart';
 
-final dateFormat = DateFormat('dd.MM.yyyy');
-
 class ExpirationDate extends DateTime {
+  static final dateFormat = DateFormat('dd.MM.yyyy');
+
   ExpirationDate(super.year, super.month, super.day);
 
   ExpirationDate.fromDate(DateTime date)

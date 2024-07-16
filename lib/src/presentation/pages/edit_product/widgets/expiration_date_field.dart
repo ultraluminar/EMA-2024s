@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fridge_manager/src/data/products_api/src/models/models.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
-import 'package:intl/intl.dart';
 
 class ExpirationDateField extends StatelessWidget {
   const ExpirationDateField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    DateFormat dateFormat = DateFormat("dd.MM.yyyy");
-
     return BlocBuilder<EditProductCubit, EditProductState>(
       buildWhen: (previous, current) =>
           previous.status.isLoadingOrSuccess !=
@@ -20,7 +18,7 @@ class ExpirationDateField extends StatelessWidget {
         return AppDateField(
           key: const Key('editProductForm_expiresAtInput_dateField'),
           labelText: "ExpiresAt",
-          dateFormat: dateFormat,
+          dateFormat: ExpirationDate.dateFormat,
           enabled: !state.status.isLoadingOrSuccess,
           controller: TextEditingController(
             text: state.productPrototype.expiresAt?.toString() ?? "",
