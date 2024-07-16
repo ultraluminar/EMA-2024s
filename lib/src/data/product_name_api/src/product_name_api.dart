@@ -23,6 +23,7 @@ class ProductNameApi {
     ]);
 
     if (product == null) throw Exception("Product returned null!");
+    if (product.productName!.isEmpty) return null;
     return [
       product.productName,
       if (product.brands != null && product.brands!.isNotEmpty) product.brands,

@@ -29,8 +29,25 @@ class ScannerPage extends StatelessWidget {
   }
 }
 
-class ScannerPageView extends StatelessWidget {
+class ScannerPageView extends StatefulWidget {
   const ScannerPageView({super.key});
+
+  @override
+  State<ScannerPageView> createState() => _ScannerPageViewState();
+}
+
+class _ScannerPageViewState extends State<ScannerPageView> {
+  late final MobileScannerController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = MobileScannerController(
+      detectionSpeed: DetectionSpeed.noDuplicates,
+      detectionTimeoutMs: const Duration(seconds: 3).inMilliseconds,
+    );
+    controller.start();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +56,7 @@ class ScannerPageView extends StatelessWidget {
       body: Stack(
         children: [
           MobileScanner(
+            controller: controller,
             onDetect: (BarcodeCapture captures) async {
               final barcode = captures.barcodes.firstOrNull?.displayValue;
               final cubit = context.read<ScannerPageCubit>();
@@ -53,8 +71,10 @@ class ScannerPageView extends StatelessWidget {
                 return;
               }
 
+              await controller.stop();
               if (!context.mounted) return;
-              Navigator.of(context).pushReplacement(
+
+              await Navigator.of(context).pushReplacement(
                 EditProductPage.route(
                     productPrototype: ProductPrototype.fromScan(name, barcode)),
               );
