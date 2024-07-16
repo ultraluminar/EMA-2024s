@@ -25,9 +25,10 @@ class ProductNameApi {
     if (product == null) throw Exception("Product returned null!");
     return [
       product.productName,
-      if (product.brands != null) '- ${product.brands}',
-      if (product.quantity != null) '- ${product.quantity}',
-    ].toString();
+      if (product.brands != null && product.brands!.isNotEmpty) product.brands,
+      if (product.quantity != null && product.quantity!.isNotEmpty)
+        product.quantity,
+    ].join(' - ');
   }
 
   static Future<String?> fetch(String barcode) async {
