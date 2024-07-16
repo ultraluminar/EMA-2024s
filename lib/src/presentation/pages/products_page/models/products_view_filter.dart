@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 
 enum ProductsViewFilter { all, stillGood, expired }
 
 extension ProductsViewFilterX on ProductsViewFilter {
   bool apply(Product product) {
-    log("name: ${product.name}, expiresInDays: ${product.expiresInDays}, isExpires: ${product.isExpired}");
     switch (this) {
       case ProductsViewFilter.all:
         return true;
