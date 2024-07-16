@@ -75,7 +75,7 @@ class _EditProductViewState extends State<EditProductView> {
           builder: (context, isLoadingOrSuccess) {
             return FloatingActionButton(
               tooltip: S.of(context).editProductSaveButtonTooltip,
-              onPressed: isLoadingOrSuccess ? saveIfValide : saveIfValide,
+              onPressed: isLoadingOrSuccess ? null : saveIfValide,
               child: isLoadingOrSuccess
                   ? const CircularProgressIndicator()
                   : const Icon(Icons.check_rounded),
