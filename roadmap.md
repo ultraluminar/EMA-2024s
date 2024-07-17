@@ -5,9 +5,11 @@
 - [x] rework product model (ProductPrototype)
 - [x] fetch product details (openfoodfacts)
   - [ ] put name from textfield to hive
+  - [ ] expandable fab
 - [x] scan barcode for product name (mobile_scanner)
-  - [ ] _scan window_
-  - [ ] add product manualy (FloatingActionButton)
+  - [x] _scan window_
+  - [ ] loading state
+- [ ] rework storage model
 - [ ] settings_page
   - [ ] notification time-of-day
 - [ ] notifications (flutter_local_notifications)
