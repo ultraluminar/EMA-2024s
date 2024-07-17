@@ -6,6 +6,7 @@ import 'package:fridge_manager/src/domain/products_repository/products_repositor
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
 import 'package:fridge_manager/src/presentation/pages/scanner_page/view/scanner_page_view.dart';
+import 'package:fridge_manager/src/presentation/widgets/widgets.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -28,10 +29,14 @@ class ProductsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).productsAppBarTitle),
-        actions: const [
+        title: Text.rich(
+          TextSpan(
+              text: S.of(context).productsAppBarTitle,
+              style: const TextStyle(fontWeight: FontWeight.bold)),
+        ),
+        actions: const <Widget>[
           ProductsFilterButton(),
-          ProductsOptionsButton(),
+          SettingsButton(),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
