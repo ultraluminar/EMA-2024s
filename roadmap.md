@@ -5,10 +5,11 @@
 - [x] rework product model (ProductPrototype)
 - [x] fetch product details (openfoodfacts)
   - [ ] put name from textfield to hive
-  - [ ] expandable fab
+  - [x] expandable fab
 - [x] scan barcode for product name (mobile_scanner)
   - [x] _scan window_
   - [x] loading state
+  - [ ] verify internet connection
 - [ ] rework storage model
 - [ ] settings_page
   - [ ] notification time-of-day

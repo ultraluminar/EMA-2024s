@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
@@ -39,12 +40,50 @@ class ProductsView extends StatelessWidget {
           SettingsButton(),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        key: const Key("homeView_addProduct_floatingActionButton"),
-        onPressed: () => Navigator.of(context).push(ScannerPage.route()),
-        child: const Icon(Icons.add),
+      floatingActionButtonLocation: ExpandableFab.location,
+      floatingActionButton: ExpandableFab(
+        type: ExpandableFabType.up,
+        distance: 50,
+        openButtonBuilder: DefaultFloatingActionButtonBuilder(
+          child: const Icon(Icons.edit),
+        ),
+        childrenAnimation: ExpandableFabAnimation.none,
+        childrenOffset: const Offset(-4, 0),
+        children: [
+          Row(
+            children: [
+              const Text("Manuell hinzufügen"),
+              const SizedBox(width: 20),
+              FloatingActionButton.small(
+                heroTag: "FloatingActionButtonEdit",
+                child: const Icon(Icons.edit_outlined),
+                onPressed: () => Navigator.of(context).push(
+                  EditProductPage.route(
+                      productPrototype: const ProductPrototype()),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              const Text("Barcode Scanner"),
+              const SizedBox(width: 20),
+              FloatingActionButton.small(
+                heroTag: "FloatingActionBuzzonScan",
+                child: const Icon(Icons.camera_alt_outlined),
+                onPressed: () => Navigator.of(context).push(
+                  ScannerPage.route(),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
+      // FloatingActionButton(
+      //   key: const Key("homeView_addProduct_floatingActionButton"),
+      //   onPressed: () => Navigator.of(context).push(ScannerPage.route()),
+      //   child: const Icon(Icons.add),
+      // ),
       body: MultiBlocListener(
         listeners: [
           BlocListener<ProductsPageBloc, ProductsPageState>(
