@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
-import 'package:fridge_manager/src/presentation/pages/scanner_page/cubit/scanner_page_cubit.dart';
 import 'package:fridge_manager/src/presentation/pages/scanner_page/scanner_page.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:openfoodfacts/openfoodfacts.dart' show BarcodeValidator;
@@ -95,32 +94,37 @@ class _ScannerPageViewState extends State<ScannerPageView> {
             },
           ),
           buildScanWindow(scanWindow, controller),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              height: 100,
-              color: Colors.black.withOpacity(0.4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: BlocBuilder<ScannerPageCubit, String>(
-                        buildWhen: (previous, current) => previous != current,
-                        builder: (context, state) {
-                          return Text(
-                            state,
-                            overflow: TextOverflow.fade,
-                            style: const TextStyle(color: Colors.white),
-                          );
-                        },
-                      ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ToogleFlashlightButton(controller: controller),
+              const SizedBox(height: 10),
+              Container(
+                alignment: Alignment.bottomCenter,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                  color: Colors.black.withOpacity(0.4),
+                ),
+                child: Expanded(
+                  child: Center(
+                    child: BlocBuilder<ScannerPageCubit, String>(
+                      buildWhen: (previous, current) => previous != current,
+                      builder: (context, state) {
+                        return Text(
+                          state,
+                          overflow: TextOverflow.fade,
+                          style: const TextStyle(color: Colors.white),
+                        );
+                      },
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
