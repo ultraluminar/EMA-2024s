@@ -5,7 +5,7 @@ import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
-import 'package:fridge_manager/src/presentation/pages/scanner_page/scanner_page.dart';
+import 'package:fridge_manager/src/presentation/pages/scanner_page/view/scanner_page_view.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
