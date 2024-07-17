@@ -1,8 +1,7 @@
-// TODO: Implement some sort of validation for fields so necessary fields are filled out
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 
@@ -25,8 +24,8 @@ class NameField extends StatelessWidget {
             labelText: "Name", //S.of(context).editProductFormNameFieldLabel,
           ),
           initialValue: state.productPrototype.name,
-          maxLength: 50,
-          inputFormatters: [LengthLimitingTextInputFormatter(50)],
+          // maxLength: 50, //FIXME: Name editing with Characterlimit
+          // inputFormatters: [LengthLimitingTextInputFormatter(50)],
           onSaved: (name) {
             log("onsaved");
             assert(name != null, "Namefield cannot return null!");
