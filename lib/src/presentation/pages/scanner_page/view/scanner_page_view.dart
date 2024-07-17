@@ -73,10 +73,14 @@ class _ScannerPageViewState extends State<ScannerPageView> {
             onDetect: (BarcodeCapture captures) async {
               final barcode = captures.barcodes.firstOrNull?.displayValue;
               final cubit = context.read<ScannerPageCubit>();
+              if (cubit.state == "Loading...") return;
+
               if (!BarcodeValidator.isValid(barcode)) {
                 cubit.setDisplayText("Das ist kein Product-Barcode!");
                 return;
               }
+
+              cubit.setDisplayText("Loading...");
 
               final name = await ProductNameApi.fetch(barcode!);
               if (name == null) {
