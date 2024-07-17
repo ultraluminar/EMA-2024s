@@ -8,7 +8,7 @@
   - [ ] expandable fab
 - [x] scan barcode for product name (mobile_scanner)
   - [x] _scan window_
-  - [ ] loading state
+  - [x] loading state
 - [ ] rework storage model
 - [ ] settings_page
   - [ ] notification time-of-day
