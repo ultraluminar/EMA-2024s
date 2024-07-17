@@ -113,18 +113,16 @@ class _ScannerPageViewState extends State<ScannerPageView> {
                   ),
                   color: Colors.black.withOpacity(0.4),
                 ),
-                child: Expanded(
-                  child: Center(
-                    child: BlocBuilder<ScannerPageCubit, String>(
-                      buildWhen: (previous, current) => previous != current,
-                      builder: (context, state) {
-                        return Text(
-                          state,
-                          overflow: TextOverflow.fade,
-                          style: const TextStyle(color: Colors.white),
-                        );
-                      },
-                    ),
+                child: Center(
+                  child: BlocBuilder<ScannerPageCubit, String>(
+                    buildWhen: (previous, current) => previous != current,
+                    builder: (context, state) {
+                      return Text(
+                        state,
+                        overflow: TextOverflow.fade,
+                        style: const TextStyle(color: Colors.white),
+                      );
+                    },
                   ),
                 ),
               ),
