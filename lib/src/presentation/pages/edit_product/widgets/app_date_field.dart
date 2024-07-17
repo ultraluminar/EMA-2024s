@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fridge_manager/src/shared/app_utils/app_utils.dart';
+import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:intl/intl.dart';
 
 class AppDateField extends StatelessWidget {
@@ -24,7 +24,7 @@ class AppDateField extends StatelessWidget {
     showDatePicker(
       context: context,
       initialDate: controller.text == ""
-          ? DateTime.now().date
+          ? ExpirationDate.today()
           : dateFormat.parse(controller.text),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
