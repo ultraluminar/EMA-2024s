@@ -18,13 +18,13 @@ class ProductsPage extends StatelessWidget {
       create: (context) => ProductsPageBloc(
         productsRepository: context.read<ProductsRepository>(),
       )..add(const ProductsPageSubscriptionRequested()),
-      child: const ProductsView(),
+      child: const ProductsPageView(),
     );
   }
 }
 
-class ProductsView extends StatelessWidget {
-  const ProductsView({super.key});
+class ProductsPageView extends StatelessWidget {
+  const ProductsPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
