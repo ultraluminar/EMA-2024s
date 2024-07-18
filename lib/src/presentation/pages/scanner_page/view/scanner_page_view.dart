@@ -83,10 +83,18 @@ class _ScannerPageViewState extends State<ScannerPageView> {
 
               cubit.setDisplayText("Loading...");
 
-              final name = await ProductNameApi.fetch(barcode!);
+              final name = await ProductNameApi.fetch(barcode!).timeout(
+                const Duration(seconds: 10),
+                onTimeout: () => "timeout",
+              );
+
               if (name == null) {
                 cubit.setDisplayText("Product nicht gefunden!");
                 return;
+              }
+
+              if (name == "timeout") {
+                cubit.setDisplayText("ProduktApi reagiert nicht!");
               }
 
               await controller.stop();
