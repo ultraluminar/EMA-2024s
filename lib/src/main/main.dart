@@ -1,3 +1,4 @@
+import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/local_storage_products_api/local_storage_products_api.dart';
 import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
 import 'package:fridge_manager/src/main/bootstrap.dart';
@@ -16,8 +17,11 @@ void main() {
         productsApi: productsApi,
       );
 
+      final settingsApi = await HiveSettingsApi.instance;
+
       return App(
         productsRepository: productsRepository,
+        settingsApi: settingsApi,
       );
     },
   );

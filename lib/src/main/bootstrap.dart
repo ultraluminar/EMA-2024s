@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/local_storage_products_api/local_storage_products_api.dart';
 import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 // import 'package:fridge_manager/src/data/products_api/products_api.dart';
@@ -42,6 +43,8 @@ Future<void> bootstrap(AppBuilder builder) async {
 
       await Hive.initFlutter();
       await Hive.openBox<String>("product_names");
+
+      Hive.registerAdapter(SettingsAdapter());
 
       // final firebaseApp = await Firebase.initializeApp();
 
