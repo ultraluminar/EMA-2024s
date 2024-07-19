@@ -46,9 +46,6 @@ class HiveSettingsApi implements SettingsApi {
   ValueListenable<SettingsBox> getListenable() => _box.listenable();
 
   @override
-  Future<Settings> getSettings() async => _box.get(settingsIndex)!;
-
-  @override
   Future<void> setSettings(Settings settings) async {
     log("setSettings");
     await _box.put(settingsIndex, settings);
