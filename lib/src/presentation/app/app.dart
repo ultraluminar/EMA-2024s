@@ -31,14 +31,34 @@ class App extends StatelessWidget {
 class AppView extends StatelessWidget {
   const AppView({super.key});
 
+  ThemeData? getTheme(ThemeMode themeMode) {
+    if (themeMode == ThemeMode.system || themeMode == ThemeMode.light) {
+      return FlutterFridgeTheme.light;
+    }
+    return null;
+  }
+
+  ThemeData? getdarkTheme(ThemeMode themeMode) {
+    if (themeMode == ThemeMode.system || themeMode == ThemeMode.dark) {
+      return FlutterFridgeTheme.dark;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: FlutterFridgeTheme.light,
-      darkTheme: FlutterFridgeTheme.dark,
-      localizationsDelegates: const [S.delegate],
-      supportedLocales: S.delegate.supportedLocales,
-      home: const HomePage(),
-    );
+    return ValueListenableBuilder(
+        valueListenable: context.read<HiveSettingsApi>().getListenable(),
+        builder: (context, box, child) {
+          final ThemeMode themeMode =
+              box.get(HiveSettingsApi.settingsIndex)!.themeMode;
+          return MaterialApp(
+            theme: getTheme(themeMode),
+            darkTheme: getdarkTheme(themeMode),
+            localizationsDelegates: const [S.delegate],
+            supportedLocales: S.delegate.supportedLocales,
+            home: const HomePage(),
+          );
+        });
   }
 }

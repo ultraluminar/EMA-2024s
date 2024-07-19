@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
+import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/theme_list_tile.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -35,10 +36,9 @@ class SettingsPageView extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar.large(
-            title: Text('Settings'),
-            // floating: true,
-            // pinned: true,
+          SliverAppBar.large(
+            title: const Text('Settings'),
+            backgroundColor: Theme.of(context).colorScheme.surface,
           ),
           ValueListenableBuilder(
             valueListenable: hiveSettingsApi.getListenable(),
@@ -49,24 +49,62 @@ class SettingsPageView extends StatelessWidget {
                   : box
                       .get(HiveSettingsApi.settingsIndex)
                       ?.dailyNotificationTime;
+              final ThemeMode themeMode =
+                  box.get(HiveSettingsApi.settingsIndex)!.themeMode;
               log("after");
               return SliverList(
                 delegate: SliverChildListDelegate(
                   [
                     DailyNotificationTimeListTile(
                       dailyNotificationTime: dailyNotificationTime,
+                      settingsBox: box,
                     ),
-
-                    // ListTile(
-                    //   title: const Text('Theme'),
-                    //   subtitle: const Text('System'),
-                    //   onTap: () {
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (context) => const ThemeDialog(),
-                    //     );
-                    //   },
-                    // ),
+                    ThemeListTile(
+                      themeMode: themeMode,
+                      settingsBox: box,
+                    ),
+                    const ListTile(
+                      title: Text("1"),
+                    ),
+                    const ListTile(
+                      title: Text("2"),
+                    ),
+                    const ListTile(
+                      title: Text("3"),
+                    ),
+                    const ListTile(
+                      title: Text("4"),
+                    ),
+                    const ListTile(
+                      title: Text("5"),
+                    ),
+                    const ListTile(
+                      title: Text("6"),
+                    ),
+                    const ListTile(
+                      title: Text("7"),
+                    ),
+                    const ListTile(
+                      title: Text("8"),
+                    ),
+                    const ListTile(
+                      title: Text("9"),
+                    ),
+                    const ListTile(
+                      title: Text("10"),
+                    ),
+                    const ListTile(
+                      title: Text("11"),
+                    ),
+                    const ListTile(
+                      title: Text("12"),
+                    ),
+                    const ListTile(
+                      title: Text("13"),
+                    ),
+                    const ListTile(
+                      title: Text("14"),
+                    ),
                   ],
                 ),
               );

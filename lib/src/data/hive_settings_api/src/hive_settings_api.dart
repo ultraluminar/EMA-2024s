@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -37,6 +38,7 @@ class HiveSettingsApi implements SettingsApi {
       await instance.setSettings(
         const Settings(
           dailyNotificationTime: TimeOfDayJson(hour: 9),
+          themeMode: ThemeMode.system,
         ),
       );
     }

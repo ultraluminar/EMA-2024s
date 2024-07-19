@@ -8,10 +8,12 @@ import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 class DailyNotificationTimeListTile extends StatelessWidget {
   const DailyNotificationTimeListTile({
     required this.dailyNotificationTime,
+    required this.settingsBox,
     super.key,
   });
 
   final TimeOfDayJson? dailyNotificationTime;
+  final SettingsBox settingsBox;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +32,9 @@ class DailyNotificationTimeListTile extends StatelessWidget {
             if (value == null) return;
             log("before set");
             await hiveSettingsApi.setSettings(
-              Settings(
-                dailyNotificationTime: TimeOfDayJson.fromTimeOfDay(value),
-              ),
+              settingsBox.get(HiveSettingsApi.settingsIndex)!.copyWith(
+                    dailyNotificationTime: TimeOfDayJson.fromTimeOfDay(value),
+                  ),
             );
             log("after");
           },

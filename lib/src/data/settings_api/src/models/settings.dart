@@ -43,20 +43,20 @@ class TimeOfDayJson extends TimeOfDay {
 class Settings extends Equatable {
   const Settings({
     required this.dailyNotificationTime,
-    // required this.themeMode,
+    required this.themeMode,
   });
 
   final TimeOfDayJson dailyNotificationTime;
-  // final ThemeMode themeMode;
+  final ThemeMode themeMode;
 
   Settings copyWith({
     TimeOfDayJson? dailyNotificationTime,
-    // ThemeMode? themeMode,
+    ThemeMode? themeMode,
   }) =>
       Settings(
         dailyNotificationTime:
             dailyNotificationTime ?? this.dailyNotificationTime,
-        // themeMode: themeMode ?? this.themeMode,
+        themeMode: themeMode ?? this.themeMode,
       );
 
   factory Settings.fromJson(JsonMap json) => _$SettingsFromJson(json);
