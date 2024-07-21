@@ -1,17 +1,20 @@
-import 'package:fridge_manager/src/data/products_api/products_api.dart';
+import 'package:flutter/foundation.dart';
+import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 
 // TODO: add docstrings
 class ProductsRepository {
-  const ProductsRepository({
-    required ProductsApi productsApi,
-  }) : _productsApi = productsApi;
+  const ProductsRepository({required this.hiveProductsApi});
 
-  final ProductsApi _productsApi;
+  final HiveProductsApi hiveProductsApi;
 
-  Stream<List<Product>> getAllProducts() => _productsApi.getAllProducts();
+  int getProductCount() => hiveProductsApi.getProductCount();
 
-  Future<void> saveProduct(Product product) =>
-      _productsApi.saveProduct(product);
+  ValueListenable<ProductBox> getListenable() =>
+      hiveProductsApi.getListenable();
 
-  Future<void> deleteProduct(String uuid) => _productsApi.deleteProduct(uuid);
+  Future<void> saveProduct(Product product) async =>
+      await hiveProductsApi.saveProduct(product);
+
+  Future<void> deleteProduct(String uuid) async =>
+      await hiveProductsApi.deleteProduct(uuid);
 }
