@@ -4,7 +4,7 @@ import 'package:fridge_manager/src/data/products_api/products_api.dart';
 abstract class ProductsApi {
   const ProductsApi();
 
-  Stream<List<Product>> getAllProducts();
+  Future<List<Product>> getAllProducts();
 
   Future<void> saveProduct(Product product);
 
