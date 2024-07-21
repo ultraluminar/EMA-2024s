@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class ThemeDialog extends StatelessWidget {
   const ThemeDialog({super.key});
@@ -18,7 +19,7 @@ class ThemeDialog extends StatelessWidget {
     }
 
     return ValueListenableBuilder(
-        valueListenable: HiveSettingsApi.listenable,
+        valueListenable: HiveSettingsApi.box.listenable(),
         builder: (context, box, child) {
           final ThemeMode themeMode =
               box.get(HiveSettingsApi.settingsIndex)!.themeMode;

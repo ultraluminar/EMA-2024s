@@ -5,6 +5,7 @@ import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/theme_list_tile.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/widgets.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -37,7 +38,7 @@ class SettingsPageView extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.surface,
           ),
           ValueListenableBuilder(
-            valueListenable: HiveSettingsApi.listenable,
+            valueListenable: HiveSettingsApi.box.listenable(),
             builder: (context, box, child) {
               log("Box.isEmpty: ${box.isEmpty}");
               final TimeOfDayJson? dailyNotificationTime = box.isEmpty
@@ -59,48 +60,8 @@ class SettingsPageView extends StatelessWidget {
                       themeMode: themeMode,
                       settingsBox: box,
                     ),
-                    const ListTile(
-                      title: Text("1"),
-                    ),
-                    const ListTile(
-                      title: Text("2"),
-                    ),
-                    const ListTile(
-                      title: Text("3"),
-                    ),
-                    const ListTile(
-                      title: Text("4"),
-                    ),
-                    const ListTile(
-                      title: Text("5"),
-                    ),
-                    const ListTile(
-                      title: Text("6"),
-                    ),
-                    const ListTile(
-                      title: Text("7"),
-                    ),
-                    const ListTile(
-                      title: Text("8"),
-                    ),
-                    const ListTile(
-                      title: Text("9"),
-                    ),
-                    const ListTile(
-                      title: Text("10"),
-                    ),
-                    const ListTile(
-                      title: Text("11"),
-                    ),
-                    const ListTile(
-                      title: Text("12"),
-                    ),
-                    const ListTile(
-                      title: Text("13"),
-                    ),
-                    const ListTile(
-                      title: Text("14"),
-                    ),
+                    for (var index = 0; index < 15; index++)
+                      ListTile(title: Text(index.toString())),
                   ],
                 ),
               );

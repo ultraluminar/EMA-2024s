@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/models/models.dart';
@@ -36,12 +35,10 @@ class HiveSettingsApi implements SettingsApi {
   );
 
   static const int settingsIndex = 0;
-  static late final ValueListenable<SettingsBox> listenable;
-  static SettingsBox get box => listenable.value;
+  static late final SettingsBox box;
 
   static Future<void> init() async {
-    final settingsBox = await Hive.openBox<Settings>('settingsBox');
-    listenable = settingsBox.listenable();
+    box = await Hive.openBox<Settings>('settingsBox');
     if (box.isEmpty) await HiveSettingsApi.setSettings(defaultSettings);
   }
 

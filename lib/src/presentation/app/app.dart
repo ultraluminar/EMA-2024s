@@ -3,6 +3,7 @@ import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/presentation/home/home.dart';
 import 'package:fridge_manager/src/presentation/theme.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -39,7 +40,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: HiveSettingsApi.listenable,
+        valueListenable: HiveSettingsApi.box.listenable(),
         builder: (context, box, child) {
           final ThemeMode themeMode =
               box.get(HiveSettingsApi.settingsIndex)!.themeMode;
