@@ -9,8 +9,10 @@
 - [x] scan barcode for product name (mobile_scanner)
   - [x] _scan window_
   - [x] loading state
+  - [ ] fix on camera no access
   - [ ] verify internet connection
 - [ ] rework storage model
+  - [ ] fix new item order
 - [ ] settings_page
   - [ ] notification time-of-day
 - [ ] notifications (flutter_local_notifications)
