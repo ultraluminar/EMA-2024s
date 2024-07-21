@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
+import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
+import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 
 class ProductListTile extends StatelessWidget {
-  const ProductListTile({
-    required this.product,
+  const ProductListTile(
+    this.product, {
     super.key,
-    this.onDismissed,
-    this.onTap,
   });
 
   final Product product;
-  final DismissDirectionCallback? onDismissed;
-  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,9 @@ class ProductListTile extends StatelessWidget {
     final captionColor = theme.textTheme.bodySmall?.color;
 
     return Dismissible(
-      key: Key('productListTile_dismissible_${product.uuid}'),
-      onDismissed: onDismissed,
+      key: ValueKey(product.uuid),
+      onDismissed: (_) =>
+          context.read<ProductsRepository>().deleteProduct(product.uuid),
       direction: DismissDirection.startToEnd,
       background: Container(
         alignment: Alignment.centerLeft,
@@ -33,7 +33,8 @@ class ProductListTile extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        onTap: onTap,
+        onTap: () => Navigator.of(context).push<void>(EditProductPage.route(
+            productPrototype: ProductPrototype.fromProduct(product))),
         title: Text(
           product.name,
           maxLines: 1,
@@ -55,7 +56,7 @@ class ProductListTile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        trailing: onTap == null ? null : const Icon(Icons.chevron_right),
+        trailing: const Icon(Icons.chevron_right),
       ),
     );
   }

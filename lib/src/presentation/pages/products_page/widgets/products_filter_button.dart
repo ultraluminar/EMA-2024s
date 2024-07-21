@@ -7,17 +7,17 @@ class ProductsFilterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentFilter = context.select<ProductsPageBloc, ProductsViewFilter>(
-        (bloc) => bloc.state.filter);
+    // final currentFilter = context.select<ProductsPageBloc, ProductsViewFilter>(
+    //     (bloc) => bloc.state.filter);
 
     return PopupMenuButton<ProductsViewFilter>(
       shape: const ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
-      initialValue: currentFilter,
+      // initialValue: currentFilter,
       // tooltip: ,
       onSelected: (filter) {
-        context.read<ProductsPageBloc>().add(ProductsPageFilterChanged(filter));
+        // context.read<ProductsPageBloc>().add(ProductsPageFilterChanged(filter));
       },
       itemBuilder: (context) => const [
         PopupMenuItem(

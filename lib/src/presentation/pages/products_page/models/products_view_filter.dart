@@ -1,20 +1,43 @@
+import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 
-enum ProductsViewFilter { all, stillGood, expired }
+enum ProductSort {
+  byName,
+  byExpiresAt;
 
-extension ProductsViewFilterX on ProductsViewFilter {
-  bool apply(Product product) {
+  Comparator<Product> get function {
     switch (this) {
-      case ProductsViewFilter.all:
-        return true;
-      case ProductsViewFilter.stillGood:
-        return !product.isExpired;
-      case ProductsViewFilter.expired:
-        return product.isExpired;
+      case byName:
+        return (a, b) => a.name.compareTo(b.name);
+      case byExpiresAt:
+        return (a, b) => a.expiresAt.compareTo(b.expiresAt);
     }
   }
 
-  Iterable<Product> applyAll(Iterable<Product> product) {
-    return product.where(apply);
+  String toJson() => name;
+  factory ProductSort.fromJson(String json) => ProductSort.values.byName(json);
+}
+
+enum ProductFilter {
+  isExpired,
+  notExpired,
+  all;
+
+  bool Function(Product) get filter {
+    switch (this) {
+      case isExpired:
+        return (product) => product.isExpired;
+      case notExpired:
+        return (product) => !product.isExpired;
+      case all:
+        return (product) => true;
+    }
   }
+
+  Iterable<Product> filterProducts(Iterable<Product> products) =>
+      products.where(filter);
+
+  String toJson() => name;
+  factory ProductFilter.fromJson(String json) =>
+      ProductFilter.values.byName(json);
 }
