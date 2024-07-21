@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
 
 class ProductsFilterButton extends StatelessWidget {

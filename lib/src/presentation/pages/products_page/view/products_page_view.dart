@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
-import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
-import 'package:fridge_manager/src/domain/products_repository/src/products_repository.dart';
+import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
 import 'package:fridge_manager/src/presentation/pages/scanner_page/scanner_page.dart';
@@ -87,9 +85,9 @@ class ProductsPageViewState extends State<ProductsPageView> {
         ],
       ),
       body: ValueListenableBuilder(
-        valueListenable: context.read<ProductsRepository>().getListenable(),
-        builder: (context, box, child) {
-          if (box.isEmpty) {
+        valueListenable: HiveProductsApi.listenable,
+        builder: (context, productBox, child) {
+          if (productBox.isEmpty) {
             return Center(
               child: Text(
                 S.of(context).productsEmptyView,
@@ -97,10 +95,19 @@ class ProductsPageViewState extends State<ProductsPageView> {
               ),
             );
           }
-          return ListView(
-            children: (box.values.toList()..sort(ProductSort.byName.function))
-                .map(ProductListTile.new)
-                .toList(),
+          return ValueListenableBuilder(
+            valueListenable: HiveSettingsApi.listenable,
+            builder: (context, settingBox, child) {
+              return ListView(
+                children: (productBox.values.toList()
+                      ..sort(settingBox
+                          .get(HiveSettingsApi.settingsIndex)!
+                          .productSort
+                          .function))
+                    .map(ProductListTile.new)
+                    .toList(),
+              );
+            },
           );
         },
       ),

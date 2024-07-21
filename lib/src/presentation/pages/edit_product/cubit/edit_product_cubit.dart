@@ -2,18 +2,14 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fridge_manager/src/data/products_api/products_api.dart';
-import 'package:fridge_manager/src/domain/products_repository/products_repository.dart';
+import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 
 part 'edit_product_state.dart';
 
 class EditProductCubit extends Cubit<EditProductState> {
   EditProductCubit({
-    required this.productsRepository,
     required ProductPrototype productPrototype,
   }) : super(EditProductState(productPrototype: productPrototype));
-
-  final ProductsRepository productsRepository;
 
   bool get isNewProduct => state.productPrototype.uuid == null;
 
@@ -41,7 +37,7 @@ class EditProductCubit extends Cubit<EditProductState> {
 
     final product = state.productPrototype.toProduct();
     log("$product");
-    final saveProduct = productsRepository.saveProduct(product);
+    final saveProduct = HiveProductsApi.saveProduct(product);
 
     await saveProduct.then(
       (_) => setStatus(Status.success),

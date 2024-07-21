@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 
 class ThemeDialog extends StatelessWidget {
@@ -7,10 +6,8 @@ class ThemeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hiveSettingsApi = context.read<HiveSettingsApi>();
-
     void onChanged(ThemeMode value, SettingsBox settingsBox) async {
-      await hiveSettingsApi.setSettings(
+      await HiveSettingsApi.setSettings(
         settingsBox.get(HiveSettingsApi.settingsIndex)!.copyWith(
               themeMode: value,
             ),
@@ -21,7 +18,7 @@ class ThemeDialog extends StatelessWidget {
     }
 
     return ValueListenableBuilder(
-        valueListenable: hiveSettingsApi.getListenable(),
+        valueListenable: HiveSettingsApi.listenable,
         builder: (context, box, child) {
           final ThemeMode themeMode =
               box.get(HiveSettingsApi.settingsIndex)!.themeMode;

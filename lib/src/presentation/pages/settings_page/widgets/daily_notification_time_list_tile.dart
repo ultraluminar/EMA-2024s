@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 
@@ -17,8 +16,6 @@ class DailyNotificationTimeListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hiveSettingsApi = context.read<HiveSettingsApi>();
-
     return ListTile(
       title: const Text('Tägliche Benachrichtigungszeit'),
       subtitle: Text(dailyNotificationTime?.toJson() ?? "No value here"),
@@ -31,7 +28,7 @@ class DailyNotificationTimeListTile extends StatelessWidget {
           (value) async {
             if (value == null) return;
             log("before set");
-            await hiveSettingsApi.setSettings(
+            await HiveSettingsApi.setSettings(
               settingsBox.get(HiveSettingsApi.settingsIndex)!.copyWith(
                     dailyNotificationTime: TimeOfDayJson.fromTimeOfDay(value),
                   ),

@@ -22,19 +22,19 @@ class ProductAdapter extends TypeAdapter<Product> {
 }
 
 class HiveProductsApi {
-  HiveProductsApi._new(ProductBox box) : _box = box;
+  static late final ValueListenable<ProductBox> listenable;
+  static ProductBox get box => listenable.value;
 
-  late final ProductBox _box;
+  static Future<void> init() async {
+    final productBox = await Hive.openBox<Product>("products");
+    listenable = productBox.listenable();
+  }
 
-  static Future<HiveProductsApi> get instance async =>
-      HiveProductsApi._new(await Hive.openBox<Product>("products"));
+  static int getProductCount() => box.length;
 
-  int getProductCount() => _box.length;
+  static Future<void> saveProduct(Product product) async =>
+      await box.put(product.uuid, product);
 
-  ValueListenable<ProductBox> getListenable() => _box.listenable();
-
-  Future<void> saveProduct(Product product) async =>
-      await _box.put(product.uuid, product);
-
-  Future<void> deleteProduct(String uuid) async => await _box.delete(uuid);
+  static Future<void> deleteProduct(String uuid) async =>
+      await box.delete(uuid);
 }

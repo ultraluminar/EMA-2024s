@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/theme_list_tile.dart';
@@ -13,10 +12,9 @@ class SettingsPage extends StatelessWidget {
   static Route<void> route() {
     return MaterialPageRoute(
       fullscreenDialog: true,
-      builder: (context) => RepositoryProvider.value(
-        value: context.read<HiveSettingsApi>(),
-        child: const SettingsPage(),
-      ),
+      builder: (context) {
+        return const SettingsPage();
+      },
     );
   }
 
@@ -31,8 +29,6 @@ class SettingsPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hiveSettingsApi = context.read<HiveSettingsApi>();
-
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -41,7 +37,7 @@ class SettingsPageView extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.surface,
           ),
           ValueListenableBuilder(
-            valueListenable: hiveSettingsApi.getListenable(),
+            valueListenable: HiveSettingsApi.listenable,
             builder: (context, box, child) {
               log("Box.isEmpty: ${box.isEmpty}");
               final TimeOfDayJson? dailyNotificationTime = box.isEmpty
