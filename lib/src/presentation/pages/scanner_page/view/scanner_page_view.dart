@@ -57,11 +57,10 @@ class _ScannerPageViewState extends State<ScannerPageView> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.sizeOf(context);
     final scanWindow = Rect.fromCenter(
-      center: screenSize.center(const Offset(0, -100)),
-      width: screenSize.width * 0.9,
-      height: screenSize.height * 0.3,
+      center: MediaQuery.sizeOf(context).center(const Offset(0, -100)),
+      width: 350,
+      height: 200,
     );
 
     return Scaffold(
