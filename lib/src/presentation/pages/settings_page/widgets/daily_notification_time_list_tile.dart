@@ -3,35 +3,37 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class DailyNotificationTimeListTile extends StatelessWidget {
   const DailyNotificationTimeListTile({
-    required this.dailyNotificationTime,
     required this.settingsBox,
     super.key,
   });
 
-  final TimeOfDayJson? dailyNotificationTime;
-  final SettingsBox settingsBox;
+  final Box settingsBox;
 
   @override
   Widget build(BuildContext context) {
+    final TimeOfDayJson? dailyNotificationTime =
+        settingsBox.get(Settings.dailyNotificationTime);
+    final initialTimeJson =
+        dailyNotificationTime ?? const TimeOfDayJson(hour: 9);
+
     return ListTile(
       title: const Text('Tägliche Benachrichtigungszeit'),
       subtitle: Text(dailyNotificationTime?.toJson() ?? "No value here"),
       onTap: () {
         showTimePicker(
           context: context,
-          initialTime: dailyNotificationTime?.toTimeOfDay() ??
-              const TimeOfDay(hour: 9, minute: 0),
+          initialTime: initialTimeJson.toTimeOfDay(),
         ).then(
           (value) async {
             if (value == null) return;
             log("before set");
-            await HiveSettingsApi.setSettings(
-              settingsBox.get(HiveSettingsApi.settingsIndex)!.copyWith(
-                    dailyNotificationTime: TimeOfDayJson.fromTimeOfDay(value),
-                  ),
+            await settingsBox.put(
+              Settings.dailyNotificationTime.name,
+              TimeOfDayJson.fromTimeOfDay(value),
             );
             log("after");
           },

@@ -1,50 +1,51 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/models/models.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-typedef SettingsBox = Box<Settings>;
+enum Settings {
+  dailyNotificationTime,
+  themeMode,
+  productFilter,
+  productSort,
+}
 
-class SettingsAdapter extends TypeAdapter<Settings> {
+// TODO: TypeAdapters for SettingTypes
+
+class TimeOfDayJsonAdapter extends TypeAdapter<TimeOfDayJson> {
   @override
   final int typeId = 1;
 
   @override
-  Settings read(BinaryReader reader) {
-    return Settings.fromJson(jsonDecode(reader.read()));
+  TimeOfDayJson read(BinaryReader reader) {
+    return TimeOfDayJson.fromJson(jsonDecode(reader.read()));
   }
 
   @override
-  void write(BinaryWriter writer, Settings obj) {
-    log("writer");
-    writer.write(jsonEncode(obj.toJson()));
-    log("after writer");
+  void write(BinaryWriter writer, TimeOfDayJson obj) {
+    return writer.write(jsonEncode(obj.toJson()));
   }
 }
 
 class HiveSettingsApi implements SettingsApi {
-  static const defaultSettings = Settings(
-    dailyNotificationTime: TimeOfDayJson(hour: 9),
-    themeMode: ThemeMode.system,
-    productFilter: ProductFilter.all,
-    productSort: ProductSort.byExpiresAt,
-  );
+  static final defaultSettings = {
+    Settings.dailyNotificationTime.name: const TimeOfDayJson(hour: 9),
+    Settings.themeMode.name: ThemeMode.system,
+    Settings.productFilter.name: ProductFilter.all,
+    Settings.productSort.name: ProductSort.byExpiresAt,
+  };
 
-  static const int settingsIndex = 0;
-  static late final SettingsBox box;
+  static late final Box _box;
+
+  static ValueListenable<Box> listenable({List<Settings>? settings}) =>
+      _box.listenable(keys: settings);
 
   static Future<void> init() async {
-    box = await Hive.openBox<Settings>('settingsBox');
-    if (box.isEmpty) await HiveSettingsApi.setSettings(defaultSettings);
-  }
-
-  static Future<void> setSettings(Settings settings) async {
-    log("setSettings");
-    await box.put(settingsIndex, settings);
-    log("after setSettings");
+    _box = await Hive.openBox('settingsBox');
+    if (_box.isEmpty) await _box.putAll(defaultSettings);
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -21,17 +22,20 @@ class ProductAdapter extends TypeAdapter<Product> {
 }
 
 class HiveProductsApi {
-  static late final ProductBox box;
+  static late final ProductBox _box;
+
+  static ValueListenable<ProductBox> listenable({List<Product>? products}) =>
+      _box.listenable(keys: products);
 
   static Future<void> init() async {
-    box = await Hive.openBox<Product>("products");
+    _box = await Hive.openBox<Product>("products");
   }
 
-  static int getProductCount() => box.length;
+  static int getProductCount() => _box.length;
 
   static Future<void> saveProduct(Product product) async =>
-      await box.put(product.uuid, product);
+      await _box.put(product.uuid, product);
 
   static Future<void> deleteProduct(String uuid) async =>
-      await box.delete(uuid);
+      await _box.delete(uuid);
 }

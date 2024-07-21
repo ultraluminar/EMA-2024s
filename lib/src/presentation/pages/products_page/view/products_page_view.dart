@@ -7,7 +7,6 @@ import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
 import 'package:fridge_manager/src/presentation/pages/scanner_page/scanner_page.dart';
 import 'package:fridge_manager/src/presentation/widgets/widgets.dart';
-import 'package:hive_flutter/adapters.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -86,7 +85,7 @@ class ProductsPageViewState extends State<ProductsPageView> {
         ],
       ),
       body: ValueListenableBuilder(
-        valueListenable: HiveProductsApi.box.listenable(),
+        valueListenable: HiveProductsApi.listenable(),
         builder: (context, productBox, child) {
           if (productBox.isEmpty) {
             return Center(
@@ -97,14 +96,14 @@ class ProductsPageViewState extends State<ProductsPageView> {
             );
           }
           return ValueListenableBuilder(
-            valueListenable: HiveSettingsApi.box.listenable(),
+            valueListenable:
+                HiveSettingsApi.listenable(settings: [Settings.productSort]),
             builder: (context, settingBox, child) {
+              final ProductSort productSort =
+                  settingBox.get(Settings.productSort)!;
               return ListView(
                 children: (productBox.values.toList()
-                      ..sort(settingBox
-                          .get(HiveSettingsApi.settingsIndex)!
-                          .productSort
-                          .function))
+                      ..sort(productSort.function))
                     .map(ProductListTile.new)
                     .toList(),
               );
