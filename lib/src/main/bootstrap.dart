@@ -1,13 +1,11 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
-import 'package:fridge_manager/src/data/local_storage_products_api/local_storage_products_api.dart';
-import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 // import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
 import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
@@ -15,9 +13,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:openfoodfacts/openfoodfacts.dart' hide Product;
 
-typedef AppBuilder = Future<Widget> Function(
-  SharedPreferences sharedPreferences,
-);
+typedef AppBuilder = Future<Widget> Function();
 
 const String emulatorIP = "10.0.2.2";
 const int emulatorPort = 8080;
@@ -42,7 +38,7 @@ Future<void> bootstrap(AppBuilder builder) async {
       // log(productName!);
 
       await Hive.initFlutter();
-      await Hive.openBox<String>("product_names");
+      Hive.registerAdapter(ProductAdapter());
 
       Hive.registerAdapter(SettingsAdapter());
 
@@ -64,10 +60,8 @@ Future<void> bootstrap(AppBuilder builder) async {
           );
       Bloc.observer = blocObserver;
 
-      final sharedPreferences = await SharedPreferences.getInstance();
-
       runApp(
-        await builder(sharedPreferences),
+        await builder(),
       );
     },
     (_, __) {},
