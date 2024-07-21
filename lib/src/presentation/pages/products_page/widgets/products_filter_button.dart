@@ -10,7 +10,7 @@ class ProductsFilterButton extends StatelessWidget {
     // final currentFilter = context.select<ProductsPageBloc, ProductsViewFilter>(
     //     (bloc) => bloc.state.filter);
 
-    return PopupMenuButton<ProductsViewFilter>(
+    return PopupMenuButton(
       shape: const ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
@@ -21,15 +21,15 @@ class ProductsFilterButton extends StatelessWidget {
       },
       itemBuilder: (context) => const [
         PopupMenuItem(
-          value: ProductsViewFilter.all,
+          value: ProductFilter.all,
           child: Text("all"),
         ),
         PopupMenuItem(
-          value: ProductsViewFilter.stillGood,
+          value: ProductFilter.notExpired,
           child: Text("still good"),
         ),
         PopupMenuItem(
-          value: ProductsViewFilter.expired,
+          value: ProductFilter.isExpired,
           child: Text("expired"),
         ),
       ],
