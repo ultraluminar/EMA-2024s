@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/src/models/models.dart';
+import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 // import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
 import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
@@ -42,6 +43,7 @@ Future<void> bootstrap(AppBuilder builder) async {
 
       await HiveSettingsApi.init();
       await HiveProductsApi.init();
+      await ProductNameApi.init();
 
       // final firebaseApp = await Firebase.initializeApp();
 

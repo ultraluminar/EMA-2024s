@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';
 
@@ -12,9 +14,12 @@ Future<Product?> fetchProduct(
   return result.product;
 }
 
-final box = Hive.box<String>("product_names");
-
 class ProductNameApi {
+  static late final Box<String> _box;
+  static Future<void> init() async {
+    _box = await Hive.openBox<String>("product_names");
+  }
+
   static Future<String?> fetchFromApi(String barcode) async {
     final product = await fetchProduct(barcode, fields: [
       ProductField.NAME,
@@ -33,13 +38,13 @@ class ProductNameApi {
   }
 
   static Future<String?> fetch(String barcode) async {
-    final fromHive = box.get(barcode);
+    final fromHive = _box.get(barcode);
     if (fromHive != null) return fromHive;
 
     final fromApi = await fetchFromApi(barcode);
     if (fromApi == null) return null;
 
-    await box.put(barcode, fromApi);
+    await _box.put(barcode, fromApi);
     return fromApi;
   }
 }
