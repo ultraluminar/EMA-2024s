@@ -17,8 +17,9 @@ class ThemeDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: ThemeMode.values.map((themeMode) {
                 return ThemeModeRadioListTile(
-                  themeMode: themeMode,
                   settingsBox: box,
+                  value: themeMode,
+                  groupValue: box.get(Settings.themeMode.name),
                 );
               }).toList(),
             ),

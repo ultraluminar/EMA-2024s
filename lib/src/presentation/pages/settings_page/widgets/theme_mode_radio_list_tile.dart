@@ -4,20 +4,22 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class ThemeModeRadioListTile extends StatelessWidget {
   const ThemeModeRadioListTile({
-    required this.themeMode,
     required this.settingsBox,
+    required this.value,
+    required this.groupValue,
     super.key,
   });
 
   final Box settingsBox;
-  final ThemeMode themeMode;
+  final ThemeMode value;
+  final ThemeMode groupValue;
 
   @override
   Widget build(BuildContext context) {
     return RadioListTile(
-      title: Text(themeMode.name),
-      value: themeMode,
-      groupValue: themeMode,
+      title: Text(value.name),
+      value: value,
+      groupValue: groupValue,
       onChanged: (value) async {
         if (value == null) return;
         await settingsBox.put(Settings.themeMode.name, value);
