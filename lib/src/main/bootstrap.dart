@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +7,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
-import 'package:fridge_manager/src/data/hive_settings_api/src/models/models.dart';
 import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 // import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
@@ -23,10 +23,14 @@ const int emulatorPort = 8080;
 Future<void> bootstrap(AppBuilder builder) async {
   await runZonedGuarded<Future<void>>(
     () async {
+      log("init WidgegBindings");
       WidgetsFlutterBinding.ensureInitialized();
+      log("init DateFormatting");
       initializeDateFormatting();
+      log("init LocalNotification");
       await LocalNotification.init();
 
+      log("config OpenFoodApi");
       OpenFoodAPIConfiguration.userAgent = UserAgent(
         name: "Fridge Manager",
         version: "1.0",
@@ -39,10 +43,13 @@ Future<void> bootstrap(AppBuilder builder) async {
       // final productName = await ProductNameApi.fetchFromApi("4001686322963");
       // log(productName!);
 
+      log("init Hive");
       await Hive.initFlutter();
-
+      log("init HiveSettingsApi");
       await HiveSettingsApi.init();
+      log("init HiveProductsApi");
       await HiveProductsApi.init();
+      log("init ProductNameApi");
       await ProductNameApi.init();
 
       // final firebaseApp = await Firebase.initializeApp();
