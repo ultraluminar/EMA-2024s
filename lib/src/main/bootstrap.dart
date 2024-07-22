@@ -2,13 +2,12 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
-// import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
 import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -40,9 +39,6 @@ Future<void> bootstrap(AppBuilder builder) async {
       OpenFoodAPIConfiguration.globalLanguages = [OpenFoodFactsLanguage.GERMAN];
       OpenFoodAPIConfiguration.globalCountry = OpenFoodFactsCountry.GERMANY;
 
-      // final productName = await ProductNameApi.fetchFromApi("4001686322963");
-      // log(productName!);
-
       log("init Hive");
       await Hive.initFlutter();
       log("init HiveSettingsApi");
@@ -52,24 +48,36 @@ Future<void> bootstrap(AppBuilder builder) async {
       log("init ProductNameApi");
       await ProductNameApi.init();
 
-      // final firebaseApp = await Firebase.initializeApp();
+      log("init FirebaseApp");
+      final firebaseApp = await Firebase.initializeApp();
+      log("init Firestore");
+      final FirebaseFirestore firestore =
+          FirebaseFirestore.instanceFor(app: firebaseApp);
+      log("use Firestore Emulator");
+      firestore.useFirestoreEmulator(emulatorIP, emulatorPort);
 
-      // final FirebaseFirestore firestore =
-      //     FirebaseFirestore.instanceFor(app: firebaseApp);
-      // firestore.useFirestoreEmulator(emulatorIP, emulatorPort);
+      const barcode = "40468259";
+      log("fetch productName");
+      final name = await ProductNameApi.fetch(barcode).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () => "timeouted",
+      );
 
-      // final product = await Product.fromBarcode(
-      //     barcode: "40468259", expiresAt: ExpirationDate.today());
+      final prototype = ProductPrototype.fromScan(name ?? "notFound", barcode)
+          .copyWith(expiresAt: ExpirationDate.today());
 
-      // firestore.collection("products").add(product.toJson());
-
+      log("define ProductsCollectionRef");
+      final productsCollectionRef = firestore.collection("products");
+      log("save to collection");
+      await productsCollectionRef.add(prototype.toProduct().toJson());
+      log("init BlocObserver");
       // final analyticsRepository =
       //     AnalyticsRepository(FirebaseAnalytics.instance);
       final blocObserver = AppBlocObserver(
           // analyticsRepository: analyticsRepository,
           );
       Bloc.observer = blocObserver;
-
+      log("done");
       runApp(
         await builder(),
       );
