@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/theme_list_tile.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/widgets.dart';
 
@@ -35,26 +32,14 @@ class SettingsPageView extends StatelessWidget {
             title: const Text('Settings'),
             backgroundColor: Theme.of(context).colorScheme.surface,
           ),
-          ValueListenableBuilder(
-            valueListenable: HiveSettingsApi.listenable(
-              settings: [Settings.dailyNotificationTime.name, Settings.themeMode.name],
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                const DailyNotificationTimeListTile(),
+                const ThemeListTile(),
+              ],
             ),
-            builder: (context, box, child) {
-              log("Box.isEmpty: ${box.isEmpty}");
-              log("after");
-              return SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    DailyNotificationTimeListTile(settingsBox: box),
-                    ThemeListTile(
-                        themeMode: box.get(Settings.themeMode.name)! as ThemeMode),
-                    for (var index = 0; index < 15; index++)
-                      ListTile(title: Text(index.toString())),
-                  ],
-                ),
-              );
-            },
-          )
+          ),
         ],
       ),
     );
