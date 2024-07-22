@@ -97,10 +97,10 @@ class ProductsPageViewState extends State<ProductsPageView> {
           }
           return ValueListenableBuilder(
             valueListenable:
-                HiveSettingsApi.listenable(settings: [Settings.productSort]),
+                HiveSettingsApi.listenable(settings: [Settings.productSort.name]),
             builder: (context, settingBox, child) {
               final ProductSort productSort =
-                  settingBox.get(Settings.productSort)!;
+                  settingBox.get(Settings.productSort.name)!;
               return ListView(
                 children: (productBox.values.toList()
                       ..sort(productSort.function))

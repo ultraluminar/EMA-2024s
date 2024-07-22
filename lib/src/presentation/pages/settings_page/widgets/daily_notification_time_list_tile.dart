@@ -16,7 +16,7 @@ class DailyNotificationTimeListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TimeOfDayJson? dailyNotificationTime =
-        settingsBox.get(Settings.dailyNotificationTime);
+        settingsBox.get(Settings.dailyNotificationTime.name);
     final initialTimeJson =
         dailyNotificationTime ?? const TimeOfDayJson(hour: 9);
 

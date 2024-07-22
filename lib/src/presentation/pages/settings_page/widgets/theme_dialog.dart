@@ -9,7 +9,7 @@ class ThemeDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable:
-            HiveSettingsApi.listenable(settings: [Settings.themeMode]),
+            HiveSettingsApi.listenable(settings: [Settings.themeMode.name]),
         builder: (context, box, child) {
           return AlertDialog(
             title: const Text('Theme'),

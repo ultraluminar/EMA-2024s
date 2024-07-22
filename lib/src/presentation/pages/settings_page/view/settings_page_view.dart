@@ -37,7 +37,7 @@ class SettingsPageView extends StatelessWidget {
           ),
           ValueListenableBuilder(
             valueListenable: HiveSettingsApi.listenable(
-              settings: [Settings.dailyNotificationTime, Settings.themeMode],
+              settings: [Settings.dailyNotificationTime.name, Settings.themeMode.name],
             ),
             builder: (context, box, child) {
               log("Box.isEmpty: ${box.isEmpty}");
@@ -47,7 +47,7 @@ class SettingsPageView extends StatelessWidget {
                   [
                     DailyNotificationTimeListTile(settingsBox: box),
                     ThemeListTile(
-                        themeMode: box.get(Settings.themeMode)! as ThemeMode),
+                        themeMode: box.get(Settings.themeMode.name)! as ThemeMode),
                     for (var index = 0; index < 15; index++)
                       ListTile(title: Text(index.toString())),
                   ],

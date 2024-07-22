@@ -28,6 +28,8 @@ class HiveProductsApi {
       _box.listenable(keys: products);
 
   static Future<void> init() async {
+    Hive.registerAdapter(ProductAdapter());
+
     _box = await Hive.openBox<Product>("products");
   }
 
