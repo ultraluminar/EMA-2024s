@@ -12,7 +12,12 @@
           "package_name": "com.fridge_manager.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "688703949293-5tig6q6rtro1hds41d09d865b2pt2so9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB-21C8erMqudlzBKRmgAYcVbjPX0Enyw8"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688703949293-5tig6q6rtro1hds41d09d865b2pt2so9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "688703949293-f2ogktj2oahtqn76a8bl0oscha8h4tvq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fridgeManager"
+              }
+            }
+          ]
         }
       }
     }
