@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
-import 'package:fridge_manager/src/presentation/home/home.dart';
+import 'package:fridge_manager/src/presentation/auth/auth_gate.dart';
 import 'package:fridge_manager/src/presentation/theme.dart';
 
 class App extends StatelessWidget {
@@ -48,7 +48,7 @@ class AppView extends StatelessWidget {
             darkTheme: getdarkTheme(themeMode),
             localizationsDelegates: const [S.delegate],
             supportedLocales: S.delegate.supportedLocales,
-            home: const HomePage(),
+            home: const AuthGate(),
           );
         });
   }
