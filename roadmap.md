@@ -32,3 +32,6 @@
 - [ ] shopping list
 - [ ] household/coop
 - [ ] recipies
+
+## known errors
+- uncatchable PlatformError on any login error

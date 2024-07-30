@@ -40,6 +40,7 @@ class ProductsPageViewState extends State<ProductsPageView> {
         actions: const <Widget>[
           ProductsFilterButton(),
           SettingsButton(),
+          SignOutButton(),
         ],
       ),
       floatingActionButtonLocation: ExpandableFab.location,
@@ -96,8 +97,8 @@ class ProductsPageViewState extends State<ProductsPageView> {
             );
           }
           return ValueListenableBuilder(
-            valueListenable:
-                HiveSettingsApi.listenable(settings: [Settings.productSort.name]),
+            valueListenable: HiveSettingsApi.listenable(
+                settings: [Settings.productSort.name]),
             builder: (context, settingBox, child) {
               final ProductSort productSort =
                   settingBox.get(Settings.productSort.name)!;
