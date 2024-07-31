@@ -154,7 +154,17 @@ lib/
 TODO: Class Diagrams and Architecture Overview
 
 ## Final Product
-TODO: Screenshots of the final app
+![](images/Screenshot_1722461232.png)
+![](images/Screenshot_1722461250.png)
+![](images/Screenshot_1722461294.png)
+![](images/Screenshot_1722461520.png)
+![](images/Screenshot_1722461532.png)
+![](images/Screenshot_1722461536.png)
+![](images/Screenshot_1722461577.png)
+![](images/Screenshot_1722461551.png)
+![](images/Screenshot_1722461611.png)
+![](images/Screenshot_1722461619.png)
+![](images/Screenshot_1722461720.png)
 
 ## Conclusion
 
