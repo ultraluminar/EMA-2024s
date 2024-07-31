@@ -12,9 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:fridge_manager/firebase_options.dart';
 import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
+import 'package:fridge_manager/src/data/notifications_api/notifications_api.dart';
 import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 import 'package:fridge_manager/src/main/app_bloc_observer.dart';
-import 'package:fridge_manager/src/presentation/pages/overview_page/local_notification.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:openfoodfacts/openfoodfacts.dart' hide Product;
@@ -53,9 +53,6 @@ Future<void> bootstrap(AppBuilder builder) async {
   await runZonedGuarded<Future<void>>(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      await initializeDateFormatting();
-
-      await LocalNotification.init();
 
       await setupOpenFoodAPIConfiguration();
 
@@ -63,6 +60,9 @@ Future<void> bootstrap(AppBuilder builder) async {
       await HiveSettingsApi.init();
       await HiveProductsApi.init();
       await ProductNameApi.init();
+
+      await initializeDateFormatting();
+      await NotificationsApi.init();
 
       await Firebase.initializeApp(
           options: DefaultFirebaseOptions.currentPlatform);

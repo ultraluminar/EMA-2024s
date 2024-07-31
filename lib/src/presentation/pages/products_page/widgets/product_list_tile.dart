@@ -19,7 +19,10 @@ class ProductListTile extends StatelessWidget {
 
     return Dismissible(
       key: ValueKey(product.uuid),
-      onDismissed: (_) => HiveProductsApi.deleteProduct(product.uuid),
+      onDismissed: (_) {
+        //TODO: delete Notification
+        HiveProductsApi.deleteProduct(product.uuid);
+      },
       direction: DismissDirection.startToEnd,
       background: Container(
         alignment: Alignment.centerLeft,

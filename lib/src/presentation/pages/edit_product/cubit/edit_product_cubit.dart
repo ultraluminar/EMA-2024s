@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fridge_manager/src/data/hive_products_api/hive_products_api.dart';
+import 'package:fridge_manager/src/data/notifications_api/notifications_api.dart';
 
 part 'edit_product_state.dart';
 
@@ -37,6 +38,8 @@ class EditProductCubit extends Cubit<EditProductState> {
 
     final product = state.productPrototype.toProduct();
     log("$product");
+
+    NotificationsApi.update(product);
     final saveProduct = HiveProductsApi.saveProduct(product);
 
     await saveProduct.then(
