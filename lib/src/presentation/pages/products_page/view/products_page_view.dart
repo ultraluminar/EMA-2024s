@@ -38,6 +38,7 @@ class ProductsPageViewState extends State<ProductsPageView> {
           ),
         ),
         actions: const <Widget>[
+          ProductsSortButton(),
           ProductsFilterButton(),
           SettingsButton(),
           SignOutButton(),
@@ -97,16 +98,21 @@ class ProductsPageViewState extends State<ProductsPageView> {
             );
           }
           return ValueListenableBuilder(
-            valueListenable: HiveSettingsApi.listenable(
-                settings: [Settings.productSort.name]),
+            valueListenable: HiveSettingsApi.listenable(settings: [
+              Settings.productSort.name,
+              Settings.productFilter.name
+            ]),
             builder: (context, settingBox, child) {
               final ProductSort productSort =
                   settingBox.get(Settings.productSort.name)!;
+              final ProductFilter productFilter =
+                  settingBox.get(Settings.productFilter.name)!;
               return ListView(
-                children: (productBox.values.toList()
-                      ..sort(productSort.function))
-                    .map(ProductListTile.new)
-                    .toList(),
+                children:
+                    (productBox.values.where(productFilter.filter).toList()
+                          ..sort(productSort.function))
+                        .map(ProductListTile.new)
+                        .toList(),
               );
             },
           );
