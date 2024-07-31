@@ -1,4 +1,4 @@
-# EMA-2023s
+# EMA-2024s
 Project from the Entwicklung mobiler Anwendungen in Summersemester 2024 - HS Worms
 
 ## Installation and Test Accounts
