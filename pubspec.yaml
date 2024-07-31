@@ -50,6 +50,7 @@ dependencies:
 
   # ui
   flutter_expandable_fab: ^2.1.0
+  timezone: ^0.9.4
 
 dev_dependencies:
   build_runner: ^2.4.11
