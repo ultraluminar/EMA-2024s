@@ -29,31 +29,72 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Fridge Manager"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "editProductAddAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Add Product"),
         "editProductEditAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Edit Product"),
+        "editProductExpirationDateInputError":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a valid expiration date."),
+        "editProductExpirationDateInputLabel":
+            MessageLookupByLibrary.simpleMessage("Expiration Date"),
+        "editProductNameInputError":
+            MessageLookupByLibrary.simpleMessage("Please enter a name."),
+        "editProductNameInputLabel":
+            MessageLookupByLibrary.simpleMessage("Name"),
         "editProductSaveButtonTooltip":
             MessageLookupByLibrary.simpleMessage("Save Product"),
         "nothingToSeeHereYet":
             MessageLookupByLibrary.simpleMessage("Nothing to see here yet!"),
-        "overviewAppBarTitle":
-            MessageLookupByLibrary.simpleMessage("Fridge Manager"),
-        "overviewPageNavigationBarLabel":
-            MessageLookupByLibrary.simpleMessage("Overview"),
         "productListTileDescriptionExpired": m0,
         "productListTileDescriptionNotExpired": m1,
         "productsAppBarTitle": MessageLookupByLibrary.simpleMessage("Products"),
         "productsEmptyView": MessageLookupByLibrary.simpleMessage(
-            "No todos found with the selected filters."),
-        "productsErrorSnackbarText": MessageLookupByLibrary.simpleMessage(
-            "An error occurred while loading todos."),
+            "No products found with the selected filters."),
+        "productsFilterButtonAll": MessageLookupByLibrary.simpleMessage("All"),
+        "productsFilterButtonExpired":
+            MessageLookupByLibrary.simpleMessage("Expired"),
+        "productsFilterButtonNotExpired":
+            MessageLookupByLibrary.simpleMessage("Not Expired"),
+        "productsPageAddManuallyFAB":
+            MessageLookupByLibrary.simpleMessage("Add Manually"),
         "productsPageLink":
             MessageLookupByLibrary.simpleMessage("Products Page"),
-        "productsPageNavigationBarLabel":
-            MessageLookupByLibrary.simpleMessage("Products"),
-        "recipesAppBarTitle": MessageLookupByLibrary.simpleMessage("Recipes"),
-        "recipesPageNavigationBarLabel":
-            MessageLookupByLibrary.simpleMessage("Recipes")
+        "productsPageScanBarcodeFAB":
+            MessageLookupByLibrary.simpleMessage("Barcode Scanner"),
+        "productsSortButtonExpirationDate":
+            MessageLookupByLibrary.simpleMessage("Expiration Date"),
+        "productsSortButtonName": MessageLookupByLibrary.simpleMessage("Name"),
+        "scannerAppBarTitle":
+            MessageLookupByLibrary.simpleMessage("Barcode Scanner"),
+        "scannerInvalidBarcodeText": MessageLookupByLibrary.simpleMessage(
+            "This is not a valid product-barcode."),
+        "scannerLoadingStateText":
+            MessageLookupByLibrary.simpleMessage("Loading..."),
+        "scannerPageDisplayText": MessageLookupByLibrary.simpleMessage(
+            "Scan a barcode to add a product."),
+        "scannerProductNotFoundText":
+            MessageLookupByLibrary.simpleMessage("Product not found."),
+        "scannerTimeoutText": MessageLookupByLibrary.simpleMessage(
+            "Scanner took too long to respond."),
+        "settingsPageAppBarTitle":
+            MessageLookupByLibrary.simpleMessage("Settings"),
+        "settingsPageDailyNotificationTime":
+            MessageLookupByLibrary.simpleMessage("Daily Notification Time"),
+        "settingsPageErrorText":
+            MessageLookupByLibrary.simpleMessage("Nothing here"),
+        "settingsPageThemeDialogTitle":
+            MessageLookupByLibrary.simpleMessage("Theme"),
+        "settingsPageThemeListTileDark":
+            MessageLookupByLibrary.simpleMessage("Dark"),
+        "settingsPageThemeListTileLight":
+            MessageLookupByLibrary.simpleMessage("Light"),
+        "settingsPageThemeListTileSystem":
+            MessageLookupByLibrary.simpleMessage("System"),
+        "settingsPageThemeListTileTitle":
+            MessageLookupByLibrary.simpleMessage("Theme"),
+        "signOutDialogTitle": MessageLookupByLibrary.simpleMessage("Sign Out")
       };
 }

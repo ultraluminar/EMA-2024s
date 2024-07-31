@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/theme_list_tile.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/widgets.dart';
 
@@ -29,7 +30,7 @@ class SettingsPageView extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar.large(
-            title: const Text('Settings'),
+            title: Text(S.of(context).settingsPageAppBarTitle),
             backgroundColor: Theme.of(context).colorScheme.surface,
           ),
           SliverList(

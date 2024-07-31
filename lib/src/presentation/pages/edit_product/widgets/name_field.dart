@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 
 class NameField extends StatelessWidget {
@@ -21,18 +19,16 @@ class NameField extends StatelessWidget {
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             enabled: !state.status.isLoadingOrSuccess,
-            labelText: "Name", //S.of(context).editProductFormNameFieldLabel,
+            labelText: S.of(context).editProductNameInputLabel,
           ),
           initialValue: state.productPrototype.name,
-          // maxLength: 50, //FIXME: Name editing with Characterlimit
-          // inputFormatters: [LengthLimitingTextInputFormatter(50)],
           onSaved: (name) {
-            log("onsaved");
             assert(name != null, "Namefield cannot return null!");
             context.read<EditProductCubit>().setName(name!);
           },
-          validator: (String? value) =>
-              (value == null || value.isEmpty) ? "Please enter a name" : null,
+          validator: (String? value) => (value == null || value.isEmpty)
+              ? S.of(context).editProductNameInputError
+              : null,
         );
       },
     );

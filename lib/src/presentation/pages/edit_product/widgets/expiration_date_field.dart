@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/products_api/src/models/models.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 
@@ -17,7 +18,7 @@ class ExpirationDateField extends StatelessWidget {
       builder: (context, state) {
         return AppDateField(
           key: const Key('editProductForm_expiresAtInput_dateField'),
-          labelText: "ExpiresAt",
+          labelText: S.of(context).editProductExpirationDateInputLabel,
           dateFormat: ExpirationDate.dateFormat,
           enabled: !state.status.isLoadingOrSuccess,
           controller: TextEditingController(
@@ -26,7 +27,7 @@ class ExpirationDateField extends StatelessWidget {
           onDatePicked: (date) =>
               context.read<EditProductCubit>().setExpiresAt(date),
           validator: (String? value) => (value == null || value.isEmpty)
-              ? "Please enter an expiration date"
+              ? S.of(context).editProductExpirationDateInputError
               : null,
         );
       },

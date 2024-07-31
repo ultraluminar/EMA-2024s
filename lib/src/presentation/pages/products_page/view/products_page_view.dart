@@ -57,7 +57,7 @@ class ProductsPageViewState extends State<ProductsPageView> {
         children: [
           Row(
             children: [
-              const Text("Manuell hinzufügen"),
+              Text(S.of(context).productsPageAddManuallyFAB),
               const SizedBox(width: 20),
               FloatingActionButton.small(
                 heroTag: "FloatingActionButtonEdit",
@@ -72,7 +72,7 @@ class ProductsPageViewState extends State<ProductsPageView> {
           ),
           Row(
             children: [
-              const Text("Barcode Scanner"),
+              Text(S.of(context).productsPageScanBarcodeFAB),
               const SizedBox(width: 20),
               FloatingActionButton.small(
                 heroTag: "FloatingActionBuzzonScan",

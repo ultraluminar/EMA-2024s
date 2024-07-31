@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/data/settings_api/settings_api.dart';
 
@@ -14,8 +15,9 @@ class DailyNotificationTimeListTile extends StatelessWidget {
         final TimeOfDayJson? dailyNotificationTime =
             box.get(Settings.dailyNotificationTime.name);
         return ListTile(
-          title: const Text('Tägliche Benachrichtigungszeit'),
-          subtitle: Text(dailyNotificationTime?.toJson() ?? "No value here"),
+          title: Text(S.of(context).settingsPageDailyNotificationTime),
+          subtitle: Text(dailyNotificationTime?.toJson() ??
+              S.of(context).settingsPageErrorText),
           onTap: () {
             showTimePicker(
               context: context,

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/product_name_api/product_name_api.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
@@ -64,7 +65,7 @@ class _ScannerPageViewState extends State<ScannerPageView> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Barcode Scanner')),
+      appBar: AppBar(title: Text(S.of(context).scannerAppBarTitle)),
       body: Stack(
         children: [
           MobileScanner(
@@ -73,27 +74,29 @@ class _ScannerPageViewState extends State<ScannerPageView> {
             onDetect: (BarcodeCapture captures) async {
               final barcode = captures.barcodes.firstOrNull?.displayValue;
               final cubit = context.read<ScannerPageCubit>();
-              if (cubit.state == "Loading...") return;
+              if (cubit.state == S.of(context).scannerLoadingStateText) return;
 
               if (!BarcodeValidator.isValid(barcode)) {
-                cubit.setDisplayText("Das ist kein Product-Barcode!");
+                cubit.setDisplayText(S.of(context).scannerInvalidBarcodeText);
                 return;
               }
 
-              cubit.setDisplayText("Loading...");
+              cubit.setDisplayText(S.of(context).scannerLoadingStateText);
 
               final name = await ProductNameApi.fetch(barcode!).timeout(
                 const Duration(seconds: 10),
                 onTimeout: () => "timeout",
               );
 
+              if (!context.mounted) return;
+
               if (name == null) {
-                cubit.setDisplayText("Product nicht gefunden!");
+                cubit.setDisplayText(S.of(context).scannerProductNotFoundText);
                 return;
               }
 
               if (name == "timeout") {
-                cubit.setDisplayText("ProduktApi reagiert nicht!");
+                cubit.setDisplayText(S.of(context).scannerTimeoutText);
               }
 
               await controller.stop();

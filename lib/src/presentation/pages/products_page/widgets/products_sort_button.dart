@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/products_page/products_page.dart';
 
@@ -17,14 +18,14 @@ class ProductsSortButton extends StatelessWidget {
               sort,
             );
       },
-      itemBuilder: (context) => const [
+      itemBuilder: (context) => [
         PopupMenuItem(
           value: ProductSort.byName,
-          child: Text("name"),
+          child: Text(S.of(context).productsSortButtonName),
         ),
         PopupMenuItem(
           value: ProductSort.byExpiresAt,
-          child: Text("expiration date"),
+          child: Text(S.of(context).productsSortButtonExpirationDate),
         ),
       ],
       icon: const Icon(Icons.sort_rounded),

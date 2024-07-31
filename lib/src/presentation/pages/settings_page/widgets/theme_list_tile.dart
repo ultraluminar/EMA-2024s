@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/hive_settings_api/hive_settings_api.dart';
 import 'package:fridge_manager/src/presentation/pages/settings_page/widgets/theme_dialog.dart';
 
@@ -8,11 +9,11 @@ class ThemeListTile extends StatelessWidget {
   String getThemeModeString(ThemeMode themeMode) {
     switch (themeMode) {
       case ThemeMode.system:
-        return 'System';
+        return S().settingsPageThemeListTileSystem;
       case ThemeMode.light:
-        return 'Light';
+        return S().settingsPageThemeListTileLight;
       case ThemeMode.dark:
-        return 'Dark';
+        return S().settingsPageThemeListTileDark;
     }
   }
 
@@ -24,7 +25,7 @@ class ThemeListTile extends StatelessWidget {
       builder: (context, box, child) {
         final ThemeMode themeMode = box.get(Settings.themeMode.name);
         return ListTile(
-          title: const Text('Theme'),
+          title: Text(S.of(context).settingsPageThemeListTileTitle),
           subtitle: Text(getThemeModeString(themeMode)),
           onTap: () {
             showDialog(

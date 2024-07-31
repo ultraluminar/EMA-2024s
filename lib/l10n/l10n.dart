@@ -50,41 +50,31 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Fridge Manager`
   String get appTitle {
     return Intl.message(
       'Fridge Manager',
       name: 'appTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Products`
-  String get productsPageNavigationBarLabel {
-    return Intl.message(
-      'Products',
-      name: 'productsPageNavigationBarLabel',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Overview`
-  String get overviewPageNavigationBarLabel {
-    return Intl.message(
-      'Overview',
-      name: 'overviewPageNavigationBarLabel',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Recipes`
-  String get recipesPageNavigationBarLabel {
-    return Intl.message(
-      'Recipes',
-      name: 'recipesPageNavigationBarLabel',
       desc: '',
       args: [],
     );
@@ -100,40 +90,10 @@ class S {
     );
   }
 
-  /// `Fridge Manager`
-  String get overviewAppBarTitle {
-    return Intl.message(
-      'Fridge Manager',
-      name: 'overviewAppBarTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Recipes`
-  String get recipesAppBarTitle {
-    return Intl.message(
-      'Recipes',
-      name: 'recipesAppBarTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `An error occurred while loading todos.`
-  String get productsErrorSnackbarText {
-    return Intl.message(
-      'An error occurred while loading todos.',
-      name: 'productsErrorSnackbarText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No todos found with the selected filters.`
+  /// `No products found with the selected filters.`
   String get productsEmptyView {
     return Intl.message(
-      'No todos found with the selected filters.',
+      'No products found with the selected filters.',
       name: 'productsEmptyView',
       desc: '',
       args: [],
@@ -185,6 +145,266 @@ class S {
     return Intl.message(
       'Save Product',
       name: 'editProductSaveButtonTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiration Date`
+  String get editProductExpirationDateInputLabel {
+    return Intl.message(
+      'Expiration Date',
+      name: 'editProductExpirationDateInputLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid expiration date.`
+  String get editProductExpirationDateInputError {
+    return Intl.message(
+      'Please enter a valid expiration date.',
+      name: 'editProductExpirationDateInputError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get editProductNameInputLabel {
+    return Intl.message(
+      'Name',
+      name: 'editProductNameInputLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a name.`
+  String get editProductNameInputError {
+    return Intl.message(
+      'Please enter a name.',
+      name: 'editProductNameInputError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Manually`
+  String get productsPageAddManuallyFAB {
+    return Intl.message(
+      'Add Manually',
+      name: 'productsPageAddManuallyFAB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Barcode Scanner`
+  String get productsPageScanBarcodeFAB {
+    return Intl.message(
+      'Barcode Scanner',
+      name: 'productsPageScanBarcodeFAB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get productsFilterButtonAll {
+    return Intl.message(
+      'All',
+      name: 'productsFilterButtonAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not Expired`
+  String get productsFilterButtonNotExpired {
+    return Intl.message(
+      'Not Expired',
+      name: 'productsFilterButtonNotExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expired`
+  String get productsFilterButtonExpired {
+    return Intl.message(
+      'Expired',
+      name: 'productsFilterButtonExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get productsSortButtonName {
+    return Intl.message(
+      'Name',
+      name: 'productsSortButtonName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiration Date`
+  String get productsSortButtonExpirationDate {
+    return Intl.message(
+      'Expiration Date',
+      name: 'productsSortButtonExpirationDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Barcode Scanner`
+  String get scannerAppBarTitle {
+    return Intl.message(
+      'Barcode Scanner',
+      name: 'scannerAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan a barcode to add a product.`
+  String get scannerPageDisplayText {
+    return Intl.message(
+      'Scan a barcode to add a product.',
+      name: 'scannerPageDisplayText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading...`
+  String get scannerLoadingStateText {
+    return Intl.message(
+      'Loading...',
+      name: 'scannerLoadingStateText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is not a valid product-barcode.`
+  String get scannerInvalidBarcodeText {
+    return Intl.message(
+      'This is not a valid product-barcode.',
+      name: 'scannerInvalidBarcodeText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product not found.`
+  String get scannerProductNotFoundText {
+    return Intl.message(
+      'Product not found.',
+      name: 'scannerProductNotFoundText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scanner took too long to respond.`
+  String get scannerTimeoutText {
+    return Intl.message(
+      'Scanner took too long to respond.',
+      name: 'scannerTimeoutText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settingsPageAppBarTitle {
+    return Intl.message(
+      'Settings',
+      name: 'settingsPageAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Notification Time`
+  String get settingsPageDailyNotificationTime {
+    return Intl.message(
+      'Daily Notification Time',
+      name: 'settingsPageDailyNotificationTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nothing here`
+  String get settingsPageErrorText {
+    return Intl.message(
+      'Nothing here',
+      name: 'settingsPageErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get settingsPageThemeDialogTitle {
+    return Intl.message(
+      'Theme',
+      name: 'settingsPageThemeDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System`
+  String get settingsPageThemeListTileSystem {
+    return Intl.message(
+      'System',
+      name: 'settingsPageThemeListTileSystem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light`
+  String get settingsPageThemeListTileLight {
+    return Intl.message(
+      'Light',
+      name: 'settingsPageThemeListTileLight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark`
+  String get settingsPageThemeListTileDark {
+    return Intl.message(
+      'Dark',
+      name: 'settingsPageThemeListTileDark',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get settingsPageThemeListTileTitle {
+    return Intl.message(
+      'Theme',
+      name: 'settingsPageThemeListTileTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Out`
+  String get signOutDialogTitle {
+    return Intl.message(
+      'Sign Out',
+      name: 'signOutDialogTitle',
       desc: '',
       args: [],
     );

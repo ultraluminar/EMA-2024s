@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fridge_manager/l10n/l10n.dart';
 
 class SignOutButton extends StatelessWidget {
   const SignOutButton({super.key});
@@ -14,18 +15,18 @@ class SignOutButton extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: const Text("Sign out ?"),
+              title: Text(S.of(context).signOutDialogTitle),
               actions: [
                 TextButton(
                   onPressed: () async => Navigator.of(context).pop(),
-                  child: const Text('cancel'),
+                  child: Text(S.of(context).cancel),
                 ),
                 TextButton(
                   onPressed: () async {
                     Navigator.of(context).pop();
                     await FirebaseAuth.instance.signOut();
                   },
-                  child: const Text('confirm'),
+                  child: Text(S.of(context).confirm),
                 ),
               ],
             );

@@ -42,9 +42,7 @@ class ProductListTile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            // TODO: implement style
             color: captionColor,
-            //decoration: TextDecoration.lineThrough,
           ),
         ),
         subtitle: Text(
