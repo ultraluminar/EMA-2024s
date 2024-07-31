@@ -46,12 +46,7 @@ class _EditProductViewState extends State<EditProductView> {
   Widget build(BuildContext context) {
     Future<void> saveIfValide() async {
       final state = _formKey.currentState!;
-      if (!state.validate()) {
-        //FIXME: never valide
-        log("not valide!");
-        return;
-      }
-      log("valid");
+      if (!state.validate()) return;
 
       state.save();
       await context.read<EditProductCubit>().submit();
@@ -84,8 +79,7 @@ class _EditProductViewState extends State<EditProductView> {
           padding: const EdgeInsets.all(16),
           children: const [
             NameField(),
-            // SizedBox(height: 14),
-            Divider(),
+            SizedBox(height: 14),
             ExpirationDateField(),
           ],
         ),
