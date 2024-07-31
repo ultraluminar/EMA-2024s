@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_manager/l10n/l10n.dart';
 import 'package:fridge_manager/src/data/hive_products_api/src/hive_products_api.dart';
+import 'package:fridge_manager/src/data/notifications_api/notifications_api.dart';
 import 'package:fridge_manager/src/data/products_api/products_api.dart';
 import 'package:fridge_manager/src/presentation/pages/edit_product/edit_product.dart';
 
@@ -20,7 +21,7 @@ class ProductListTile extends StatelessWidget {
     return Dismissible(
       key: ValueKey(product.uuid),
       onDismissed: (_) {
-        //TODO: delete Notification
+        NotificationsApi.cancel(product);
         HiveProductsApi.deleteProduct(product.uuid);
       },
       direction: DismissDirection.startToEnd,

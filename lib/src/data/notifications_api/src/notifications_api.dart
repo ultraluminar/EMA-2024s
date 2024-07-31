@@ -54,7 +54,7 @@ class NotificationsApi {
   }
 
   static Future<void> onNotificationTimeChange() async {
-    await NotificationsApi.chancelAll();
+    await NotificationsApi.cancelAll();
     NotificationsApi.scheduleAll(
       HiveProductsApi.listenable().value.values,
     );
@@ -113,16 +113,15 @@ class NotificationsApi {
   }
 
   static Future<void> update(Product product) async {
-    await _plugin.cancel(product.uuid.hashCode);
+    await cancel(product);
     schedule(product);
   }
 
-  static Future<void> chancelAll() async {
+  static Future<void> cancelAll() async {
     await _plugin.cancelAll();
   }
 
-  static Future<void> chancel(Product product) async {
-    //TODO: check if hashCode as id works
+  static Future<void> cancel(Product product) async {
     await _plugin.cancel(product.uuid.hashCode);
   }
 }
