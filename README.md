@@ -150,9 +150,6 @@ lib/
 └── test/
 ```
 
-### Architecture
-TODO: Class Diagrams and Architecture Overview
-
 ## Final Product
 ![](images/Screenshot_1722461232.png)
 ![](images/Screenshot_1722461250.png)
