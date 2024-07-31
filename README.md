@@ -98,7 +98,7 @@ The wireframes and mockups for our fridge management app are designed to provide
 - **Dart:**
     - Dart is a programming language optimized for building mobile, desktop, server, and web applications. It is the primary language used for Flutter development.
 - **Firebase:**
-    - Firebase is a platform developed by Google for creating mobile and web applications. It provides a variety of services and we primarily used firestore for our database, and firebase authentication for user authentication.
+    - Firebase is a platform developed by Google for creating mobile and web applications. It provides a variety of services and we primarily used FIXME:firestore for our database, and firebase authentication for user authentication.
 - **Barcode Scanner: *[Mobile Scanner](https://pub.dev/packages/mobile_scanner)***
     - A universal scanner for Flutter based on MLKit. Uses CameraX on Android and AVFoundation on iOS.
 - **Hive: *[Hive](https://pub.dev/packages/hive)***

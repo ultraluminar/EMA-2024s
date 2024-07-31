@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart'
-    hide EmailAuthProvider, GoogleAuthProvider;
+// import 'package:firebase_auth/firebase_auth.dart'
+//     hide EmailAuthProvider, GoogleAuthProvider;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
@@ -20,23 +18,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:openfoodfacts/openfoodfacts.dart' hide Product;
 
 typedef AppBuilder = Future<Widget> Function();
-
-Future<void> testFirestore(FirebaseFirestore firestore) async {
-  const barcode = "40468259";
-  log("fetch productName");
-  final name = await ProductNameApi.fetch(barcode).timeout(
-    const Duration(seconds: 10),
-    onTimeout: () => "timeouted",
-  );
-
-  final prototype = ProductPrototype.fromScan(name ?? "notFound", barcode)
-      .copyWith(expiresAt: ExpirationDate.today());
-
-  log("define ProductsCollectionRef");
-  final productsCollectionRef = firestore.collection("products");
-  log("save to collection");
-  await productsCollectionRef.add(prototype.toProduct().toJson());
-}
 
 Future<void> setupOpenFoodAPIConfiguration() async {
   OpenFoodAPIConfiguration.userAgent = UserAgent(
@@ -66,8 +47,7 @@ Future<void> bootstrap(AppBuilder builder) async {
 
       await Firebase.initializeApp(
           options: DefaultFirebaseOptions.currentPlatform);
-      FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-      await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+      // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
       FirebaseUIAuth.configureProviders([
         EmailAuthProvider(),
         GoogleProvider(
@@ -75,13 +55,7 @@ Future<void> bootstrap(AppBuilder builder) async {
                 '688703949293-5tig6q6rtro1hds41d09d865b2pt2so9.apps.googleusercontent.com')
       ]);
 
-      // await testFirestore(firestore);
-
-      // final analyticsRepository =
-      //     AnalyticsRepository(FirebaseAnalytics.instance);
-      final blocObserver = AppBlocObserver(
-          // analyticsRepository: analyticsRepository,
-          );
+      final blocObserver = AppBlocObserver();
       Bloc.observer = blocObserver;
 
       runApp(
