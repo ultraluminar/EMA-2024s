@@ -1,0 +1,57 @@
+{
+  "@@locale": "en",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "appTitle": "Fridge Manager",
+  "productsAppBarTitle": "Products",
+  "productsEmptyView": "No products found with the selected filters.",
+  "productsPageLink": "Products Page",
+  "nothingToSeeHereYet": "Nothing to see here yet!",
+  "editProductAddAppBarTitle": "Add Product",
+  "editProductEditAppBarTitle": "Edit Product",
+  "editProductSaveButtonTooltip": "Save Product",
+  "editProductExpirationDateInputLabel": "Expiration Date",
+  "editProductExpirationDateInputError": "Please enter a valid expiration date.",
+  "editProductNameInputLabel": "Name",
+  "editProductNameInputError": "Please enter a name.",
+  "productsPageAddManuallyFAB": "Add Manually",
+  "productsPageScanBarcodeFAB": "Barcode Scanner",
+  "productsFilterButtonAll": "All",
+  "productsFilterButtonNotExpired": "Not Expired",
+  "productsFilterButtonExpired": "Expired",
+  "productsSortButtonName": "Name",
+  "productsSortButtonExpirationDate": "Expiration Date",
+  "scannerAppBarTitle": "Barcode Scanner",
+  "scannerPageDisplayText": "Scan a barcode to add a product.",
+  "scannerLoadingStateText": "Loading...",
+  "scannerInvalidBarcodeText": "This is not a valid product-barcode.",
+  "scannerProductNotFoundText": "Product not found.",
+  "scannerTimeoutText": "Scanner took too long to respond.",
+  "settingsPageAppBarTitle": "Settings",
+  "settingsPageDailyNotificationTime": "Daily Notification Time",
+  "settingsPageErrorText": "Nothing here",
+  "settingsPageThemeDialogTitle": "Theme",
+  "settingsPageThemeListTileSystem": "System",
+  "settingsPageThemeListTileLight": "Light",
+  "settingsPageThemeListTileDark": "Dark",
+  "settingsPageThemeListTileTitle": "Theme",
+  "signOutDialogTitle": "Sign Out",
+  "productListTileDescriptionExpired": "{count, plural, one{expired 1 day ago} other{expired {count} days ago}}",
+  "@productListTileDescriptionExpired": {
+    "description": "productListTileDescriptionExpired",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productListTileDescriptionNotExpired": "{count, plural, zero{expires today} one{expires in 1 day} other{expires in {count} days}}",
+  "@productListTileDescriptionNotExpired": {
+    "description": "productListTileDescriptionNotExpired",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}
