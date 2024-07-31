@@ -5,6 +5,12 @@ Project from the Entwicklung mobiler Anwendungen in Summersemester 2024 - HS Wor
 
 ### Installation
 
+### Test Account
+You can easily register a new account in the app or use the following test account:
+| Email | Password |
+| --- | --- |
+| mail@gmail.com | passwort |
+
 ## Concept and Requirements
 
 ### App Idea and Vision
@@ -87,9 +93,6 @@ This app is ideal for busy professionals, students, and anyone who wants to stay
       - User can customize notification preferences and theme.
       - App saves user settings and applies them accordingly.
 
-### Wireframes and Mockups
-The wireframes and mockups for our fridge management app are designed to provide a visual representation of the app's user interface and features.
-
 ## Development
 
 ### Technologies Used
@@ -98,7 +101,7 @@ The wireframes and mockups for our fridge management app are designed to provide
 - **Dart:**
     - Dart is a programming language optimized for building mobile, desktop, server, and web applications. It is the primary language used for Flutter development.
 - **Firebase:**
-    - Firebase is a platform developed by Google for creating mobile and web applications. It provides a variety of services and we primarily used FIXME:firestore for our database, and firebase authentication for user authentication.
+    - Firebase is a platform developed by Google for creating mobile and web applications. It provides a variety of services and we primarily used firebase authentication for user authentication.
 - **Barcode Scanner: *[Mobile Scanner](https://pub.dev/packages/mobile_scanner)***
     - A universal scanner for Flutter based on MLKit. Uses CameraX on Android and AVFoundation on iOS.
 - **Hive: *[Hive](https://pub.dev/packages/hive)***
@@ -123,6 +126,7 @@ lib/
 │   ├── data/
 │   │   ├── hive_products_api/
 │   │   ├── hive_settings_api/
+│   │   ├── notifications_api/
 │   │   ├── product_name_api/
 │   │   ├── products_api/
 │   │   └── settings_api/
@@ -133,10 +137,8 @@ lib/
 │   ├── presentation/
 │   │   ├── app/
 │   │   |   └── app.dart
-│   │   ├── home/
-│   │   |   ├── cubit/
-│   │   |   ├── view/
-│   │   |   └── home.dart
+│   │   ├── auth/
+│   │   |   └── auth_gate.dart
 │   │   ├── pages/
 │   │   |   ├── edit_product/
 │   │   |   ├── products_page/
@@ -146,17 +148,10 @@ lib/
 │   │   └── theme.dart
 │   └── firebase_options.dart
 └── test/
-    ├── ...
-    └── test.dart
 ```
 
 ### Architecture
 TODO: Class Diagrams and Architecture Overview
-
-TODO: Firebase Schema
-
-### Testing
-TODO: Testing strategy and tools used.
 
 ## Final Product
 TODO: Screenshots of the final app
@@ -166,7 +161,7 @@ TODO: Screenshots of the final app
 ### Current State
 The current state of our fridge management app is a functional prototype that demonstrates
 key features such as scanning product barcodes, adding items to the fridge inventory,
-viewing product details, TODO: (is this valid?) and receiving expiration date notifications.
+viewing product details, and receiving expiration date notifications.
 The app has a clean and intuitive user interface that allows users to easily navigate and interact with the app's features.
 
 In Particular, the app has the following User Stories implemented:
@@ -196,4 +191,17 @@ Some of the key areas for future development include:
   - Anonymous user authentication and data synchronization with Firebase Firestore.
 
 - **Solutions:**
-TODO: Solutions from the project development process.
+  - State management
+    - Using ValuelistenableBuilder and Streambuilder for reactive UI updates.
+    - Using Cubit/Bloc as a state management solution.
+    - Using Hive for its built-in storage persistence and fast performance.
+  - Notifications
+    - Using the flutter_local_notifications package for local notifications.
+    - Using scheduled notifications for background expiration date reminders.
+  - Authentication
+    - Using Firebase Authentication for user authentication.
+    - Featuring sign-in with Google and via email/password.
+  - Ui/UX
+    - Using Flutter's Material Design for consistent and intuitive UI components.
+    - Customizing themes and colors for a visually appealing user interface.
+    - Using Firebase Auth UI for a seamless authentication experience.
